@@ -5,7 +5,7 @@
         <title>Finddle</title>
         <meta charset="utf-8" />
         <link id="estilo" rel="stylesheet" type="text/css" href="includes/css/style.css">
-		<link rel="shortcut icon" href="includes/img//favicon1.png" />
+		<link rel="shortcut icon" href="includes/img/favicon1.png" />
     </head>
 
     <body>
