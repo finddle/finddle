@@ -1,13 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.2.11
+-- version 3.5.2.2
 -- http://www.phpmyadmin.net
 --
--- Servidor: 127.0.0.1
--- Tiempo de generación: 19-05-2015 a las 12:29:12
--- Versión del servidor: 5.6.21
--- Versión de PHP: 5.6.3
+-- Host: 127.0.0.1
+-- Generation Time: May 21, 2015 at 01:38 PM
+-- Server version: 5.5.27
+-- PHP Version: 5.4.7
 
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
 
@@ -17,259 +17,227 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Base de datos: `finddle`
+-- Database: `finddle`
 --
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `amigos`
+-- Table structure for table `amigos`
 --
 
 CREATE TABLE IF NOT EXISTS `amigos` (
   `NickUsuario1` varchar(100) NOT NULL,
-  `NickUsuario2` varchar(100) NOT NULL
+  `NickUsuario2` varchar(100) NOT NULL,
+  PRIMARY KEY (`NickUsuario1`,`NickUsuario2`),
+  KEY `NickUsuario1` (`NickUsuario1`),
+  KEY `NickUsuario2` (`NickUsuario2`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `amigos`
+--
+
+INSERT INTO `amigos` (`NickUsuario1`, `NickUsuario2`) VALUES
+('gandalf', 'paco'),
+('paco', 'titomc');
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `asiste`
+-- Table structure for table `asiste`
 --
 
 CREATE TABLE IF NOT EXISTS `asiste` (
   `NickUsuario` varchar(100) NOT NULL,
-  `IDEvento` int(11) NOT NULL
+  `IDEvento` int(11) NOT NULL,
+  PRIMARY KEY (`NickUsuario`,`IDEvento`),
+  KEY `NickUsuario` (`NickUsuario`),
+  KEY `IDEvento` (`IDEvento`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `asiste`
+--
+
+INSERT INTO `asiste` (`NickUsuario`, `IDEvento`) VALUES
+('paco', 1),
+('paco', 2);
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `comentarios`
+-- Table structure for table `comentarios`
 --
 
 CREATE TABLE IF NOT EXISTS `comentarios` (
-`ID` int(11) NOT NULL,
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
   `NickUsuario` varchar(100) NOT NULL,
   `IDEvento` int(11) NOT NULL,
-  `Texto` text NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+  `Texto` text NOT NULL,
+  `Fecha` date NOT NULL,
+  PRIMARY KEY (`ID`),
+  KEY `ID` (`ID`),
+  KEY `NickUsuario` (`NickUsuario`),
+  KEY `IDEvento` (`IDEvento`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `compras`
+-- Table structure for table `compras`
 --
 
 CREATE TABLE IF NOT EXISTS `compras` (
-`Codigo` int(11) NOT NULL,
+  `Codigo` int(11) NOT NULL AUTO_INCREMENT,
   `NickUsuario` varchar(100) NOT NULL,
   `IDEvento` int(11) NOT NULL,
   `NumEntradas` int(11) NOT NULL,
   `Butacas` int(11) DEFAULT NULL,
-  `PrecioTotal` double NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+  `PrecioTotal` double NOT NULL,
+  PRIMARY KEY (`Codigo`),
+  KEY `Codigo` (`Codigo`),
+  KEY `NickUsuario` (`NickUsuario`),
+  KEY `IDEvento` (`IDEvento`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `eventos`
+-- Table structure for table `eventos`
 --
 
 CREATE TABLE IF NOT EXISTS `eventos` (
-`ID` int(11) NOT NULL,
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
   `Nombre` varchar(100) NOT NULL,
   `Descripcion` text NOT NULL,
   `Fecha` date NOT NULL,
   `Precio` double NOT NULL,
-  `Imagen` blob NOT NULL,
+  `Imagen` varchar(40) NOT NULL,
   `PlazasDisponibles` int(11) NOT NULL,
   `Tipo` tinyint(1) NOT NULL,
   `Promotor` varchar(100) NOT NULL,
-  `Activo` tinyint(1) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+  `Activo` tinyint(1) NOT NULL,
+  PRIMARY KEY (`ID`),
+  KEY `ID` (`ID`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
 
 --
--- Volcado de datos para la tabla `eventos`
+-- Dumping data for table `eventos`
 --
 
 INSERT INTO `eventos` (`ID`, `Nombre`, `Descripcion`, `Fecha`, `Precio`, `Imagen`, `PlazasDisponibles`, `Tipo`, `Promotor`, `Activo`) VALUES
-(1, 'Arenal Sound', 'Festival en la comunitat valenciana', '2015-06-25', 25, '', 1500, 0, 'AndresAJ', 1),
-(2, 'Rock in Rio', 'Festival comunidad de madrid.', '2015-05-26', 30, '', 2000, 0, 'AndresAJ', 1),
-(3, 'Vengadores', 'Peli muy wena.', '2015-05-29', 8, '', 50, 1, 'AndresAJ', 1);
+(1, 'Arenal Sound', 'Festival de indie-rock situado en la Comunitat Valenciana', '2015-07-31', 50.23, 'includes/data/eventos/arenal.jpg', 60000, 0, 'AndresAJ', 1),
+(2, 'Rock in Rio', 'Festival de musica electronica situado en Madrid', '2015-06-24', 30.23, 'includes/data/eventos/rir.jpg', 3000, 0, 'AndresAJ', 1);
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `mensajes`
+-- Table structure for table `mensajes`
 --
 
 CREATE TABLE IF NOT EXISTS `mensajes` (
-`ID` int(11) NOT NULL,
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
   `NickEmisor` varchar(100) NOT NULL,
   `NickReceptor` varchar(100) NOT NULL,
+  `Correo` varchar(60) DEFAULT NULL,
+  `Titulo` varchar(60) DEFAULT NULL,
   `TextoMensaje` text NOT NULL,
-  `Leido` tinyint(1) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+  `Fecha` date NOT NULL,
+  `Leido` tinyint(1) NOT NULL,
+  PRIMARY KEY (`ID`),
+  KEY `ID` (`ID`),
+  KEY `NickEmisor` (`NickEmisor`),
+  KEY `NickReceptor` (`NickReceptor`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `peticionesamistad`
+-- Table structure for table `peticionesamistad`
 --
 
 CREATE TABLE IF NOT EXISTS `peticionesamistad` (
   `NickUsuario1` varchar(100) NOT NULL,
-  `NickUsuario2` varchar(100) NOT NULL
+  `NickUsuario2` varchar(100) NOT NULL,
+  PRIMARY KEY (`NickUsuario1`,`NickUsuario2`),
+  KEY `NickUsuario1` (`NickUsuario1`),
+  KEY `NickUsuario2` (`NickUsuario2`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `usuarios`
+-- Table structure for table `usuarios`
 --
 
 CREATE TABLE IF NOT EXISTS `usuarios` (
   `Nick` varchar(100) NOT NULL,
-  `Contraseña` varchar(100) NOT NULL,
+  `Contrasena` varchar(60) NOT NULL,
   `Correo` varchar(100) NOT NULL,
   `Nombre` varchar(100) NOT NULL,
   `Apellidos` varchar(100) NOT NULL,
   `Edad` int(11) NOT NULL,
   `Avatar` blob,
-  `Tipo` enum('usuario','admin','promotor','banned') NOT NULL
+  `Tipo` enum('usuario','admin','promotor','banned') NOT NULL,
+  PRIMARY KEY (`Nick`),
+  KEY `Nick` (`Nick`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Volcado de datos para la tabla `usuarios`
+-- Dumping data for table `usuarios`
 --
 
-INSERT INTO `usuarios` (`Nick`, `Contraseña`, `Correo`, `Nombre`, `Apellidos`, `Edad`, `Avatar`, `Tipo`) VALUES
+INSERT INTO `usuarios` (`Nick`, `Contrasena`, `Correo`, `Nombre`, `Apellidos`, `Edad`, `Avatar`, `Tipo`) VALUES
 ('gandalf', 'gandalf', 'gandalf@elblanco.com', 'gandalf', 'elblanco', 400, NULL, 'admin'),
 ('paco', 'paco', 'paco@paco.com', 'Francisco', 'Paco', 30, NULL, 'usuario'),
 ('titomc', 'titomc', 'titomc@titomc', 'dominique', 'elnegrata', 32, NULL, 'promotor');
 
 --
--- Índices para tablas volcadas
+-- Constraints for dumped tables
 --
 
 --
--- Indices de la tabla `amigos`
+-- Constraints for table `amigos`
 --
 ALTER TABLE `amigos`
- ADD PRIMARY KEY (`NickUsuario1`,`NickUsuario2`), ADD KEY `NickUsuario1` (`NickUsuario1`), ADD KEY `NickUsuario2` (`NickUsuario2`);
+  ADD CONSTRAINT `amigos_ibfk_1` FOREIGN KEY (`NickUsuario1`) REFERENCES `usuarios` (`Nick`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `amigos_ibfk_2` FOREIGN KEY (`NickUsuario2`) REFERENCES `usuarios` (`Nick`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Indices de la tabla `asiste`
+-- Constraints for table `asiste`
 --
 ALTER TABLE `asiste`
- ADD PRIMARY KEY (`NickUsuario`,`IDEvento`), ADD KEY `NickUsuario` (`NickUsuario`), ADD KEY `IDEvento` (`IDEvento`);
+  ADD CONSTRAINT `asiste_ibfk_1` FOREIGN KEY (`NickUsuario`) REFERENCES `usuarios` (`Nick`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `asiste_ibfk_2` FOREIGN KEY (`IDEvento`) REFERENCES `eventos` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Indices de la tabla `comentarios`
+-- Constraints for table `comentarios`
 --
 ALTER TABLE `comentarios`
- ADD PRIMARY KEY (`ID`), ADD KEY `ID` (`ID`), ADD KEY `NickUsuario` (`NickUsuario`), ADD KEY `IDEvento` (`IDEvento`);
+  ADD CONSTRAINT `comentarios_ibfk_1` FOREIGN KEY (`NickUsuario`) REFERENCES `usuarios` (`Nick`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `comentarios_ibfk_2` FOREIGN KEY (`IDEvento`) REFERENCES `eventos` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Indices de la tabla `compras`
+-- Constraints for table `compras`
 --
 ALTER TABLE `compras`
- ADD PRIMARY KEY (`Codigo`), ADD KEY `Codigo` (`Codigo`), ADD KEY `NickUsuario` (`NickUsuario`), ADD KEY `IDEvento` (`IDEvento`);
+  ADD CONSTRAINT `compras_ibfk_1` FOREIGN KEY (`NickUsuario`) REFERENCES `usuarios` (`Nick`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `compras_ibfk_2` FOREIGN KEY (`IDEvento`) REFERENCES `eventos` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Indices de la tabla `eventos`
---
-ALTER TABLE `eventos`
- ADD PRIMARY KEY (`ID`), ADD KEY `ID` (`ID`);
-
---
--- Indices de la tabla `mensajes`
+-- Constraints for table `mensajes`
 --
 ALTER TABLE `mensajes`
- ADD PRIMARY KEY (`ID`), ADD KEY `ID` (`ID`), ADD KEY `NickEmisor` (`NickEmisor`), ADD KEY `NickReceptor` (`NickReceptor`);
+  ADD CONSTRAINT `mensajes_ibfk_1` FOREIGN KEY (`NickEmisor`) REFERENCES `usuarios` (`Nick`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `mensajes_ibfk_2` FOREIGN KEY (`NickReceptor`) REFERENCES `usuarios` (`Nick`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Indices de la tabla `peticionesamistad`
+-- Constraints for table `peticionesamistad`
 --
 ALTER TABLE `peticionesamistad`
- ADD PRIMARY KEY (`NickUsuario1`,`NickUsuario2`), ADD KEY `NickUsuario1` (`NickUsuario1`), ADD KEY `NickUsuario2` (`NickUsuario2`);
-
---
--- Indices de la tabla `usuarios`
---
-ALTER TABLE `usuarios`
- ADD PRIMARY KEY (`Nick`), ADD KEY `Nick` (`Nick`);
-
---
--- AUTO_INCREMENT de las tablas volcadas
---
-
---
--- AUTO_INCREMENT de la tabla `comentarios`
---
-ALTER TABLE `comentarios`
-MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
---
--- AUTO_INCREMENT de la tabla `compras`
---
-ALTER TABLE `compras`
-MODIFY `Codigo` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
---
--- AUTO_INCREMENT de la tabla `eventos`
---
-ALTER TABLE `eventos`
-MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
---
--- AUTO_INCREMENT de la tabla `mensajes`
---
-ALTER TABLE `mensajes`
-MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
---
--- Restricciones para tablas volcadas
---
-
---
--- Filtros para la tabla `amigos`
---
-ALTER TABLE `amigos`
-ADD CONSTRAINT `amigos_ibfk_1` FOREIGN KEY (`NickUsuario1`) REFERENCES `usuarios` (`Nick`) ON DELETE CASCADE ON UPDATE CASCADE,
-ADD CONSTRAINT `amigos_ibfk_2` FOREIGN KEY (`NickUsuario2`) REFERENCES `usuarios` (`Nick`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Filtros para la tabla `asiste`
---
-ALTER TABLE `asiste`
-ADD CONSTRAINT `asiste_ibfk_1` FOREIGN KEY (`NickUsuario`) REFERENCES `usuarios` (`Nick`) ON DELETE CASCADE ON UPDATE CASCADE,
-ADD CONSTRAINT `asiste_ibfk_2` FOREIGN KEY (`IDEvento`) REFERENCES `eventos` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Filtros para la tabla `comentarios`
---
-ALTER TABLE `comentarios`
-ADD CONSTRAINT `comentarios_ibfk_1` FOREIGN KEY (`NickUsuario`) REFERENCES `usuarios` (`Nick`) ON DELETE CASCADE ON UPDATE CASCADE,
-ADD CONSTRAINT `comentarios_ibfk_2` FOREIGN KEY (`IDEvento`) REFERENCES `eventos` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Filtros para la tabla `compras`
---
-ALTER TABLE `compras`
-ADD CONSTRAINT `compras_ibfk_1` FOREIGN KEY (`NickUsuario`) REFERENCES `usuarios` (`Nick`) ON DELETE CASCADE ON UPDATE CASCADE,
-ADD CONSTRAINT `compras_ibfk_2` FOREIGN KEY (`IDEvento`) REFERENCES `eventos` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Filtros para la tabla `mensajes`
---
-ALTER TABLE `mensajes`
-ADD CONSTRAINT `mensajes_ibfk_1` FOREIGN KEY (`NickEmisor`) REFERENCES `usuarios` (`Nick`) ON DELETE CASCADE ON UPDATE CASCADE,
-ADD CONSTRAINT `mensajes_ibfk_2` FOREIGN KEY (`NickReceptor`) REFERENCES `usuarios` (`Nick`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Filtros para la tabla `peticionesamistad`
---
-ALTER TABLE `peticionesamistad`
-ADD CONSTRAINT `peticionesamistad_ibfk_1` FOREIGN KEY (`NickUsuario1`) REFERENCES `usuarios` (`Nick`) ON DELETE CASCADE ON UPDATE CASCADE,
-ADD CONSTRAINT `peticionesamistad_ibfk_2` FOREIGN KEY (`NickUsuario2`) REFERENCES `usuarios` (`Nick`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `peticionesamistad_ibfk_1` FOREIGN KEY (`NickUsuario1`) REFERENCES `usuarios` (`Nick`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `peticionesamistad_ibfk_2` FOREIGN KEY (`NickUsuario2`) REFERENCES `usuarios` (`Nick`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
