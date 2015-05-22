@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: May 21, 2015 at 01:38 PM
+-- Generation Time: May 22, 2015 at 01:03 PM
 -- Server version: 5.5.27
 -- PHP Version: 5.4.7
 
@@ -61,6 +61,7 @@ CREATE TABLE IF NOT EXISTS `asiste` (
 --
 
 INSERT INTO `asiste` (`NickUsuario`, `IDEvento`) VALUES
+('gandalf', 1),
 ('paco', 1),
 ('paco', 2);
 
@@ -80,7 +81,7 @@ CREATE TABLE IF NOT EXISTS `comentarios` (
   KEY `ID` (`ID`),
   KEY `NickUsuario` (`NickUsuario`),
   KEY `IDEvento` (`IDEvento`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -99,7 +100,7 @@ CREATE TABLE IF NOT EXISTS `compras` (
   KEY `Codigo` (`Codigo`),
   KEY `NickUsuario` (`NickUsuario`),
   KEY `IDEvento` (`IDEvento`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -120,7 +121,7 @@ CREATE TABLE IF NOT EXISTS `eventos` (
   `Activo` tinyint(1) NOT NULL,
   PRIMARY KEY (`ID`),
   KEY `ID` (`ID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
 
 --
 -- Dumping data for table `eventos`
@@ -143,13 +144,13 @@ CREATE TABLE IF NOT EXISTS `mensajes` (
   `Correo` varchar(60) DEFAULT NULL,
   `Titulo` varchar(60) DEFAULT NULL,
   `TextoMensaje` text NOT NULL,
-  `Fecha` date NOT NULL,
+  `Fecha` datetime NOT NULL,
   `Leido` tinyint(1) NOT NULL,
   PRIMARY KEY (`ID`),
   KEY `ID` (`ID`),
   KEY `NickEmisor` (`NickEmisor`),
   KEY `NickReceptor` (`NickReceptor`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -178,7 +179,7 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
   `Nombre` varchar(100) NOT NULL,
   `Apellidos` varchar(100) NOT NULL,
   `Edad` int(11) NOT NULL,
-  `Avatar` blob,
+  `Avatar` varchar(40) DEFAULT NULL,
   `Tipo` enum('usuario','admin','promotor','banned') NOT NULL,
   PRIMARY KEY (`Nick`),
   KEY `Nick` (`Nick`)
@@ -189,6 +190,7 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
 --
 
 INSERT INTO `usuarios` (`Nick`, `Contrasena`, `Correo`, `Nombre`, `Apellidos`, `Edad`, `Avatar`, `Tipo`) VALUES
+('', '', '', '', '', 0, NULL, 'usuario'),
 ('gandalf', 'gandalf', 'gandalf@elblanco.com', 'gandalf', 'elblanco', 400, NULL, 'admin'),
 ('paco', 'paco', 'paco@paco.com', 'Francisco', 'Paco', 30, NULL, 'usuario'),
 ('titomc', 'titomc', 'titomc@titomc', 'dominique', 'elnegrata', 32, NULL, 'promotor');
