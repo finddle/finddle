@@ -45,7 +45,7 @@
 					$apellidosU = $fila[4];	$arr[] = $apellidosU;
 					$edadU = $fila[5];	$arr[] = $edadU;
 				}
-				}
+			}
 		return $arr;
 	}
 
