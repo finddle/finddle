@@ -5,7 +5,7 @@
 	<head>
 		<meta charset="utf-8" />
 		<title> Finddle </title>
-		<link rel="stylesheet" href="includes/css/style.css" type="text/css">
+		<link rel="stylesheet" href="includes/css/perfilUsuario.css" type="text/css">
 		<link rel="shortcut icon" href="includes/img/favicon1.png" />
 	</head>
 	
@@ -19,13 +19,32 @@
 			<a href="proximosEventos.html">Fiestas</a>
 			<a href="index.html">Salir</a>
 		</nav>
-		</div>
-		<h1> Perfil del usuario </h1>
 		
-		<?php 
-			require_once(__DIR__."/includes/php/asisteBD.php");
-			getEventosUser("paco");
-		?>
+		<h1> Perfil del usuario </h1>
+		</div>
+		
+		<div id="contenido">
+			<?php 
+				require_once(__DIR__."/includes/php/asisteBD.php");
+				getEventosUser("paco");
+			?>
+		</div>
+		
+		<div id="barra-lateral-izq">
+			<?php 
+				require_once(__DIR__."/includes/php/usuariosBD.php");
+				getInfoUser("paco");
+			?>
+		</div>
+		
+		<div id="barra-lateral-dcha">
+			<h2> Amigos </h2>
+			<?php 
+				require_once(__DIR__."/includes/php/amigosBD.php");
+				getAmigos("paco");
+			?>
+		</div>
+		
 	</body>
 
-	</html>
+</html>

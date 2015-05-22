@@ -23,9 +23,9 @@
 			</div>
 			</div>
             <div id = "vu-barra-izquierda">
-                     <a href="perfilUsuario.html" class="submit btn primary-btn">Perfil</a>
-                     <a href="mensajes.html" class="submit btn primary-btn">Mensajes</a>
-                     <a href="proximosEventos.html" class="submit btn primary-btn">Proximos eventos</a>
+                     <a href="perfilUsuario.php" class="submit btn primary-btn">Perfil</a>
+                     <a href="mensajes.php" class="submit btn primary-btn">Mensajes</a>
+                     <a href="proximosEventos.php" class="submit btn primary-btn">Proximos eventos</a>
             </div>
 
             <div id="vu-contenido">
@@ -41,17 +41,9 @@
 				</div>
 				
 				<div id = "#cuadrosFomularioPerfil">
-                <form action="" method="post">
-						</br>
-                        <input text="submit" name="login" placeholder="Nombre de usuario"/><br><br>
-                        <input text="submit" name="nombre" placeholder="Nombre"/><br><br>
-                        <input text="submit" name="apellido" placeholder="Apellido"/><br><br>
-                        <input text="submit" name="correo" placeholder="Correo" /><br><br>
-                        <input text="submit" name="telefono" placeholder="Telefono" /><br><br></br>
-                </div>
-                      <a href="perfilUsuario.html" class="btn-login">Actualizar</a>
-                    
-                </form>
+                <?php
+					require_once(__DIR__."/includes/php/usuariosBD.php");
+				?>
 
             </div>
 		</div>

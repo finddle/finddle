@@ -16,7 +16,7 @@
 			while ($registro = $resultado->fetch_assoc()) {
 				echo "<tr>";
 				foreach ($registro as $campo)
-				echo "<td>",$campo, "</td>";
+					echo "<td>",$campo, "</td></br>";
 				echo "</tr>";
 				echo "<br>";
 			}
