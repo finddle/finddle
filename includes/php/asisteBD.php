@@ -3,33 +3,42 @@
 		
 		function getEventosUser($user){
 			global $mysqli;
-			$login = mysqli_real_escape_string($mysqli,$user);
-			$query = "SELECT IDEvento FROM asiste WHERE NickUsuario = '$login'";
-			$idEventos=$mysqli->query($query);
-
 			
-			while ($registro = $idEventos->fetch_assoc()) {
-				echo "<tr>";
-				foreach ($registro as $campo){
-					//<!-- Obtenemos el nombre y foto de cada evento
-					$query1 = "SELECT Nombre, Imagen FROM eventos WHERE ID = '$campo'";
-						$resultado=$mysqli->query($query1);
-						while($registro2 = $resultado->fetch_assoc()){
-							echo "<h3>", $registro2["Nombre"], "</h3>";
-							echo "<img src=",$registro2["Imagen"]," /></br>";
-						}
-						
-					//Obtenemos el numero de asistentes a dicho evento
-					$query2 = "SELECT * FROM asiste WHERE IDEvento = '$campo'";
-						$numAsistentes = $mysqli->query($query2)->num_rows;
-						echo "Nº asistentes: ",$numAsistentes, "<br>"; 
-				}
-				echo "</tr>";
-				echo "<br>";
+			$args = array($user);
+			sanitizeArgs($args);
+			
+			$eventos = null;
+			//preparamos la consulta con un PreparedStatement
+			$pst = $mysqli->prepare("SELECT IDEvento,Nombre, Imagen FROM asiste,eventos WHERE NickUsuario = ? AND ID = IDEvento");
+			//creamos la cadena de argumentos indicando con s los string e i para integer, de cada argumento del array
+			$pst->bind_param("s",$args[0]);
+			$pst->execute();
+			$result = $pst->get_result();
+			while($row = $result->fetch_array(MYSQLI_ASSOC)){
+				$eventos[] = $row;
 			}
+			//cerramos la conexion y devolvemos el resultado en un fecth_array
+			$pst->close();
+			return $eventos;	
+		}
+		
+		function countAsistentes($idEvento){
+			global $mysqli;
+			$args = array($idEvento);
+			sanitizeArgs($args);
 			
+			$asistentes = null;
 			
-			//liberar memoria
-			$idEventos->free();
+			$pst = $mysqli->prepare("SELECT COUNT(*) AS nAsistentes FROM asiste WHERE IDEvento = ?");
+			//creamos la cadena de argumentos indicando con s los string e i para integer, de cada argumento del array
+			$pst->bind_param("i",$args[0]);
+			$pst->execute();
+			$result = $pst->get_result();
+			while($row = $result->fetch_array(MYSQLI_ASSOC)){
+				$asistentes = $row;
+			}
+			//cerramos la conexion y devolvemos el resultado en un fecth_array
+			$pst->close();
+			return $asistentes["nAsistentes"];
 		}
 ?>

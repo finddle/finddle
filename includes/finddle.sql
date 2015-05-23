@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: May 22, 2015 at 01:03 PM
+-- Generation Time: May 23, 2015 at 12:55 PM
 -- Server version: 5.5.27
 -- PHP Version: 5.4.7
 
@@ -112,7 +112,7 @@ CREATE TABLE IF NOT EXISTS `eventos` (
   `ID` int(11) NOT NULL AUTO_INCREMENT,
   `Nombre` varchar(100) NOT NULL,
   `Descripcion` text NOT NULL,
-  `Fecha` date NOT NULL,
+  `Fecha` datetime NOT NULL,
   `Precio` double NOT NULL,
   `Imagen` varchar(40) NOT NULL,
   `PlazasDisponibles` int(11) NOT NULL,
@@ -128,8 +128,8 @@ CREATE TABLE IF NOT EXISTS `eventos` (
 --
 
 INSERT INTO `eventos` (`ID`, `Nombre`, `Descripcion`, `Fecha`, `Precio`, `Imagen`, `PlazasDisponibles`, `Tipo`, `Promotor`, `Activo`) VALUES
-(1, 'Arenal Sound', 'Festival de indie-rock situado en la Comunitat Valenciana', '2015-07-31', 50.23, 'includes/data/eventos/arenal.jpg', 60000, 0, 'AndresAJ', 1),
-(2, 'Rock in Rio', 'Festival de musica electronica situado en Madrid', '2015-06-24', 30.23, 'includes/data/eventos/rir.jpg', 3000, 0, 'AndresAJ', 1);
+(1, 'Arenal Sound', 'Festival de indie-rock situado en la Comunitat Valenciana', '2015-07-31 00:00:00', 50.23, 'includes/data/eventos/arenal.jpg', 60000, 0, 'AndresAJ', 1),
+(2, 'Rock in Rio', 'Festival de musica electronica situado en Madrid', '2015-06-24 00:00:00', 30.23, 'includes/data/eventos/rir.jpg', 3000, 0, 'AndresAJ', 1);
 
 -- --------------------------------------------------------
 
@@ -190,10 +190,9 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
 --
 
 INSERT INTO `usuarios` (`Nick`, `Contrasena`, `Correo`, `Nombre`, `Apellidos`, `Edad`, `Avatar`, `Tipo`) VALUES
-('', '', '', '', '', 0, NULL, 'usuario'),
-('gandalf', 'gandalf', 'gandalf@elblanco.com', 'gandalf', 'elblanco', 400, NULL, 'admin'),
-('paco', 'paco', 'paco@paco.com', 'Francisco', 'Paco', 30, NULL, 'usuario'),
-('titomc', 'titomc', 'titomc@titomc', 'dominique', 'elnegrata', 32, NULL, 'promotor');
+('gandalf', '123', 'itsravenbooking@gmail.com', 'Paquito', 'eeee', 23, NULL, 'admin'),
+('paco', '123', 'itsravenbooking@gmail.com', 'Paquito', 'eeee', 23, NULL, 'usuario'),
+('titomc', '123', 'itsravenbooking@gmail.com', 'Paquito', 'eeee', 23, NULL, 'promotor');
 
 --
 -- Constraints for dumped tables

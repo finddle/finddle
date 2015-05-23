@@ -33,17 +33,27 @@
 			<div id = "">
 			 <h3> Actualiza la información de perfil</h3>
 				<div id = "nombresFormulario">
-					Nombre de usuario:</br></br>
 					Nombre:</br></br>
 					Apellido:</br></br>
+					Contraseña:</br></br>
 					E-mail:</br></br>
-					Telefono:</br></br>
+					Edad:</br></br>
 				</div>
 				
 				<div id = "#cuadrosFomularioPerfil">
-                <?php
-					require_once(__DIR__."/includes/php/usuariosBD.php");
-				?>
+                <form name="form" action="includes/php/update.php" method="post">
+						</br>
+                        <input text="submit" name="nombre" placeholder="Nombre"/><br><br>
+                        <input text="submit" name="apellidos" placeholder="Apellidos"/><br><br>
+						<input text="submit" name="contrasena" placeholder="contrasena" /><br><br>
+                        <input text="submit" name="correo" placeholder="Correo" /><br><br>
+                        <input text="submit" name="edad" placeholder="edad" /><br><br></br>
+						<input type="submit" value "Actualizar"/>;
+				</form>
+                </div>
+                      
+                    
+                
 
             </div>
 		</div>

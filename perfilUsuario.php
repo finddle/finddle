@@ -26,14 +26,29 @@
 		<div id="contenido">
 			<?php 
 				require_once(__DIR__."/includes/php/asisteBD.php");
-				getEventosUser("paco");
+				$eventos = getEventosUser("paco");
+				foreach($eventos as $evento){
+					echo "<h3>", $evento["Nombre"], "</h3>";
+					echo "<img src=",$evento["Imagen"]," /></br>";
+					echo "<p>Nº Asistentes: ".countAsistentes($evento['IDEvento'])."</p><br>";
+				}
 			?>
 		</div>
 		
 		<div id="barra-lateral-izq">
 			<?php 
 				require_once(__DIR__."/includes/php/usuariosBD.php");
-				getInfoUser("paco");
+				$info = getInfoUser("paco");
+				foreach($info as $i){
+					if(isset($i["Avatar"]))
+						echo "<img src=",$i["Avatar"]," /></br>";
+					else
+						echo "<a href='editPerfil.php' id='avatar'><img src='includes/img/usuario.png'/></a></br>";		
+					echo "<h3>", $i["Nick"], "</h3></br>";
+					echo "<p>", $i["Nombre"], "</p>";
+					echo "<p>", $i["Apellidos"], "</p>";
+					echo "<p>", $i["Edad"], "</p>";
+				}
 			?>
 		</div>
 		
@@ -41,7 +56,10 @@
 			<h2> Amigos </h2>
 			<?php 
 				require_once(__DIR__."/includes/php/amigosBD.php");
-				getAmigos("paco");
+				$amigos = getAmigos("paco");
+				foreach($amigos as $amigo){
+					echo $amigo['NickUsuario1'], "<br>";
+				}
 			?>
 		</div>
 		

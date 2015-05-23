@@ -37,16 +37,18 @@
 		Apellidos</br></br>
 		</div>
 		<div id = "cuadrosFormulario">
-                <form action="">
+                <form name "form" method="POST" action="" >
 					<input type="text" name="nick" placeholder="Nick" /><br><br>
                     <input type="password" name="contrasena" placeholder="Contraseña" /><br><br>
-					<input type="password" name="repetircontrasena" /><br><br>
-					<input type="text" name="e-mail" placeholder="E-mail" /><br><br>
+					<input type="text" name="email" placeholder="E-mail" /><br><br>
 					<input type="text" name="nombre" placeholder="Nombre" /><br><br>
 					<input type="text" name="apellidos" placeholder="Apellidos" /><br><br>
+					<input type="text" name="edad" placeholder="edad" /><br><br>
                 </form>
 				</br>
 		</div>
+		
+	
 		</div>
 		
             
@@ -56,7 +58,7 @@
 		</div>
           <div id="login-botones">
 		  <center>
-                 <a href="login.html" class="btn-login">Finalizar</a>
+                 <a href="includes/php/a.php" class="btn-login">Finalizar</a>
 		   </center>
             </div>
 			
@@ -70,7 +72,6 @@
 			<a href="atencionCliente.html">Atención al cliente</a>
 			<a href="contacto.html">Contactanos</a>
 	</nav>
-	
     </body>
 
 </html>

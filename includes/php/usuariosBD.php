@@ -2,32 +2,43 @@
 	require_once(__DIR__."/config.php");
 
 
+	function editarUsuario($nick, $contrasena, $correo, $nombre, $apellidos, $edad){
+		global $mysqli;
+		$err = 0;
+		$query = "UPDATE usuarios SET Contrasena='$contrasena', Correo='$correo', Nombre='$nombre', Apellidos='$apellidos', Edad='$edad' WHERE '$nick'='paco';";
+		$resultado = $mysqli->query($query) or die ($mysqli->error. " en la línea ".(__LINE__-1));
+		return $err; 
+	}
+	
 	function insertarUsuario($nick, $contrasena, $correo, $nombre, $apellidos, $edad){
 		global $mysqli;
 		$err = 0;
-
-		$query="INSERT INTO usuarios (Nick, Contrasena, Correo, Nombre, Apellidos, Edad, Avatar, Tipo) VALUES ($nick, $contrasena, $correo, $nombre, $apellidos, $edad, , usuario)";
+		$vacio = NULL;
+		$tipo = 'usuario';
+		$query="INSERT INTO usuarios VALUES ($nick, $contrasena, $correo, $nombre, $apellidos, $edad, '$vacio', '$tipo');";
 		$resultado=$mysqli->query($query) or die ($mysqli->error. " en la línea ".(__LINE__-1));
 		return $err;
 	}
 
 	function getInfoUser($nick){
 		global $mysqli;
-		$query = "SELECT * FROM usuarios WHERE nick = '$nick'";
-		$result = $mysqli->query($query);
-			while ($registro = $result->fetch_assoc()) {
-					//Obtenemos los datos de cada usuario (avatar, nick, nombre, apellidos y edad)
-					if(isset($registro["Avatar"]))
-						echo "<img src=",$registro["Avatar"]," /></br>";
-					else
-						echo "<a href='editPerfil.php' id='avatar'><img src='includes/img/usuario.png'/></a></br>";
-							
-					echo "<h3>", $registro["Nick"], "</h3></br>";
-					echo "<p>", $registro["Nombre"], "</p>";
-					echo "<p>", $registro["Apellidos"], "</p>";
-					echo "<p>", $registro["Edad"], "</p>";
-				}
-			$result->free();
+		
+		$args = array($nick);
+		sanitizeArgs($args);
+		$info = null;
+		//preparamos la consulta con un PreparedStatement
+		$pst = $mysqli->prepare("SELECT * FROM usuarios WHERE Nick = ?");
+		//creamos la cadena de argumentos indicando con s los string e i para integer, de cada argumento del array
+		$pst->bind_param("s",$args[0]);
+
+		$pst->execute();
+		$result = $pst->get_result();
+		while($row = $result->fetch_array(MYSQLI_ASSOC)){
+			$info[] = $row;
+		}
+		//cerramos la conexion y devolvemos el resultado en un fecth_array
+		$pst->close();		
+		return $info;	
 	}
 
 	function buscarUser($nick){
@@ -45,7 +56,7 @@
 					$apellidosU = $fila[4];	$arr[] = $apellidosU;
 					$edadU = $fila[5];	$arr[] = $edadU;
 				}
-			}
+				}
 		return $arr;
 	}
 
