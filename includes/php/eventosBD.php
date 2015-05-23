@@ -18,25 +18,48 @@ function addPeticionEvento($nombre, $descripcion, $fecha, $precio, $imagen, $pla
 
 }
 
+function getEventos($tipo){
+	global $mysqli;
+
+	$args = array($tipo);
+	sanitizeArgs($args);
+
+	$eventos = null;
+
+	$pst = $mysqli->prepare("SELECT * FROM eventos WHERE Tipo = ?;");
+	$pst->bind_param("i",$args[0]);
+
+	$pst->execute();
+	$result = $pst->get_result();
+	while($row = $result->fetch_array(MYSQLI_ASSOC)){
+		$eventos[] = $row;
+	}
+	
+	$pst->close();
+	return $eventos;
+}
+
 function getInfoEvento($idEvento){
 	global $mysqli;
 
 	$args = array($idEvento);
 	sanitizeArgs($args);
 
-	$arr = null;
+	$evento = null;
 	$pst = $mysqli->prepare("SELECT * FROM eventos WHERE ID = ?;");
 	$pst->bind_param("i",$args[0]);
 
 	$pst->execute();
-	while($row = $pst->get_result()){
-		$arr = $row->fetch_array(MYSQLI_ASSOC);
+	$result = $pst->get_result();
+	while($row = $result->fetch_array(MYSQLI_ASSOC)){
+		$evento = $row;
 	}
-	print_r($arr);
 	
 	$pst->close();
-	return $arr;
+	return $evento;
 }
+
+
 
 /*En funcion de si la llama un admin o un promotor se llama con unos parametros u otros, un admin puede cambiar activo*/
 function updateEvento($id, $nombre,$descripcion,$fecha,$precio,$imagen,$plazas,$promotor,$activo){
