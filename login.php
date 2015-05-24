@@ -1,16 +1,28 @@
 <!DOCTYPE html>
 <html>
-
-    <head>
-        <title>Finddle</title>
-        <meta charset="utf-8" />
-		<link rel="shortcut icon" href="includes/img/favicon1.png" />
-        <link rel="stylesheet" type="text/css" href="includes/css/formularios.css" />
-    </head>
-
-    <body>
-		 <div class="container">
-		  <section>				
+<head>
+  <title>Finddle</title>
+  <meta charset="utf-8" />
+  <!-- Latest compiled CSS -->
+  <link rel="stylesheet" type="text/css" href="includes/css/bootstrap.css">
+  <!-- Optional theme -->
+  <link rel="stylesheet" type="text/css" href="includes/css/bootstrap-theme.min.css">
+  <!-- Personal CSS -->
+  <link rel="stylesheet" type="text/css" href="includes/css/mycss.css">
+  <link rel="stylesheet" type="text/css" href="includes/css/formularios.css" />
+  <!--Favicon-->
+  <link rel="shortcut icon" href="includes/img/favicon.png" />
+</head>
+<body>
+  <?php require(__DIR__.'/includes/php/header.php');?>
+  <!--Inicio Contenido-->
+  <div class="main">
+    <div class="container">
+      <div class="sidebar-left container-fixed col-xs-4 col-sm-4 col-md-3 ">
+        <!-- Barra lateral izquierda -->
+      </div>
+      <div class="container-fixed col-xs-8 col-sm-8 col-md-6">
+          <section>             
                 <div id="container_demo" >
                     <a class="hiddenanchor" id="toregister"></a>
                     <a class="hiddenanchor" id="tologin"></a>
@@ -27,24 +39,31 @@
                                     <input id="password" name="password" required="required" type="password" placeholder="eg. X8df!90EO" /> 
                                 </p>
                                 <p class="keeplogin"> 
-									<input type="checkbox" name="loginkeeping" id="loginkeeping" value="loginkeeping" /> 
-									<label for="loginkeeping">No cerrar sesión</label>
-								</p>
+                                    <input type="checkbox" name="loginkeeping" id="loginkeeping" value="loginkeeping" /> 
+                                    <label for="loginkeeping">No cerrar sesión</label>
+                                </p>
                                 <p class="login button"> 
                                     <input type="submit" value="Login" /> 
-								</p>
+                                </p>
                                 <p class="change_link">
-									No eres miembro aun?
-									<a href="formularioRegistro.php" class="to_register">Unete a nosotros</a>
-								</p>
+                                    No eres miembro aun?
+                                    <a href="formularioRegistro.php" class="to_register">Unete a nosotros</a>
+                                </p>
                             </form>
                         </div>
-						
+                        
                     </div>
                 </div>  
             </section>
         </div>
-		
-		
-    </body>
+      <div class="clearfix visible-xs-block visible-sm-block"></div>
+      <div class="sidebar-right container-fixed col-xs-4 col-sm-4 col-md-3">
+      </div>
+    </div>
+  </div>
+  <!--Fin Contenido-->
+  <?php require(__DIR__.'/includes/php/footer.php');?>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+</body>
 </html>
+<?php require(__DIR__.'/includes/php/cleanup.php')?>
