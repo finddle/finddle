@@ -41,7 +41,7 @@
 		$pst->execute();
 		$result = $pst->get_result();
 		while($row = $result->fetch_array(MYSQLI_ASSOC)){
-			$info[] = $row;
+			$info = $row;
 		}
 		//cerramos la conexion y devolvemos el resultado en un fecth_array
 		$pst->close();		

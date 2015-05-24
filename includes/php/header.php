@@ -1,5 +1,5 @@
 <?php 
-
+require_once('config.php');
 ?>
 <!--Inicio Cabecera-->
 <div class="container">
@@ -22,7 +22,18 @@
             <li><a href="proximosEventos.php">Fiestas</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="login.php">Ingresar</a></li>
+            <?php 
+            if (session_status() == PHP_SESSION_NONE) {
+                session_start();
+            }
+            
+              if(isset($_SESSION['username'])){
+                echo '<li><a href="perfilUsuario.php">'.$_SESSION['username'].'</a></li>';
+                echo '<li><a href="includes/php/logout.php">Logout</a></li>';
+              }else{
+                echo '<li><a href="login.php">Ingresar</a></li>';
+              }
+            ?>
           </ul>
         </div>
       </div>

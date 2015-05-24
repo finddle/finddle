@@ -2,38 +2,51 @@
 require_once __DIR__.'/config.php';
 require_once __DIR__.'/usuariosBD.php';
 
-function gestionarFormularioLogin() {
-  gestionaFormulario(..., 'procesaFormularioLogin', ...);
-}
+function formLogin($params) {
+  $name = $params['username'];
+  $pass = $params['password'];
+  
+  $validParams = true;
+  $result = [];
 
-function procesaFormularioLogin($params) {
-  // Validamos que los datos del formulario tienen el "aspecto" que queremos
-  if ( $okValidacion ) {
-    $result = login($params['usuario'], $params['contraseña']);
+  print_r($params);
+  if (!preg_match('/^[a-zA-Z0-9_-]{3,16}$/',$name)) {
+    $validParams = false;
+    $result[] = "Requerido nombre de usuario de 3 a 16 caracteres alfanumericos."; 
   }
+  if(!preg_match("/^[a-zA-z0-9_-]{4,18}$/",$pass)){
+    $validParams = false;
+    $result[] =  "Necesaria password de 4 a 18 caracteres alfanumericos";
+  }
+  if ( $validParams ) {
+    $result = login($name, $pass);
+  }
+
   return $result;
 }
 
 function login($nombreUsuario, $password) {
+ 
   $ok = false;
-  $usuario = dameUsuario($nombreUsuario);
+  $usuario = getInfoUser($nombreUsuario);
   // Si existe el usuario
   if ( $usuario ) {
-    $ok = $usuario['password'] === $password;
+    $ok = $usuario['Contrasena'] === $password && $usuario['Tipo'] != "banned";
     if ($ok) {
-      // El usuario existe y la contraseña coincide ... lo guardamos en la sesión
       $_SESSION['username'] = $nombreUsuario;
-      // También podemos guardar en la sesión si el usuario es ADMIN, un usuario registrado, etc.
-      $_SESSION['rol'] = $usuario['rol'];
+      $_SESSION['rol'] = $usuario['Tipo'];
+      $_SESSION['foto'] = $usuario['Imagen'];
       $ok=true;
+      header("Location: ".__DOC__."../../perfilUsuario.php");
     } else {
-      $ok = []
-      $ok[] = "Usuario o contraseña no válidos";
+      $ok = [];
+      $ok[] = "Usuario o password no validos";
     }
   } else {
-    $ok = []
-    $ok[] = "Usuario o contraseña no válidos";
+    $ok = [];
+    $ok[] = "Usuario o password no validos";
   }
   return $ok;
+  
 }
 ?>

@@ -1,44 +1,28 @@
 <!DOCTYPE html>
-
 <html>
+<head>
+  <title>Finddle</title>
+  <meta charset="utf-8" />
+  <!-- Latest compiled CSS -->
+  <link rel="stylesheet" type="text/css" href="includes/css/bootstrap.css">
+  <!-- Optional theme -->
+  <link rel="stylesheet" type="text/css" href="includes/css/bootstrap-theme.min.css">
+  <!-- Personal CSS -->
+  <link rel="stylesheet" type="text/css" href="includes/css/mycss.css">
+  <link rel="stylesheet" type="text/css" href="includes/css/perfilUsuario.css">
+  <!--Favicon-->
+  <link rel="shortcut icon" href="includes/img/favicon.png" />
+</head>
+<body>
+  <?php require(__DIR__.'/includes/php/header.php');?>
 
-	<head>
-		<meta charset="utf-8" />
-		<title> Finddle </title>
-		<link rel="stylesheet" href="includes/css/perfilUsuario.css" type="text/css">
-		<link rel="shortcut icon" href="includes/img/favicon1.png" />
-	</head>
-	
-	<body>
-		<div id="pu-cabecera">
-        <div id = "centrado">
-		<a href="index.html"id="logo"><img src="includes/img/l2.png"></a>
-		<nav class="buttons">
-			<a href="proximosEventos.html">Conciertos</a>
-			<a href="cartelera.html">Cine</a>
-			<a href="proximosEventos.html">Fiestas</a>
-			<a href="index.html">Salir</a>
-		</nav>
-		
-		<h1> Perfil del usuario </h1>
-		</div>
-		
-		<div id="contenido">
-			<?php 
-				require_once(__DIR__."/includes/php/asisteBD.php");
-				$eventos = getEventosUser("paco");
-				foreach($eventos as $evento){
-					echo "<h3>", $evento["Nombre"], "</h3>";
-					echo "<img src=",$evento["Imagen"]," /></br>";
-					echo "<p>Nº Asistentes: ".countAsistentes($evento['IDEvento'])."</p><br>";
-				}
-			?>
-		</div>
-		
-		<div id="barra-lateral-izq">
-			<?php 
+  <!--Inicio Contenido-->
+  <div class="main">
+    <div class="container">
+      <div class="sidebar-left container-fixed col-xs-4 col-sm-4 col-md-3 ">
+        <?php 
 				require_once(__DIR__."/includes/php/usuariosBD.php");
-				$info = getInfoUser("paco");
+				$info = getInfoUser($_SESSION['username']);
 				foreach($info as $i){
 					if(isset($i["Avatar"]))
 						echo "<img src=",$i["Avatar"]," /></br>";
@@ -50,19 +34,35 @@
 					echo "<p>", $i["Edad"], "</p>";
 				}
 			?>
-		</div>
-		
-		<div id="barra-lateral-dcha">
-			<h2> Amigos </h2>
+      </div>
+      <div class="container-fixed col-xs-8 col-sm-8 col-md-6">
+        <?php 
+				require_once(__DIR__."/includes/php/asisteBD.php");
+				$eventos = getEventosUser($_SESSION['username']);
+				foreach($eventos as $evento){
+					echo "<h3>", $evento["Nombre"], "</h3>";
+					echo "<img src=",$evento["Imagen"]," /></br>";
+					echo "<p>Nº Asistentes: ".countAsistentes($evento['IDEvento'])."</p><br>";
+				}
+			?>
+      </div>
+      <div class="clearfix visible-xs-block visible-sm-block">
+      	<h2> Amigos </h2>
 			<?php 
 				require_once(__DIR__."/includes/php/amigosBD.php");
-				$amigos = getAmigos("paco");
+				$amigos = getAmigos($_SESSION['username']);
 				foreach($amigos as $amigo){
 					echo $amigo['NickUsuario1'], "<br>";
 				}
 			?>
-		</div>
-		
-	</body>
-
+      </div>
+      <div class="sidebar-right container-fixed col-xs-4 col-sm-4 col-md-3">
+      </div>
+    </div>
+  </div>
+  <!--Fin Contenido-->
+  <?php require(__DIR__.'/includes/php/footer.php');?>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+</body>
 </html>
+<?php require(__DIR__.'/includes/php/cleanup.php');?>

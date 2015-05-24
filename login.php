@@ -13,8 +13,17 @@
   <!--Favicon-->
   <link rel="shortcut icon" href="includes/img/favicon.png" />
 </head>
+<?php 
+require(__DIR__.'/includes/php/usuarios.php');
+    if(isset($_POST['formLogin'])) {
+        $result = formLogin($_POST);
+    }
+?>
 <body>
-  <?php require(__DIR__.'/includes/php/header.php');?>
+<?php 
+    require(__DIR__.'/includes/php/header.php');  
+?>
+
   <!--Inicio Contenido-->
   <div class="main">
     <div class="container">
@@ -28,8 +37,17 @@
                     <a class="hiddenanchor" id="tologin"></a>
                     <div id="wrapper">
                         <div id="login" class="animate form">
-                            <form method = "POST" action=".php" autocomplete="on"> 
+                            <form method = "POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" autocomplete="on"> 
                                 <h1>Log in</h1> 
+                                <?php 
+                                    if(isset($result)){
+                                        echo '<ul>';
+                                        foreach($result as $error){
+                                            echo '<li class = "resultError">'.$error.'</li>';
+                                        }
+                                        echo '</ul>';
+                                    }
+                                ?>
                                 <p> 
                                     <label for="username" class="uname" data-icon="u" > Tu nick o correo </label>
                                     <input id="username" name="username" required="required" type="text" placeholder="myusername or mymail@mail.com"/>
@@ -42,6 +60,7 @@
                                     <input type="checkbox" name="loginkeeping" id="loginkeeping" value="loginkeeping" /> 
                                     <label for="loginkeeping">No cerrar sesión</label>
                                 </p>
+                                <input type="hidden" name="formLogin"/>
                                 <p class="login button"> 
                                     <input type="submit" value="Login" /> 
                                 </p>
@@ -66,4 +85,4 @@
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 </body>
 </html>
-<?php require(__DIR__.'/includes/php/cleanup.php')?>
+<?php require(__DIR__.'/includes/php/cleanup.php');?>

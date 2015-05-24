@@ -78,3 +78,4 @@
 	
 	</body>
 </html>
+<?php require(__DIR__.'/includes/php/cleanup.php');?>
