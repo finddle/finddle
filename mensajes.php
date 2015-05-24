@@ -43,23 +43,25 @@
 		</div>
 		
 		 <div id="vu-contenido">
-			<form class="contact_form" action="contact" method="post" id="contacto">
 				
-					<div id="nombresFormulario">
-					Destinatario: </br></br>
-					Mensaje: </br></br>
-					</div>
-					</br>
-					<div id="cuadrosFormularioMensaje">
-						<input type="text" placeholder="Añade un destinatario" required /></br></br></br>
-						<textarea name="Mensaje" cols="50" rows="10" placeholder="Escribe aquí tu mensaje" required></textarea>
-					</br></br></br>
-					</div>
-					
-						 <a href="mensajes.html" class="btn-login">Enviar</a>
-						 <a href="mensajes.html" class="btn-login">Cancelar</a>
+	<div id="formularioRegistro">
+	<div id = "nombresFormulario">
+		Destinatario</br></br>
+		Mensaje</br></br>
+		</div>
+		<div id = "cuadrosFormulario">
+
+                <form name "form" method="POST" action="includes\php\c.php">
+					<input type="text" name="titulo" placeholder="Titulo" /><br><br>
+					<input type="text" name="destinatario" placeholder="Destinatario" /><br><br>
+					<input type="text" name="mensaje" placeholder="Mensaje" /><br><br>
+					<input type="submit" value "Enviar"/> 
+                </form>
+				</br>
+		</div>
+	</form>
+	</div>
 				
-			</form>
         </div>
 		
 		</div>

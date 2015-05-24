@@ -7,7 +7,13 @@
 	<link rel="stylesheet" type="text/css" href="includes/css/style.css" />
 </head>
 <body>
+	<div id="formularioRegistro">
 
+            
+		<div id = "tituloFormulario">
+                	<h2>Formulario registro</h2>
+		</div>
+		<div id = "">
 	<div id = "centrado">
 		<a href="index.html"id="logo"><img src="includes/img/l2.png"></a>
 		<nav class="buttons">
@@ -18,35 +24,24 @@
 		</nav>
 	
 	<div id="formularioRegistro">
-	<form class="contact_form" action="contact" method="post" id="contacto">
-		<h2>Contáctanos</h2>
-		<ul>
-			<li>
-				<label for="name">Nombre:</label> 
-				<input type="text" placeholder="Su nombre" required />
-			</li>
-			</br>
-			<li>
-				<label for="email">Email:</label>
-				<input type="email"	name="email" placeholder="correo@ejemplo.com" required />
-			</li>
-			</br>
-			<li>
-				<label for="website">Sitio Web:</label>
-				<input type="url" name="web" placeholder="http://susitio.com" required />
-			</li>
-			</br>
-			<li>
-				<label for="Mensaje">Mensaje:</label>
-				</br>
-				<textarea name="Mensaje" cols="40" rows="6" required></textarea>
-			</li>
-			</br>
+	<div id = "nombresFormulario">
+		Nombre</br></br>
+		Correo</br></br>
+		Mensaje</br></br>
+		</div>
+		<div id = "cuadrosFormulario">
 
-				<button class="submit" type="submit">Enviar</button>
-			
-		</ul>
+                <form name "form" method="POST" action="includes\php\b.php" \>
+					<input type="text" name="nombre" placeholder="Nombre" /><br><br>
+                    <input type="text" pattern="^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$" title="El correo ha de tener el siguiente formato: myemail@myemail.com" name="correo" placeholder="Correo" /><br><br>
+					<input type="text" name="mensaje" placeholder="Mensaje" /><br><br>
+					<input type="submit" value "Enviar" /> 
+                </form>
+				</br>
+		</div>
 	</form>
+		</div>
+		</div>
 	</div>
 
 </body>
