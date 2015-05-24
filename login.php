@@ -4,50 +4,47 @@
     <head>
         <title>Finddle</title>
         <meta charset="utf-8" />
-        <link id="estilo" rel="stylesheet" type="text/css" href="includes/css/style.css">
 		<link rel="shortcut icon" href="includes/img/favicon1.png" />
+        <link rel="stylesheet" type="text/css" href="includes/css/formularios.css" />
     </head>
 
     <body>
-		<div id = "centrado">
-             <a href="index.html" id="logo"><img src="includes/img/l2.png"></a> 
-		</div>
-        
-        <div id="login-caja">
-
-            <div id="login-caja-texto">
-
-                	<h2>Inicia sesión en Finddle</h2>
-
-                <form action="">
-
-                    <input type="text" name="nombre" placeholder="Correo o usuario">
-                    <br>
-                    <br>
-                    <input type="password" name="clave" placeholder="Contraseña"><br><br>
-					<input type="checkbox" value="1" name="remember_me" checked="checked">Recordar mis datos
-                </form>
-            </div>
-            <div id="login-botones">
-                 <a href="vistaadministrador.html" class="btn-login">Administrador</a>
-                 <a href="vistausuario.html" class="btn-login">Usuario</a>
-                 <a href="vistapromotor.html" class="btn-login">Promotor</a>
-            </div>
-
-            <div id="login-opciones">
-             
-                	<a href="olvidoContrasena.html">¿Olvidaste tu contraseña?</a>
-					<span class="separator">·</span>
-					<a href="formularioregistro.html">¿Aún no estas registrado?</a>
-
-            </div>
+		 <div class="container">
+		  <section>				
+                <div id="container_demo" >
+                    <a class="hiddenanchor" id="toregister"></a>
+                    <a class="hiddenanchor" id="tologin"></a>
+                    <div id="wrapper">
+                        <div id="login" class="animate form">
+                            <form method = "POST" action=".php" autocomplete="on"> 
+                                <h1>Log in</h1> 
+                                <p> 
+                                    <label for="username" class="uname" data-icon="u" > Tu nick o correo </label>
+                                    <input id="username" name="username" required="required" type="text" placeholder="myusername or mymail@mail.com"/>
+                                </p>
+                                <p> 
+                                    <label for="password" class="youpasswd" data-icon="p"> Tu contraseña </label>
+                                    <input id="password" name="password" required="required" type="password" placeholder="eg. X8df!90EO" /> 
+                                </p>
+                                <p class="keeplogin"> 
+									<input type="checkbox" name="loginkeeping" id="loginkeeping" value="loginkeeping" /> 
+									<label for="loginkeeping">No cerrar sesión</label>
+								</p>
+                                <p class="login button"> 
+                                    <input type="submit" value="Login" /> 
+								</p>
+                                <p class="change_link">
+									No eres miembro aun?
+									<a href="formularioRegistro.php" class="to_register">Unete a nosotros</a>
+								</p>
+                            </form>
+                        </div>
+						
+                    </div>
+                </div>  
+            </section>
         </div>
 		
-		<nav class="buttons">
-			<a href="condicionesLegales.html">Condiciones Legales</a>
-			<a href="atencionCliente.html">Atención al cliente</a>
-			<a href="contacto.html">Contactanos</a>
-		</nav>
 		
     </body>
 </html>

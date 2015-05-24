@@ -4,74 +4,64 @@
     <head>
         <title>Finddle</title>
         <meta charset="utf-8" />
-        <link id="estilo" rel="stylesheet" type="text/css" href="includes/css/style.css">
 		<link rel="shortcut icon" href="includes/img/favicon1.png" />
+		<link rel="stylesheet" type="text/css" href="includes/css/formularios.css" />
+		<script type="text/javascript" src="includes/js/jquery-1.9.1.min.js"></script>
     </head>
 
-    <body bgcolor="#4DD0E1">
+		  <div class="container">
+		  <section>				
+                <div id="container_demo" >
+                    <a class="hiddenanchor" id="toregister"></a>
+                    <a class="hiddenanchor" id="tologin"></a>
+                    <div id="wrapper">
+                        <div id="login" class="animate form">
+                            <form  method = "POST" action="includes\php\a.php"> 
+                                <h1>Formulario de Registro</h1> 
+                                <p> 
+                                    <label> Nick </label>
+                                    <input name="nick" required="required" type="text" placeholder="username"/>
+                                </p>
+                                <p> 
+                                    <label> Contraseña </label>
+                                    <input id="contrasena" name="contrasena" required="required" type="password" placeholder="password" /> 
+                                </p>
+								 <p> 
+                                    <label> E-mail </label>
+                                    <input id="correo" pattern="^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$" title="El correo ha de tener el siguiente formato: myemail@myemail.com" name="correo" required="required" type="text" placeholder="e-mail" /> 
+                                </p>
+								 <p> 
+                                    <label> Nombre </label>
+                                    <input id="nombre" pattern="[a-zA-Z]+" title = "No introduzca elementos númericos" name="nombre" required="required" type="text" placeholder="name" /> 
+                                </p>
+								 <p> 
+                                    <label> Apellidos </label>
+                                    <input id="apellidos" pattern="[a-zA-Z]+" title = "No introduzca elementos númericos" name="apellidos" required="apellidos" type="text" placeholder="surnames" /> 
+                                </p>
+								 <p> 
+                                    <label> Edad </label>
+                                    <input id="edad" pattern="[0-9]+" title = "Introduzca un número" name="edad" required="required" type="text" placeholder="age" /> 
+                                </p>
+                                <p class="login button"> 
+                                    <input type="submit" value="Finalizar" /> 
+								</p>
+                            </form>
+                        </div>
+						
+                    </div>
+                </div>  
+            </section>
+        </div>
 		
-		<div id = "centrado">
-
-		
-			<a href="index.html"id="logo"><img src="includes/img/l2.png"></a>
-			<nav class="buttons">
-				<a href="proximosEventos.html">Conciertos</a>
-				<a href="cartelera.html">Cine</a>
-				<a href="proximosEventos.html">Fiestas</a>
-				<a href="login.html">Conéctate</a>
-			</nav>
-		</br>
-		<div id="formularioRegistro">
-
-            
-		<div id = "tituloFormulario">
-                	<h2>Formulario registro</h2>
-		</div>
-		<div id = "">
-		<div id = "nombresFormulario">
-		Nick</br></br>
-		Contraseña</br></br>
-		Repetir contraseña</br></br>
-		E-mail</br></br>
-		Nombre </br></br>
-		Apellidos</br></br>
-		</div>
-		<div id = "cuadrosFormulario">
-                <form name "form" method="POST" action="" >
-					<input type="text" name="nick" placeholder="Nick" /><br><br>
-                    <input type="password" name="contrasena" placeholder="Contraseña" /><br><br>
-					<input type="text" name="email" placeholder="E-mail" /><br><br>
-					<input type="text" name="nombre" placeholder="Nombre" /><br><br>
-					<input type="text" name="apellidos" placeholder="Apellidos" /><br><br>
-					<input type="text" name="edad" placeholder="edad" /><br><br>
-                </form>
-				</br>
-		</div>
-		
-	
-		</div>
-		
-            
-		<div id = "">
-			<input name="java" type="checkbox" value="on"/> Quiero recibir informacion de eventos</br>
-			<input name="java" type="checkbox" value="on"/> Acepto terminos y condiciones</br></br>
-		</div>
-          <div id="login-botones">
-		  <center>
-                 <a href="includes/php/a.php" class="btn-login">Finalizar</a>
-		   </center>
-            </div>
-			
-			
-	</div>
-	<div id = "separacionLineas">
-			</br></br></br>
-	</div>
-	<nav class="buttons">
-			<a href="condicionesLegales.html">Condiciones Legales</a>
-			<a href="atencionCliente.html">Atención al cliente</a>
-			<a href="contacto.html">Contactanos</a>
-	</nav>
+		<script>
+			$("#nick").change(function(){
+			<?php 
+			require_once(__DIR__."/usuariosBD.php");
+			?>
+			var url="buscarNick()nick=" + $("#nick").val();
+			$.get(url,usuarioExiste);
+			});							
+		</script>
     </body>
 
 </html>
