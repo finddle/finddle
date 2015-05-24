@@ -26,7 +26,7 @@ function getEventos($tipo){
 
 	$eventos = null;
 
-	$pst = $mysqli->prepare("SELECT * FROM eventos WHERE Tipo = ?;");
+	$pst = $mysqli->prepare("SELECT * FROM eventos WHERE Tipo = ? ORDER BY Fecha DESC;");
 	$pst->bind_param("i",$args[0]);
 
 	$pst->execute();
