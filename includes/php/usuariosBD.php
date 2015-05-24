@@ -1,6 +1,15 @@
 <?php
 	require_once(__DIR__."/config.php");
 
+	function comprobarFormulario(){
+	$nick = isset($_POST['nick']) ? $_POST['nick'] : null ;
+	$contrasena = isset($_POST['contrasena']) ? $_POST['contrasena'] : null ;
+	$correo = isset($_POST['email']) ? $_POST['email'] : null ;
+    $nombre = isset($_POST['nombre']) ? $_POST['nombre'] : null ;
+	$apellidos = isset($_POST['apellidos']) ? $_POST['apellidos'] : null ;
+	$edad = isset($_POST['edad']) ? $_POST['edad'] : null ;
+	insertarUsuario($nick, $contrasena, $correo, $nombre, $apellidos, $edad);
+	}
 
 	function editarUsuario($nick, $contrasena, $correo, $nombre, $apellidos, $edad, $avatar){
 		global $mysqli;
@@ -83,6 +92,15 @@
 		//$resultado=$mysqli->query($query) or die('Correo electrónico ya en uso, inténtelo con otro');
 		$resultado= $mysqli->query($query) or die ($mysqli->error. " en la línea ".(__LINE__-1));
 		return $err;
+	}
+	
+	function buscarNick($nick){
+	global $mysqli;
+	$query="SELECT * FROM usuarios WHERE Nick = '$nick'";
+	$resultado= $mysqli->query($query) ;
+	$numregistros=$resultado->num_rows;
+	if($numregistros == 1) return true;
+	else return false;
 	}
 
 ?>
