@@ -9,6 +9,7 @@
 		<script type="text/javascript" src="includes/js/jquery-1.9.1.min.js"></script>
     </head>
 
+	<body>
 		  <div class="container">
 		  <section>				
                 <div id="container_demo" >

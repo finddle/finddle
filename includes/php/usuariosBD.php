@@ -2,12 +2,19 @@
 	require_once(__DIR__."/config.php");
 
 
-	function editarUsuario($nick, $contrasena, $correo, $nombre, $apellidos, $edad){
+	function editarUsuario($nick, $contrasena, $correo, $nombre, $apellidos, $edad, $avatar){
 		global $mysqli;
-		$err = 0;
-		$query = "UPDATE usuarios SET Contrasena='$contrasena', Correo='$correo', Nombre='$nombre', Apellidos='$apellidos', Edad='$edad' WHERE '$nick'='paco';";
-		$resultado = $mysqli->query($query) or die ($mysqli->error. " en la línea ".(__LINE__-1));
-		return $err; 
+		$args = array($contrasena, $correo, $nombre, $apellidos, $edad, $avatar);
+		sanitizeArgs($args);	
+		
+		$pst = $mysqli->prepare("UPDATE usuarios SET Contrasena = ? AND Correo = ? AND Nombre = ? AND Apellidos = ? AND Edad = ? AND Avatar = ? 
+								WHERE Nick = $nick");
+		
+		$pst->bind_param("ssssis", $args[0], $args[1], $args[2], $args[3], $args[4], $args[5]);
+		$pst->execute();
+		$result = $pst->get_result();
+		
+		$pst->close();
 	}
 	
 	function insertarUsuario($nick, $contrasena, $correo, $nombre, $apellidos, $edad){
