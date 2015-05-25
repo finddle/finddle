@@ -3,6 +3,7 @@
 
     <head>
         <title>Finddle</title>
+<<<<<<< HEAD
         <meta charset="utf-8" />
 		<link rel="shortcut icon" href="includes/img/favicon1.png" />
 		 <!-- Latest compiled CSS -->
@@ -13,6 +14,19 @@
 		<link rel="stylesheet" type="text/css" href="includes/css/mycss.css">
 		<link rel="stylesheet" type="text/css" href="includes/css/formularios.css" />
 		<script type="text/javascript" src="includes/js/jquery-1.9.1.min.js"></script>
+=======
+		  <meta charset="utf-8" />
+		  <!-- Latest compiled CSS -->
+		  <link rel="stylesheet" type="text/css" href="includes/css/bootstrap.css">
+		  <!-- Optional theme -->
+		  <link rel="stylesheet" type="text/css" href="includes/css/bootstrap-theme.min.css">
+		  <!-- Personal CSS -->
+		  <link rel="stylesheet" type="text/css" href="includes/css/mycss.css">
+		  <link rel="stylesheet" type="text/css" href="includes/css/formularios.css">
+		  <!--Favicon-->
+		  <link rel="shortcut icon" href="includes/img/favicon.png" />
+			<script type="text/javascript" src="includes/js/jquery-1.9.1.min.js"></script>
+>>>>>>> f80e75e7a939c618cb91f3aabb86bd42789a87b4
     </head>
 
 	<?php 

@@ -6,9 +6,9 @@
   </div>
   <div class="container footer-right">
     <div class="container footer-word-links">
-      <a href="#">About</a> |
-      <a href="#">Contact</a> |
-      <a href="#">Terms of Service</a> |
+      <a href="atencionCliente.php">About</a> |
+      <a href="contacto.php">Contact</a> |
+      <a href="condicionesLegales.php">Terms of Service</a> |
       <a href="https://twitter.com/FinddleProyect" >    
       <img src="includes/img/twitter-logo-blue.png" width="15" height="12" alt=""> 
       </a>
