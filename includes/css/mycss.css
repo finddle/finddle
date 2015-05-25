@@ -125,3 +125,8 @@
   color: #fff;
   background-color: #fed136;
 }
+
+div.eventosElem{
+  margin-top: 10px;
+  margin-bottom: 10px;
+}

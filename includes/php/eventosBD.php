@@ -17,7 +17,6 @@ function addPeticionEvento($nombre, $descripcion, $fecha, $precio, $imagen, $pla
 	$pst->close();
 
 }
-
 function getEventos($tipo){
 	global $mysqli;
 

@@ -21,7 +21,7 @@ require(__DIR__.'/includes/php/usuarios.php');
 <body>
 <?php 
     require(__DIR__.'/includes/php/header.php');  
-    require(__DIR__.'/includes/php/eventosBD.php');
+    require(__DIR__.'/includes/php/comprasBD.php');
 ?>
 
   <!--Inicio Contenido-->
@@ -33,19 +33,12 @@ require(__DIR__.'/includes/php/usuarios.php');
       <div class="container-fixed col-xs-8 col-sm-8 col-md-6">
          <?php 
          	$evento = $_GET['evento'];
-         	$info = getInfoEvento($evento);
-         	echo '<div class="infoEventosElem">';
-     		echo '<h2>'.$info['Nombre'].'</h2>';
-     		echo '<p>Fecha: '.$info['Fecha'].'</p>';
-     		echo '<p>Descripcion: '.$info['Descripcion'].'</p>';
-     		echo '<p>Plazas: '.$info['PlazasDisponibles'].'</p>';
-     		echo '<p><img src ="'.$info['Imagen'].'"/></p>';
-     		if(isset($_SESSION['username'])){
-     			echo '<p><a href="comprarEntrada.php?evento='.$info['ID'].'&tipo='.$info['Tipo'].'">Comprar Entrada</a></p>';
-     		}else{
-     			echo '<p>!Inicia sesion para comprar tu entrada a este evento!</p>';
-     		}
-     		echo '</div>';
+         	$tipo = $_GET['tipo'];
+         	if($tipo == 0){
+         		echo "Este evento es un concierto";
+         	}else{
+         		echo "Este evento es una fiesta";
+         	}
          ?>
       </div>
       <div class="clearfix visible-xs-block visible-sm-block"></div>

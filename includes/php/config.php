@@ -4,12 +4,13 @@ define('BD_NAME', 'finddle');
 define('BD_USER', 'root');
 define('BD_PASS', '');
 
-define('ROOT_DIR',$_SERVER['SERVER_NAME'].'/pr3');
+define('ROOT_DIR',$_SERVER['SERVER_NAME'].'/finddle');
 
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 $mysqli = new mysqli(BD_HOST, BD_USER, BD_PASS, BD_NAME);
+$mysqli->set_charset("utf8");
 if ( mysqli_connect_errno() ) {
 	echo "Error de conexión a la BD: ".mysqli_connect_error();
 	exit();
