@@ -11,7 +11,7 @@ function mensajeContacto($correo, $texto){
 	$leido = 0;
 	$user = 'UsuarioAnonimo';
 	$query="INSERT INTO mensajes VALUES ('$vacio', '$user', '$tipo', '$correo', '$titulo', '$texto','$fecha', '$leido');";
-	$resultado=$mysqli->query($query) or die ($mysqli->error. " en la línea ".(__LINE__-1)) or $err = 1;
+	$resultado=$mysqli->query($query) or $err = 1;
 	return $err;
 }
 

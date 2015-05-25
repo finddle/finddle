@@ -384,3 +384,7 @@ p.change_link{
 li.resultError{
 	color: red;
 }
+
+li.resultOk{
+	color: #00FF00;
+}
