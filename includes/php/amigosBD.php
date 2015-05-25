@@ -1,5 +1,3 @@
-<!--HACER QUE EL USUARIO DEL LOGIN SEA EL QUE SE HA CONECTADO-->
-
 
 <?php
 		require_once(__DIR__."/config.php");
