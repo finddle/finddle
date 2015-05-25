@@ -1,6 +1,7 @@
 <?php 
-require_once('config.php');
+	require_once('config.php');
 ?>
+
 <!--Inicio Cabecera-->
 <div class="container">
   <header>
@@ -13,7 +14,7 @@ require_once('config.php');
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
           </button>
-          <a href="" class="navbar-brand">FINDDLE</a>
+          <a href="index.php" class="navbar-brand">FINDDLE</a>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
