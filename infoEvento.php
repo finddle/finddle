@@ -34,7 +34,7 @@ require(__DIR__.'/includes/php/usuarios.php');
          <?php 
          	$evento = $_GET['evento'];
          	$info = getInfoEvento($evento);
-         	echo '<div class="infoEventosElem">';
+         	echo '<div class="eventosElem">';
      		echo '<h2>'.$info['Nombre'].'</h2>';
      		echo '<p>Fecha: '.$info['Fecha'].'</p>';
      		echo '<p>Descripcion: '.$info['Descripcion'].'</p>';
