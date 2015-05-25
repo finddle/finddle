@@ -2,6 +2,29 @@
 require_once __DIR__.'/config.php';
 require_once __DIR__.'/usuariosBD.php';
 
+function comprobarFormulario($params){
+	$nick = $params['nick'];
+	$contrasena = $params['contrasena'];
+	$correo = $params['correo'];
+	$nombre = $params['nombre'];
+	$apellidos = $params['apellidos'];
+	$edad = $params['edad'];
+	$validParams = true;
+	$result = [];
+	if (!preg_match('/^[a-zA-Z0-9_-]{3,16}$/',$nick)) {
+		$validParams = false;
+		$result[] = "Requerido nombre de usuario de 3 a 16 caracteres alfanumericos."; 
+	}
+	if(!preg_match("/^[a-zA-z0-9_-]{4,18}$/",$contrasena)){
+		$validParams = false;
+		$result[] =  "Necesaria password de 4 a 18 caracteres alfanumericos";
+	}
+	if ( $validParams ) {
+    insertarUsuario($nick, $contrasena, $correo, $nombre, $apellidos, $edad);
+	}
+  return $result;
+}
+	
 function formLogin($params) {
   $name = $params['username'];
   $pass = $params['password'];
@@ -9,7 +32,6 @@ function formLogin($params) {
   $validParams = true;
   $result = [];
 
-  print_r($params);
   if (!preg_match('/^[a-zA-Z0-9_-]{3,16}$/',$name)) {
     $validParams = false;
     $result[] = "Requerido nombre de usuario de 3 a 16 caracteres alfanumericos."; 
