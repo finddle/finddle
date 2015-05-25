@@ -16,11 +16,12 @@
     </head>
 
 	<?php 
-	require(__DIR__.'/includes/php/usuarios.php');
-    if(isset($_POST['formRegistro'])) {
-        $result = comprobarFormulario($_POST);
-    }
-?>
+		require(__DIR__.'/includes/php/usuarios.php');
+		if(isset($_POST['formRegistro'])) {
+			$result = comprobarFormulario($_POST);
+		}
+	?>
+	
 	<body>
 		<?php 
 			require(__DIR__.'/includes/php/header.php');  
@@ -78,9 +79,11 @@
                 </div>  
             </section>
         </div>
+		
 		<?php 
 			require(__DIR__.'/includes/php/footer.php');
 		?>
+		
 		<script>
 			$("#nick").change(function(){
 			<?php 

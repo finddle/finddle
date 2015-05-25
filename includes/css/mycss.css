@@ -86,3 +86,19 @@ div.eventosElem{
   margin-top: 10px;
   margin-bottom: 40px;
 }
+
+
+a.footer {
+  color: #9D9D9D;
+  text-decoration: none;
+}
+a.footer:hover,
+a.footer:focus {
+  color: #ffffff;
+}
+
+a.footer:focus {
+  outline: thin dotted;
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+}

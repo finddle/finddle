@@ -2,37 +2,44 @@
 <html>
 
     <head>
-        <title>Finddle</title>
-        <meta charset="utf-8" />
-        <link id="estilo" rel="stylesheet" type="text/css" href="includes/css/style.css">
-		<link rel="stylesheet" href="includes/css/formularios.css" type="text/css">
-		<link rel="shortcut icon" href="includes/img/favicon1.png" />
-		<script type="text/javascript" src="includes/js/jquery-1.9.1.min.js"></script>
+	  <title>Finddle</title>
+	  <meta charset="utf-8" />
+	  <!-- Latest compiled CSS -->
+	  <link rel="stylesheet" type="text/css" href="includes/css/bootstrap.css">
+	  <!-- Optional theme -->
+	  <link rel="stylesheet" type="text/css" href="includes/css/bootstrap-theme.min.css">
+	  <!-- Personal CSS -->
+	  <link rel="stylesheet" type="text/css" href="includes/css/mycss.css">
+	  <link rel="stylesheet" type="text/css" href="includes/css/perfilUsuario.css">
+	  <link rel="stylesheet" type="text/css" href="includes/css/formularios.css">
+	  <!--Favicon-->
+	  <link rel="shortcut icon" href="includes/img/favicon.png" />
+	  
+	  <script type="text/javascript" src="includes/js/jquery-1.9.1.min.js"></script>
     </head>
+	
+	<?php 
+		require(__DIR__.'/includes/php/usuarios.php');
+		if(isset($_POST['editPerfil'])) {
+			$result = formEditUser($_POST);
+		}
+	?>
 
     <body>
-       <div id="vu-contenedor">
-
-            <div id="vu-cabecera">
-				<div id = "centrado">
-					<a href="index.html"id="logo"><img src="includes/img/l2.png"></a>
-					<nav class="buttons">
-						<a href="proximosEventos.html">Conciertos</a>
-						<a href="cartelera.html">Cine</a>
-						<a href="proximosEventos.html">Fiestas</a>
-						<a href="index.html">Salir</a>
-					</nav>
-				</div>
-			</div>
+	
+        <?php 
+			require(__DIR__.'/includes/php/header.php');
+		?>
 			
-			
-            <div id = "vu-barra-izquierda">
-                     <a href="perfilUsuario.php" class="submit btn primary-btn">Perfil</a>
-                     <a href="mensajes.php" class="submit btn primary-btn">Mensajes</a>
-                     <a href="proximosEventos.php" class="submit btn primary-btn">Proximos eventos</a>
-            </div>
-
-			
+		<!--MENU del USUARIO-->	
+		<div class="sidebar-left container-fixed col-xs-4 col-sm-4 col-md-3 ">
+				 <a href="perfilUsuario.php" class="submit btn primary-btn">Perfil</a>
+				 <a href="mensajes.php" class="submit btn primary-btn">Mensajes</a>
+				 <a href="proximosEventos.php" class="submit btn primary-btn">Proximos eventos</a>
+		</div>
+		
+		<!--CONTENIDO-->
+		<div class="container-fixed col-xs-8 col-sm-8 col-md-6">
             <div id="vu-contenido">
 				<section>				
                 <div id="container_demo" >
@@ -40,7 +47,7 @@
                     <a class="hiddenanchor" id="tologin"></a>
                     <div id="wrapper">
                         <div id="login" class="animate form">
-                            <form  method = "POST" action="includes\php\update.php" enctype="multipart/form-data"> 
+                            <form  method = "POST" <?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?> enctype="multipart/form-data"> 
                                 <h1>Editar perfil</h1> 
                                 <p> 
                                     <label> Nombre </label>
@@ -66,6 +73,7 @@
                                     <label> Avatar </label>
                                     <input id="avatar"  name="avatar" placeholder="avatar" type="file"/> 
                                 </p>
+								<input type="hidden" name="editPerfil"/>
                                 <p class="login button"> 
 									<a href="perfilUsuarioBD.php">
 										<input type="submit" value="Finalizar" /> 
@@ -76,21 +84,10 @@
 						
                     </div>
                 </div>  
-            </section>
+				</section>
+			</div>
 		</div>
 		
-		
-        <div id ="vu-barra-derecha"> 
-            <div id="vu-imp-contactos">
-                    <img src="includes/img/gmail-logo.jpg"> GMAIL<br>
-                    Encuentra a personas que conoces.<br>
-                    <a href="#" class="vu-imp-contactos-gmail">Importar contactos de gmail</a>
-            </div>  
-            <div id="vu-twitter"><img src="includes/img/twitter-logo.jpg"> TWITTER<br>
-                    Vincula tu cuenta.<br>
-                    <a href="" class="twitter-share-button">Vincular</a>
-			</div>
-        </div>
      </div>
 
 		<script>

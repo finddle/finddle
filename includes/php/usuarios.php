@@ -24,6 +24,38 @@ function comprobarFormulario($params){
 	}
   return $result;
 }
+
+function formEditUser($params){
+	/*$target = "includes/data/"; 
+	$target = $target . basename( $_FILES['avatar']['name']); 
+	$avatar = isset($_FILES['avatar']['name']) ? $_FILES['avatar']['name'] : null ;*/
+	$nick = $_SESSION['username'];
+	$contrasena = $params['contrasena'];
+	$correo = $params['correo'];
+	$nombre = $params['nombre'];
+	$apellidos = $params['apellidos'];
+	$edad = $params['edad'];
+	$avatar = $params['avatar'];
+	$validParams = true;
+	$result = [];
+	if(!preg_match("/^[a-zA-z0-9_-]{4,18}$/",$contrasena)){
+		$validParams = false;
+		$result[] =  "Necesaria password de 4 a 18 caracteres alfanumericos";
+	}
+	if ( $validParams ) {
+		editarUsuario($nick, $contrasena, $correo, $nombre, $apellidos, $edad, $avatar);
+	}
+	/*
+	//Writes the photo to the server
+	if(move_uploaded_file($_FILES['avatar']['tmp_name'], $target))  {   
+	//Tells you if its all ok
+		echo "El archivo ". basename( $_FILES['uploadedfile']['name']). " ha sido añadido con éxito.";  
+	}  
+	else {   //Gives and error if its not
+		echo "Hubo un problema subiendo el archivo.";  
+	} */
+  return $result;
+}
 	
 function formLogin($params) {
   $name = $params['username'];
