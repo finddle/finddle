@@ -69,7 +69,8 @@
 				
 				<p>Los únicos datos personales a los que FINDDLE, S.A., tendrá acceso serán aquéllos que el usuario facilite voluntariamente. En este sentido es 
 					preciso que el usuario conozca que para el acceso de algunos productos/servicios ofrecidos a través de la web, se le solicitarán datos de carácter
-					personal. Si no facilita los mismos, no podrá acceder ni utilizar los referidos servicios y contenidos.</p><span>
+					personal. Si no facilita los mismos, no podrá acceder ni utilizar los referidos servicios y contenidos.</p>
+					<div class="span-content"></div>
 				
 			</div>
 		</div>
