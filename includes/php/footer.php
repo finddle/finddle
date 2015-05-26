@@ -1,7 +1,7 @@
 <!-- Inicio Footer -->
 <footer class="site-footer">
   <div class="container footer-left">
-    ©2015 <a href="index.php">Finddle</a>
+    ©2015 <a class="footer" href="index.php">Finddle</a>
     <em>All Rights Reserved.</em>
   </div>
   <div class="container footer-right">

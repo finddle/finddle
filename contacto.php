@@ -28,8 +28,8 @@
 		
 		
 		<span>
-		<div class="container"><span>
-		  <section><span>				
+		<div class="container"><div class="span-content"></div>
+		  <section><div class="span-content"></div>				
                 <div id="container_demo" >
                     <a class="hiddenanchor" id="toregister"></a>
                     <a class="hiddenanchor" id="tologin"></a>
@@ -75,6 +75,7 @@
 		<?php 
 			require(__DIR__.'/includes/php/footer.php');
 		?>
-
+	<script src="includes/js/jquery.min.js"></script>
+  	<script src="includes/js/bootstrap.js"></script>
 	</body>
 </html>

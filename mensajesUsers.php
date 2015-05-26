@@ -13,7 +13,6 @@
 		<!-- Personal CSS -->
 		<link rel="stylesheet" type="text/css" href="includes/css/mycss.css">
 		<link rel="stylesheet" type="text/css" href="includes/css/formularios.css" />
-		<script type="text/javascript" src="includes/js/jquery-1.9.1.min.js"></script>
 	
 	</head>
 	
@@ -65,7 +64,8 @@
 		<?php 
 			require(__DIR__.'/includes/php/footer.php');
 		?>
-
+		<script src="includes/js/jquery.min.js"></script>
+  		<script src="includes/js/bootstrap.js"></script>
 	</body>
 
 	</html>

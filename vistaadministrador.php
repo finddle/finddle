@@ -19,9 +19,9 @@
     <div class="container">
       <div class="sidebar-left container-fixed col-xs-4 col-sm-4 col-md-3 ">
         <ul class="nav nav-pills nav-stacked nav-pills-stacked-example">
-          <li role="presentation" class="active"><a href="#">Administración Web</a></li>
-          <li role="presentation"><a href="#">Gestión de eventos</a></li>
-          <li role="presentation"><a href="#">Gestión de usuarios</a></li>
+          <li role="presentation" class="active"><a href="vistaadministrador.php">Administración Web</a></li>
+          <li role="presentation"><a href="vistaadministradoreventos.php">Gestión de eventos</a></li>
+          <li role="presentation"><a href="vistaadministradorusuarios.php">Gestión de usuarios</a></li>
         </ul>
       </div>
       <div class="container-fixed col-xs-8 col-sm-8 col-md-6">
@@ -34,7 +34,8 @@
   </div>
   <!--Fin Contenido-->
   <?php require(__DIR__.'/includes/php/footer.php');?>
-  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script src="includes/js/jquery.min.js"></script>
+  <script src="includes/js/bootstrap.js"></script>
 </body>
 </html>
 <?php require(__DIR__.'/includes/php/cleanup.php');?>

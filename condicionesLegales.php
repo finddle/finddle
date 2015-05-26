@@ -78,6 +78,8 @@
 			require(__DIR__.'/includes/php/footer.php');
 		?>
 		
+	<script src="includes/js/jquery.min.js"></script>
+  	<script src="includes/js/bootstrap.js"></script>	
 	</body>
 	
 </html>

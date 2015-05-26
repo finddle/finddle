@@ -15,7 +15,7 @@
 	  <!--Favicon-->
 	  <link rel="shortcut icon" href="includes/img/favicon.png" />
 	  
-	  <script type="text/javascript" src="includes/js/jquery-1.9.1.min.js"></script>
+	  
     </head>
 	
 	<?php 
@@ -100,6 +100,8 @@
 			});							
 		</script>
 		
+	<script src="includes/js/jquery.min.js"></script>
+  	<script src="includes/js/bootstrap.js"></script>
     </body>
 
 </html>

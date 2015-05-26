@@ -1,48 +1,41 @@
 <!DOCTYPE html>
 <html>
-
-    <head>
-        <title>Finddle</title>
-        <meta charset="utf-8" />
-        <link id="estilo" rel="stylesheet" type="text/css" href="includes/css/style.css">
-		<link rel="shortcut icon" href="includes/img/favicon1.png" />
-    </head>
-
-    <body>
-       <div id="vu-contenedor">
-
-        <div id="pu-cabecera">
-        <div id = "centrado">
-		<a href="index.html"id="logo"><img src="includes/img/l2.png"></a>
-		<nav class="buttons">
-			<a href="proximosEventos.html">Conciertos</a>
-			<a href="cartelera.html">Cine</a>
-			<a href="proximosEventos.html">Fiestas</a>
-			<a href="index.html">Salir</a>
-		</nav>
-		</div>
-        </div>
-        <div id = "vu-barra-izquierda">
-                 <a href="vistaadministrador.html" class="submit btn primary-btn">Administración web</a>
-                 <a href="vistaadministradoreventos.html" class="submit btn primary-btn">Gestión de eventos</a>
-                 <a href="vistaadministradorusuarios.html" class="submit btn primary-btn">Gestión de usuarios</a>
-        </div>
-
-        <div id="vu-contenido">
-            <img src="includes/img/admin-gestion-eventos.jpg">
-
-        </div>
-
-        <div id ="vu-barra-derecha"> 
-            <div id="vu-imp-contactos">
-                    <img src="includes/img/gmail-logo.jpg"> GMAIL<br>
-                    Encuentra a personas que conoces.<br>
-                    <a href="#" class="vu-imp-contactos-gmail">Importar contactos de gmail</a>
-            </div>  
-            <div id="vu-twitter"><img src="includes/img/twitter-logo.jpg"> TWITTER<br>
-                    Vincula tu cuenta.<br>
-                    <a href="" class="twitter-share-button">Vincular</a></div>
-        </div>
-    </body>
-
+<head>
+  <title>Finddle</title>
+  <meta charset="utf-8" />
+  <!-- Latest compiled CSS -->
+  <link rel="stylesheet" type="text/css" href="includes/css/bootstrap.css">
+  <!-- Optional theme -->
+  <link rel="stylesheet" type="text/css" href="includes/css/bootstrap-theme.min.css">
+  <!-- Personal CSS -->
+  <link rel="stylesheet" type="text/css" href="includes/css/mycss.css">
+  <!--Favicon-->
+  <link rel="shortcut icon" href="includes/img/favicon.png" />
+</head>
+<body>
+  <?php require(__DIR__.'/includes/php/header.php');?>
+  <!--Inicio Contenido-->
+  <div class="main">
+    <div class="container">
+      <div class="sidebar-left container-fixed col-xs-4 col-sm-4 col-md-3 ">
+        <ul class="nav nav-pills nav-stacked nav-pills-stacked-example">
+          <li role="presentation"><a href="vistaadministrador.php">Administración Web</a></li>
+          <li role="presentation"  class="active"><a href="vistaadministradoreventos.php">Gestión de eventos</a></li>
+          <li role="presentation"><a href="vistaadministradorusuarios.php">Gestión de usuarios</a></li>
+        </ul>
+      </div>
+      <div class="container-fixed col-xs-8 col-sm-8 col-md-6">
+        <!-- Contenido aqui -->
+      </div>
+      <div class="clearfix visible-xs-block visible-sm-block"></div>
+      <div class="sidebar-right container-fixed col-xs-4 col-sm-4 col-md-3">
+      </div>
+    </div>
+  </div>
+  <!--Fin Contenido-->
+  <?php require(__DIR__.'/includes/php/footer.php');?>
+  <script src="includes/js/jquery.min.js"></script>
+  <script src="includes/js/bootstrap.js"></script>
+</body>
 </html>
+<?php require(__DIR__.'/includes/php/cleanup.php');?>

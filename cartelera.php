@@ -48,7 +48,8 @@ require(__DIR__.'/includes/php/usuarios.php');
   </div>
   <!--Fin Contenido-->
   <?php require(__DIR__.'/includes/php/footer.php');?>
-  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script src="includes/js/jquery.min.js"></script>
+  <script src="includes/js/bootstrap.js"></script>
 </body>
 </html>
 <?php require(__DIR__.'/includes/php/cleanup.php');?>
