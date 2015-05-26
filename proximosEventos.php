@@ -34,10 +34,20 @@ require(__DIR__.'/includes/php/usuarios.php');
          <?php 
          	$peliculas = getEventos(0);
          	foreach($peliculas as $peli){
-         		echo '<div class="eventosElem">';
-         		echo '<h2>'.$peli['Nombre'].'</h2>';
-         		echo '<p><a href ="infoEvento.php?evento='.$peli['ID'].'"><img src ="'.$peli['Imagen'].'"/></a></p>';
-         		echo '</div>';
+            
+         		echo '<div class="row">';
+            echo '<div class="col-sm-8 col-md-6">';
+            echo '<div class="thumbnail">';
+            echo '<img data-holder-rendered="true" src ="'.$peli['Imagen'].'"/>';
+            echo '<div class="caption">';
+            echo '<h3>'.$peli['Nombre'].'</h3>';
+                  
+            echo'<p><a href="infoEvento.php?evento='.$peli['ID'].'" class="btn btn-primary" role="button">Ver Detalles</a></p>';
+            echo '</div>';
+            echo'</div>';
+            echo'</div>';
+            echo'</div>';  
+            
          	}
          ?>
       </div>
@@ -48,7 +58,8 @@ require(__DIR__.'/includes/php/usuarios.php');
   </div>
   <!--Fin Contenido-->
   <?php require(__DIR__.'/includes/php/footer.php');?>
-  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="includes/js/jquery.min.js"></script>
+    <script src="includes/js/bootstrap.js"></script>
 </body>
 </html>
 <?php require(__DIR__.'/includes/php/cleanup.php');?>
