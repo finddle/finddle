@@ -12,12 +12,6 @@
   <!--Favicon-->
   <link rel="shortcut icon" href="includes/img/favicon.png" />
 </head>
-<?php 
-require(__DIR__.'/includes/php/usuarios.php');
-    if(isset($_POST['formLogin'])) {
-        $result = formLogin($_POST);
-    }
-?>
 <body>
 <?php 
     require(__DIR__.'/includes/php/header.php');  
@@ -35,11 +29,11 @@ require(__DIR__.'/includes/php/usuarios.php');
          	$evento = $_GET['evento'];
          	$info = getInfoEvento($evento);
          	echo '<div class="infoEventosElem">';
-     		echo '<h2>'.$info['Nombre'].'</h2>';
-     		echo '<p>Fecha: '.$info['Fecha'].'</p>';
-     		echo '<p>Descripcion: '.$info['Descripcion'].'</p>';
-     		echo '<p>Plazas: '.$info['PlazasDisponibles'].'</p>';
-     		echo '<p><img src ="'.$info['Imagen'].'"/></p>';
+       		echo '<h2>'.$info['Nombre'].'</h2>';
+       		echo '<p>Fecha: '.$info['Fecha'].'</p>';
+       		echo '<p>Descripcion: '.$info['Descripcion'].'</p>';
+       		echo '<p>Plazas: '.$info['PlazasDisponibles'].'</p>';
+       		echo '<p><img src ="'.$info['Imagen'].'"/></p>';
      		if(isset($_SESSION['username'])){
      			echo '<p><a href="comprarEntrada.php?evento='.$info['ID'].'&tipo='.$info['Tipo'].'">Comprar Entrada</a></p>';
      		}else{

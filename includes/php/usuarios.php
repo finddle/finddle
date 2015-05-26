@@ -35,7 +35,7 @@ function login($nombreUsuario, $password) {
     if ($ok) {
       $_SESSION['username'] = $nombreUsuario;
       $_SESSION['rol'] = $usuario['Tipo'];
-      $_SESSION['foto'] = $usuario['Imagen'];
+      $_SESSION['picture'] = $usuario['Imagen'];
       $ok=true;
       header("Location: ".__DOC__."../../perfilUsuario.php");
     } else {

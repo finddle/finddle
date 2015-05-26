@@ -17,16 +17,47 @@ function addPeticionEvento($nombre, $descripcion, $fecha, $precio, $imagen, $pla
 	$pst->close();
 
 }
-function getEventos($tipo){
+
+function countEventos($tipo){
 	global $mysqli;
 
 	$args = array($tipo);
 	sanitizeArgs($args);
 
+	$pst = $mysqli->prepare("SELECT COUNT(*) AS nEventos FROM eventos WHERE Tipo = ? ;");
+	$pst->bind_param("i",$args[0]);
+
+	$pst->execute();
+	$result = $pst->get_result();
+	$row = $result->fetch_array(MYSQLI_ASSOC);
+
+	$pst->close();
+	return $row['nEventos'];
+}
+
+function getEventos($tipo){
+	global $mysqli;
+	$off = 0;
+	$pag_size = PAG_SIZE;
 	$eventos = null;
 
-	$pst = $mysqli->prepare("SELECT * FROM eventos WHERE Tipo = ? ORDER BY Fecha DESC;");
-	$pst->bind_param("i",$args[0]);
+	if (session_status() == PHP_SESSION_NONE) {
+   		session_start();
+	}
+	
+	if(!isset($_SESSION['offset'])){
+		$_SESSION['offset'] = 0;
+	}else{
+		$off = $_SESSION['offset'];
+		$off = $off + 3;
+		$_SESSION['offset'] = $off; 
+	}	
+	
+	$args = array($tipo);
+	sanitizeArgs($args);
+
+	$pst = $mysqli->prepare("SELECT * FROM eventos WHERE Tipo = ? ORDER BY Fecha DESC LIMIT ? , ?;");
+	$pst->bind_param("iii",$args[0],$off,$pag_size);
 
 	$pst->execute();
 	$result = $pst->get_result();

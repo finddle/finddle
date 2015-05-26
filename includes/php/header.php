@@ -28,7 +28,7 @@ require_once('config.php');
             }
             
               if(isset($_SESSION['username'])){
-                echo '<li><a href="perfilUsuario.php">'.$_SESSION['username'].'</a></li>';
+                echo '<li>'.$_SESSION['username'].'<a href="perfilUsuario.php"><img src="'.$_SESSION['picture'].'"/></a></li>';
                 echo '<li><a href="includes/php/logout.php">Logout</a></li>';
               }else{
                 echo '<li><a href="login.php">Ingresar</a></li>';

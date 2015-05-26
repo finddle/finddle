@@ -12,16 +12,11 @@
   <!--Favicon-->
   <link rel="shortcut icon" href="includes/img/favicon.png" />
 </head>
-<?php 
-require(__DIR__.'/includes/php/usuarios.php');
-    if(isset($_POST['formLogin'])) {
-        $result = formLogin($_POST);
-    }
-?>
 <body>
 <?php 
     require(__DIR__.'/includes/php/header.php');  
     require(__DIR__.'/includes/php/eventosBD.php');
+    require(__DIR__.'/includes/php/asisteBD.php');
 ?>
 
   <!--Inicio Contenido-->
@@ -37,6 +32,7 @@ require(__DIR__.'/includes/php/usuarios.php');
          		echo '<div class="eventosElem">';
          		echo '<h2>'.$peli['Nombre'].'</h2>';
          		echo '<p><a href ="infoEvento.php?evento='.$peli['ID'].'"><img src ="'.$peli['Imagen'].'"/></a></p>';
+            echo '<p> Nº de asistentes: '.countAsistentes($peli['ID']).'</p>';
          		echo '</div>';
          	}
          ?>
