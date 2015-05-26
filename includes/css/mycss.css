@@ -8,15 +8,16 @@
 
 }
 
-span{
-	padding: 50px;
-}
 .span-tittle{
 	min-height: 66px;
 }
 
 .span-sub-tittle{
 	min-height: 30px;
+}
+
+.span-content{
+  padding:  50px;
 }
 
 .site-footer{
