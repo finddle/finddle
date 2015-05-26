@@ -67,7 +67,7 @@
 						require_once(__DIR__."/includes/php/amigosBD.php");
 						$amigos = getAmigos($_SESSION['username']);
 						foreach($amigos as $amigo){
-							echo $amigo['NickUsuario1'], "<br>";
+							echo '<p><a href ="perfilAmigo.php?amigo='.$amigo['NickUsuario1'].'">'.$amigo['NickUsuario1']. '</a></p>';
 						}
 					?>
 				</div>
