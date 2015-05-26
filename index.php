@@ -67,9 +67,9 @@
 
 <!-- Fin Carousel -->
 
+  <script src="includes/js/jquery.min.js"></script>
+  <script src="includes/js/bootstrap.js"></script>
 
-
-  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
   <script src="http://s.cdpn.io/17920/jquery.easing.1.3.js"></script>
   <script src="http://s.cdpn.io/17920/jquery.animate-enhanced.min.js"></script>  
   <script src="http://s.cdpn.io/17920/hammer.min.js"></script>   
