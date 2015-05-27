@@ -12,12 +12,6 @@
   <!--Favicon-->
   <link rel="shortcut icon" href="includes/img/favicon.png" />
 </head>
-<?php 
-require(__DIR__.'/includes/php/usuarios.php');
-    if(isset($_POST['formLogin'])) {
-        $result = formLogin($_POST);
-    }
-?>
 <body>
 <?php 
     require(__DIR__.'/includes/php/header.php');  

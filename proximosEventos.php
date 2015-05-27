@@ -16,7 +16,6 @@
 <?php 
     require(__DIR__.'/includes/php/header.php');  
     require(__DIR__.'/includes/php/eventosBD.php');
-    require(__DIR__.'/includes/php/asisteBD.php');
 ?>
 
   <!--Inicio Contenido-->
@@ -35,12 +34,14 @@
           }
             
          	$eventos = getEventos(0);
+          echo '<h2>FIESTAS</h2>';
          	echo '<ul class="items">';
           foreach($eventos as $evento){
-         		echo '<li>';
+            echo '<li><div class="row"><div class="col-sm-8 col-md-6"><div class="thumbnail"><div class="caption">';
          		echo '<h2>'.$evento['Nombre'].'</h2>';
-         		echo '<p><a href ="infoEvento.php?evento='.$evento['ID'].'"><img src ="'.$evento['Imagen'].'"/></a></p>';
-         		echo '</li>';
+         		echo '<p><a href ="infoEvento.php?evento='.$evento['ID'].'"><img data-holder-rendered="true" src ="'.$evento['Imagen'].'"/></a></p>';
+            echo '<p>Fecha: '.$evento['Fecha'].'</p>';
+         		echo '</div></div></div></div></li>';
          	}
           echo '</ul>';
           echo '<div id="lastPostsLoader"></div>';
@@ -71,8 +72,10 @@
                 var eventos = JSON.parse(data);
                 var htmlEventos = "";
                 for(var i=0; i<eventos.length; i++){
-                  htmlEventos += '<li><h2>'+eventos[i]['Nombre']+'</h2><p><a href ="infoEvento.php?evento='
-                  +eventos[i]['ID']+'"><img src ="'+eventos[i]['Imagen']+'"/></a></p></li>';
+                  htmlEventos += '<li><div class="row"><div class="col-sm-8 col-md-6"><div class="thumbnail"><div class="caption"><h2>'
+                  +eventos[i]['Nombre']+'</h2><p><a href ="infoEvento.php?evento='
+                  +eventos[i]['ID']+'"><img data-holder-rendered="true" src ="'+eventos[i]['Imagen']
+                  +'"/></a></p><p>Fecha: '+eventos[i]['Fecha']+'</p></div></div></div></div></li>';
                 }
                 $(".items").append(htmlEventos);
             }
