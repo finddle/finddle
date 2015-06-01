@@ -7,7 +7,6 @@ require_once(__DIR__."/config.php");
 		$args = array($nick, $contrasena, $correo, $nombre, $apellidos, $edad, $tipo);
 		sanitizeArgs($args);
 		$pst = $mysqli->prepare("INSERT INTO usuarios VALUES (?,?,?,?,?,?,NULL,?);");
-		echo $args[6];
 		$pst->bind_param("sssssis",$args[0], $args[1], $args[2], $args[3], $args[4], $args[5], $args[6]);
 		$pst->execute();
 		$result = $pst->get_result();

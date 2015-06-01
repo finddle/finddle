@@ -25,6 +25,7 @@
 		<?php 
 			require(__DIR__.'/includes/php/header.php');  
 			require(__DIR__.'/includes/php/eventosBD.php');
+			require(__DIR__.'/includes/php/asisteBD.php');
 		?>
 
 	  <!--Inicio Contenido-->
@@ -40,14 +41,25 @@
 			 <?php 
 				$evento = $_GET['evento'];
 				$info = getInfoEvento($evento);
+				$nAsistentes = countAsistentes($info['ID']);
 				echo '<div class="eventosElem">';
 				echo '<h2>'.$info['Nombre'].'</h2>';
 				echo '<p>Fecha: '.$info['Fecha'].'</p>';
 				echo '<p>Descripcion: '.$info['Descripcion'].'</p>';
 				echo '<p>Plazas: '.$info['PlazasDisponibles'].'</p>';
+				echo '<p>Asistentes: '.$nAsistentes.'</p>';
 				echo '<p><img src ="'.$info['Imagen'].'"/></p>';
 				if(isset($_SESSION['username'])){
-					echo '<p><a href="comprarEntrada.php?evento='.$info['ID'].'&tipo='.$info['Tipo'].'">Comprar Entrada</a></p>';
+					if($nAsistentes < $info['PlazasDisponibles']){
+						if($info['Tipo']==0){
+							echo '<p><a href="comprarEntradaFiesta.php?evento='.$info['ID'].'">Comprar Entrada</a></p>';	
+						}else {
+							echo '<p><a href="comprarEntradaCine.php?evento='.$info['ID'].'">Comprar Entrada</a></p>';
+						}
+						
+					}else{
+						echo '<p>Lo sentimos, las entradas se han agotado.</p>';
+					}
 				}else{
 					echo '<p>!Inicia sesion para comprar tu entrada a este evento!</p>';
 				}

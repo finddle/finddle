@@ -21,7 +21,7 @@
 			$pst->close();
 			return $eventos;	
 		}
-		
+
 		function countAsistentes($idEvento){
 			global $mysqli;
 			$args = array($idEvento);
