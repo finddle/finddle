@@ -89,7 +89,12 @@ function login($nombreUsuario, $password) {
     if ($ok) {
       $_SESSION['username'] = $nombreUsuario;
       $_SESSION['rol'] = $usuario['Tipo'];
-      $_SESSION['picture'] = $usuario['Imagen'];
+      $foto = $usuario['Imagen'];
+      if($foto == NULL){
+      	$foto = "includes/img/usuario.png";
+      }
+      $_SESSION['picture'] = $foto;
+      
       $ok=true;
       header("Location: ".__DOC__."../../perfilUsuario.php");
     } else {

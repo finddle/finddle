@@ -99,7 +99,15 @@
         NumEntradas : butacasSeleccionadas.length,
       },
       function(data) {
-        alert("Ha habido un error con el procesamiento de su compra, intentalo de nuevo o contacta con un administrador.")
+        if(data == true){
+          /* http + // + hostname + /finddle/ + page*/
+          var url = location.protocol + '//' + location.host +
+          "/finddle/perfilUsuario.php";
+          window.location = url;
+
+        }else{
+          alert("Ha habido un error con el procesamiento de su compra, intentalo de nuevo o contacta con un administrador.");
+        }
       });  
     }else{
       alert("Es necesario seleccionar al menos una butaca");

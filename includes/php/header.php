@@ -18,7 +18,6 @@
         </div>
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            <li><a href="proximosEventos.php">Conciertos</a></li>
             <li><a href="cartelera.php">Cine</a></li>
             <li><a href="proximosEventos.php">Fiestas</a></li>
           </ul>
@@ -29,7 +28,7 @@
             }
             
               if(isset($_SESSION['username'])){
-                echo '<li>'.$_SESSION['username'].'<a href="perfilUsuario.php"><img src="'.$_SESSION['picture'].'"/></a></li>';
+                echo '<li>'.$_SESSION['username'].'<a href="perfilUsuario.php"><img  id="userPhoto" src="'.$_SESSION['picture'].'"/></a></li>';
                 echo '<li><a href="includes/php/logout.php">Logout</a></li>';
               }else{
                 echo '<li><a href="login.php">Ingresar</a></li>';

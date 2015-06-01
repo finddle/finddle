@@ -9,10 +9,14 @@ function procesaCompra($compra,$usuario,$butacas,$nEntradas){
 			if(isset($butacas)){
 				foreach($butacas as $butaca){
 					insertaCompraCine($usuario,$compra['evento'],$nEntradas,$butaca,$compra['precioEntrada']);
-				}	
+				}
+				unset($_SESSION['compra']);
+				echo true;	
 			}
 			else{
 				insertaCompraFiesta($usuario,$compra['evento'],$nEntradas,NULL,$compra['precioEntrada']*$nEntradas);
+				unset($_SESSION['compra']);
+				header("Location: /finddle/perfilUsuario.php");
 			}
 		}else{
 			unset($_SESSION['compra']);
@@ -21,7 +25,6 @@ function procesaCompra($compra,$usuario,$butacas,$nEntradas){
 		}
 		
 	}
-	unset($_SESSION['compra']);
-	header("Location: /finddle/perfilUsuario.php");
+	
 }
 ?>

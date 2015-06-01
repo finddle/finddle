@@ -101,3 +101,7 @@ a.footer:focus {
 ul.items{
   list-style: none;
 }
+#userPhoto{
+  width: 35px;
+  height: 35px;
+}
