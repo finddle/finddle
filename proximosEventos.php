@@ -73,7 +73,7 @@
                 var eventos = JSON.parse(data);
                 var htmlEventos = "";
                 for(var i=0; i<eventos.length; i++){
-                  htmlEventos += '<li><div class="row"><div class="col-sm-8 col-md-6"><div class="thumbnail"><div class="caption"><h2>'
+                  htmlEventos += '<li class="nostyle"><div class="row"><div class="col-sm-8 col-md-6"><div class="thumbnail"><div class="caption"><h2>'
                   +eventos[i]['Nombre']+'</h2><p><a href ="infoEvento.php?evento='
                   +eventos[i]['ID']+'"><img data-holder-rendered="true" src ="'+eventos[i]['Imagen']
                   +'"/></a></p><p>Fecha: '+eventos[i]['Fecha']+'</p></div></div></div></div></li>';
