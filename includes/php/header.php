@@ -1,5 +1,5 @@
 <?php 
-	require_once('config.php');
+	require_once(__DIR__.'/config.php');
 ?>
 
 <!--Inicio Cabecera-->
@@ -28,7 +28,7 @@
             }
             
               if(isset($_SESSION['username'])){
-                echo '<li>'.$_SESSION['username'].'<a href="perfilUsuario.php"><img  id="userPhoto" src="'.$_SESSION['picture'].'"/></a></li>';
+                echo ''.$_SESSION['username'].'<a href="perfilUsuario.php"><img  id="userPhoto" src="'.$_SESSION['picture'].'"/></a>';
                 echo '<li><a href="includes/php/logout.php">Logout</a></li>';
               }else{
                 echo '<li><a href="login.php">Ingresar</a></li>';

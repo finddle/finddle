@@ -12,20 +12,12 @@
 	  <!--Favicon-->
 	  <link rel="shortcut icon" href="includes/img/favicon.png" />
 	</head>
-	
-	<?php 
-		require(__DIR__.'/includes/php/usuarios.php');
-		if(isset($_POST['formLogin'])) {
-			$result = formLogin($_POST);
-		}
-	?>
-	
 	<body>
 	
 		<?php 
 			require(__DIR__.'/includes/php/header.php');  
-			require(__DIR__.'/includes/php/eventosBD.php');
-			require(__DIR__.'/includes/php/asisteBD.php');
+			require_once(__DIR__.'/includes/php/eventosBD.php');
+			require_once(__DIR__.'/includes/php/asisteBD.php');
 		?>
 
 	  <!--Inicio Contenido-->

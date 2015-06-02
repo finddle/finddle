@@ -16,10 +16,10 @@
 </head>
 <body>
 <?php 
-    require(__DIR__.'/includes/php/header.php');  
-    require(__DIR__.'/includes/php/comprasBD.php');
-    require(__DIR__.'/includes/php/eventosBD.php');
-    require(__DIR__.'/includes/php/asisteBD.php');
+    require_once(__DIR__.'/includes/php/header.php');  
+    require_once(__DIR__.'/includes/php/comprasBD.php');
+    require_once(__DIR__.'/includes/php/eventosBD.php');
+    require_once(__DIR__.'/includes/php/asisteBD.php');
 ?>
   <div class="main">
     <div class="container">

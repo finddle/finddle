@@ -16,14 +16,15 @@
 </head>
 <?php 
   require(__DIR__.'/includes/php/header.php');  
-  require(__DIR__.'/includes/php/compras.php');
-  require(__DIR__.'/includes/php/eventosBD.php');
-  require(__DIR__.'/includes/php/asisteBD.php');
+  require_once(__DIR__.'/includes/php/compras.php');
+  require_once(__DIR__.'/includes/php/eventosBD.php');
+  require_once(__DIR__.'/includes/php/asisteBD.php');
   if(isset($_POST['procesarCompra'])) {
     $compra = $_SESSION['compra'];
     $usuario = $_SESSION['username'];
     $butacas = $_POST['Butacas'];
     $nEntradas = $_POST['NumEntradas'];
+    $compra['precioTotal'] = $compra['precioEntrada']*$nEntradas;
     $result = procesaCompra($compra,$usuario,$butacas,$nEntradas);
   }
 ?>
@@ -50,6 +51,9 @@
           }
           echo '</ul>';
         }
+        echo '<p>Nombre: '.$evento['Nombre'].'</p>';
+        echo '<p>Fecha: '.$evento['Fecha'].'</p>';
+        echo '<p>Precio/entrada: '.$evento['Precio'].'</p>';
       ?>
         <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
           <div class="numbers-row">

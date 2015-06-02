@@ -1,5 +1,18 @@
 <?php
 		require_once(__DIR__."/config.php");
+
+		function asisteEvento($user,$evento){
+			global $mysqli;
+
+			$args = array($user, $evento);
+			sanitizeArgs($args);
+			$pst = $mysqli->prepare("INSERT INTO asiste VALUES (?,?);");
+			$pst->bind_param("si",$args[0], $args[1]);
+			$pst->execute();
+			$result = $pst->get_result();
+			
+			$pst->close();
+		}
 		
 		function getEventosUser($user){
 			global $mysqli;
