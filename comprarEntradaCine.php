@@ -23,10 +23,8 @@
 ?>
   <div class="main">
     <div class="container">
-      <div class="sidebar-left container-fixed col-xs-4 col-sm-4  col-md-2">
-        <!-- Barra lateral izquierda -->
-      </div>
-      <div class="container-fixed col-xs-8 col-sm-8 col-md-10">
+     
+      <div class="container-fixed eventosElem">
         <h1><img src="includes/img/cinemal.png"/> Elige tus asientos  <img src="includes/img/cinema.png"/></h1>
         
          <?php 
@@ -56,9 +54,7 @@
          ?>
          <a href="#" class="myButton"id="procesaCompra">Confirmar</a>
       </div>
-      <div class="clearfix visible-xs-block visible-sm-block"></div>
-      <div class="sidebar-right container-fixed col-xs-4 col-sm-4 ">
-      </div>
+    
     </div>
   </div>
   <?php require(__DIR__.'/includes/php/footer.php');?>

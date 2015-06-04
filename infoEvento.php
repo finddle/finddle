@@ -44,16 +44,18 @@
 				if(isset($_SESSION['username'])){
 					if($nAsistentes < $info['PlazasDisponibles']){
 						if($info['Tipo']==0){
-							echo '<p><a href="comprarEntradaFiesta.php?evento='.$info['ID'].'">Comprar Entrada</a></p>';	
+							echo '<p><a class="btn btn-primary" href="comprarEntradaFiesta.php?evento='.$info['ID'].'">Comprar Entrada</a></p>';	
 						}else {
-							echo '<p><a href="comprarEntradaCine.php?evento='.$info['ID'].'">Comprar Entrada</a></p>';
+							echo '<p><a class="btn btn-primary" href="comprarEntradaCine.php?evento='.$info['ID'].'">Comprar Entrada</a></p>';
 						}
 						
 					}else{
 						echo '<p>Lo sentimos, las entradas se han agotado.</p>';
 					}
 				}else{
-					echo '<p>!Inicia sesion para comprar tu entrada a este evento!</p>';
+					echo '<div class="alert alert-info" role="alert">
+					<span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
+ 					Inicia sesion para comprar tu entrada a este evento</div> ';
 				}
 				echo '</div>';
 			 ?>
