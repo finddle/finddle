@@ -1,6 +1,7 @@
 <?php
 require_once(__DIR__."/config.php");
 
+/*Devuelve un array con las butacas que estan ocupadas como indices, para un evento determinado por parámetro*/
 function getButacasOcupadas($idEvento){
 	global $mysqli;
 	$args = array($idEvento);
@@ -20,6 +21,7 @@ function getButacasOcupadas($idEvento){
 	return $butacas;
 }
 
+/*Inserta una compra proveniente de un evento de tipo cine*/
 function insertaCompraCine($usuario,$evento,$nEntradas,$butaca,$precioEntrada){
 	global $mysqli;
 	$args = array($usuario,$evento,$nEntradas,$butaca,$precioEntrada);
@@ -31,6 +33,7 @@ function insertaCompraCine($usuario,$evento,$nEntradas,$butaca,$precioEntrada){
 	$pst->close();
 }
 
+/**/
 function insertaCompraFiesta($usuario,$evento,$nEntradas,$precioEntrada){
 	global $mysqli;
 	$args = array($usuario,$evento,$nEntradas,$precioEntrada);

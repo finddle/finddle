@@ -3,6 +3,7 @@ require_once(__DIR__.'/config.php');
 require_once(__DIR__.'/comprasBD.php');
 require_once(__DIR__.'/asisteBD.php');
 
+/*Recibe los datos de compra , determina si están definidos y hay suficientes entradas libres. En caso de ser un evento tipo cine, en $butacas recibirá un array con las butacas a comprar; y si es fiesta tan solo el número de entradas.*/
 function procesaCompra($compra,$usuario,$butacas,$nEntradas){
 	$result= [];
 	if(isset($compra)&&isset($usuario)&&isset($nEntradas)){
@@ -25,8 +26,6 @@ function procesaCompra($compra,$usuario,$butacas,$nEntradas){
 			$result[]="No hay suficientes entradas";
 			return $result;
 		}
-		
 	}
-	
 }
 ?>

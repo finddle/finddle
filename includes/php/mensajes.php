@@ -3,6 +3,7 @@ require_once __DIR__.'/config.php';
 require_once __DIR__.'/mensajesBD.php';
 require_once __DIR__.'/usuariosBD.php';
 
+/**/
 function procesarFormContacto($params){
 	$correo = $params['correo'];
 	$mensaje = $params['mensaje'];
@@ -12,6 +13,7 @@ function procesarFormContacto($params){
 	return $result;
 }
 
+/**/
 function procesarFormUser($params){
 	
 	$destinatario = $params['destinatario'];

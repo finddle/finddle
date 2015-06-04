@@ -2,6 +2,7 @@
 require_once __DIR__.'/config.php';
 require_once __DIR__.'/usuariosBD.php';
 
+/**/
 function comprobarFormulario($params){
 	$nick = $params['nick'];
 	$contrasena = $params['contrasena'];
@@ -26,10 +27,8 @@ function comprobarFormulario($params){
   return $result;
 }
 
+/**/
 function formEditUser($params){
-	/*$target = "includes/data/"; 
-	$target = $target . basename( $_FILES['avatar']['name']); 
-	$avatar = isset($_FILES['avatar']['name']) ? $_FILES['avatar']['name'] : null ;*/
 	$nick = $_SESSION['username'];
 	$contrasena = $params['contrasena'];
 	$correo = $params['correo'];
@@ -47,18 +46,14 @@ function formEditUser($params){
 		$hashedpass = password_hash($contrasena.PIMIENTA, PASSWORD_BCRYPT);
 		editarUsuario($nick, $hashedpass, $correo, $nombre, $apellidos, $edad, $avatar);
 	}
-	/*
-	//Writes the photo to the server
-	if(move_uploaded_file($_FILES['avatar']['tmp_name'], $target))  {   
-	//Tells you if its all ok
-		echo "El archivo ". basename( $_FILES['uploadedfile']['name']). " ha sido añadido con éxito.";  
-	}  
-	else {   //Gives and error if its not
-		echo "Hubo un problema subiendo el archivo.";  
-	} */
+
   return $result;
 }
-	
+
+/* Valida los datos del formulario de Login usando expresiones regulares y llama a 
+la función que comprueba los datos con la base de datos y realiza el login (login()),
+ en caso de que no se cumplan retorna un array con los errores que se han generado 
+ para mostrarse en la vista login.php*/
 function formLogin($params) {
   $name = $params['username'];
   $pass = $params['password'];
@@ -81,12 +76,15 @@ function formLogin($params) {
   return $result;
 }
 
+/*Comprueba si el usuario que intenta hacer login existe en la BD y si el hash de la contraseña más 
+la pimienta coincide con el almacenado en la base de datos, en tal caso se guardan las variables necesarias 
+en la sesión y se redirige al usuario al index*/
 function login($nombreUsuario, $password) {
- 
+
   $ok = false;
   $usuario = getInfoUser($nombreUsuario);
-  // Si existe el usuario
-  if ( $usuario ) {
+  
+  if ( $usuario ) {// Si existe el usuario
     $ok = password_verify($password.PIMIENTA, $usuario['Contrasena']) && $usuario['Tipo'] != "banned";
     if ($ok) {
       $_SESSION['username'] = $nombreUsuario;
@@ -98,7 +96,7 @@ function login($nombreUsuario, $password) {
       $_SESSION['picture'] = $foto;
       
       $ok=true;
-      header("Location: ".__DOC__."../../perfilUsuario.php");
+      header("Location: /finddle/perfilUsuario.php");
     } else {
       $ok = [];
       $ok[] = "Usuario o password no validos";
@@ -108,6 +106,5 @@ function login($nombreUsuario, $password) {
     $ok[] = "Usuario o password no validos";
   }
   return $ok;
-  
 }
 ?>

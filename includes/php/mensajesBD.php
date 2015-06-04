@@ -1,6 +1,7 @@
 <?php
 require_once(__DIR__."/config.php");
 
+/**/
 function mensajeContacto($correo, $texto){
 	global $mysqli;
 	$err = 0;
@@ -15,7 +16,7 @@ function mensajeContacto($correo, $texto){
 	return $err;
 }
 
-
+/**/
 function mensajeUsuario($nick2,$descripcion,$titulo){
 	global $mysqli;
 	$err = 0;
@@ -33,6 +34,7 @@ function mensajeUsuario($nick2,$descripcion,$titulo){
 	return $err;
 }
 
+/**/
 function bandejaEntrada($nick){
 	
 	global $mysqli;
@@ -56,6 +58,7 @@ function bandejaEntrada($nick){
 
 }
 
+/**/
 function mensajesEnviados($nick){
 	global $mysqli;
 	$args = array($nick);

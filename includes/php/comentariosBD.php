@@ -1,10 +1,11 @@
 <?php
 require_once(__DIR__."/config.php");
 
-function getComentarios($var){
+/**/
+function getComentarios($evento){
 	global $mysqli;
 
-	$args = array($var);
+	$args = array($evento);
 	sanitizeArgs($args);
 
 	$pst = $mysqli->prepare("SELECT * FROM comentarios WHERE IDEvento = ? ORDER BY Fecha DESC;");
@@ -12,32 +13,17 @@ function getComentarios($var){
 
 		$pst->execute();
 	$result = $pst->get_result();
-	$comentario = null;
+	$comentarios = null;
 
 	while($row = $result->fetch_array(MYSQLI_ASSOC)){
-		$comentario[] = $row;
+		$comentarios[] = $row;
 	}
 	$pst->close();
-	return $comentario;
-
-	/*
-		while ($registro = $resultado->fetch_assoc()) {
-			echo '<div id="comentario">';
-					
-					echo '<div id="nick">',$registro["nickUsuario"],"   ", "</div>";
-					
-				
-					echo '<div id="texto">',$registro["Texto"], "</div>";
-					
-			echo "</div>";
-			
-		}
-	*/
-
+	return $comentarios;
 }
 
+/**/
 function commentEvent($user, $event, $comment){
-// funcion now();
 	global $mysqli;
 	$args = array($user,$event,$comment);
 	sanitizeArgs($args);
@@ -52,6 +38,7 @@ function commentEvent($user, $event, $comment){
 
 }
 
+/**/
 function eliminarComentario($comment){
 
 	global $mysqli;

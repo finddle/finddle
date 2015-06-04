@@ -1,6 +1,7 @@
 <?php
 	require_once(__DIR__."/config.php");
 	
+	/**/
 	function enviarPeticion($user1, $user2){
 		global $mysqli;
 		
@@ -16,6 +17,7 @@
 		$pst->close();
 	}
 	
+	/**/
 	function cancelarPeticion($user1, $user2){
 		global $mysqli;
 		
@@ -31,7 +33,7 @@
 		$pst->close();
 	}
 	
-	//elimina la peticion de amistad de la tabla peticionesamistad e inserta la nueva relacion de amistad a la tabla de amigos
+	/*Elimina la peticion de amistad de la tabla peticionesamistad e inserta la nueva relacion de amistad a la tabla de amigos*/
 	function aceptarPeticion($user1, $user2){
 		global $mysqli;
 		
@@ -49,7 +51,8 @@
 		cancelarPeticion($user1, $user2);
 	}
 	
-	function comprobarNotificaciones(){
+	/**/
+	function comprobarNotificaciones($user){
 		
 	}
 
