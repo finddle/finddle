@@ -20,7 +20,8 @@ function comprobarFormulario($params){
 		$result[] =  "Necesaria password de 4 a 18 caracteres alfanumericos";
 	}
 	if ( $validParams ) {
-    insertarUsuario($nick, $contrasena, $correo, $nombre, $apellidos, $edad);
+		$hashedpass = password_hash($contrasena.PIMIENTA, PASSWORD_BCRYPT);
+    	insertarUsuario($nick, $hashedpass, $correo, $nombre, $apellidos, $edad);
 	}
   return $result;
 }
@@ -43,7 +44,8 @@ function formEditUser($params){
 		$result[] =  "Necesaria password de 4 a 18 caracteres alfanumericos";
 	}
 	if ( $validParams ) {
-		editarUsuario($nick, $contrasena, $correo, $nombre, $apellidos, $edad, $avatar);
+		$hashedpass = password_hash($contrasena.PIMIENTA, PASSWORD_BCRYPT);
+		editarUsuario($nick, $hashedpass, $correo, $nombre, $apellidos, $edad, $avatar);
 	}
 	/*
 	//Writes the photo to the server
@@ -85,7 +87,7 @@ function login($nombreUsuario, $password) {
   $usuario = getInfoUser($nombreUsuario);
   // Si existe el usuario
   if ( $usuario ) {
-    $ok = $usuario['Contrasena'] === $password && $usuario['Tipo'] != "banned";
+    $ok = password_verify($password.PIMIENTA, $usuario['Contrasena']) && $usuario['Tipo'] != "banned";
     if ($ok) {
       $_SESSION['username'] = $nombreUsuario;
       $_SESSION['rol'] = $usuario['Tipo'];

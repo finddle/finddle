@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 25-05-2015 a las 01:58:10
+-- Tiempo de generación: 04-06-2015 a las 10:11:55
 -- Versión del servidor: 5.6.21
 -- Versión de PHP: 5.6.3
 
@@ -57,7 +57,8 @@ CREATE TABLE IF NOT EXISTS `asiste` (
 INSERT INTO `asiste` (`NickUsuario`, `IDEvento`) VALUES
 ('gandalf', 1),
 ('paco', 1),
-('paco', 2);
+('paco', 2),
+('paco', 7);
 
 -- --------------------------------------------------------
 
@@ -86,7 +87,22 @@ CREATE TABLE IF NOT EXISTS `compras` (
   `NumEntradas` int(11) NOT NULL,
   `Butacas` int(11) DEFAULT NULL,
   `PrecioTotal` double NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=51 DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `compras`
+--
+
+INSERT INTO `compras` (`Codigo`, `NickUsuario`, `IDEvento`, `NumEntradas`, `Butacas`, `PrecioTotal`) VALUES
+(21, 'paco', 17, 3, 83, 5),
+(24, 'paco', 17, 2, 11, 5),
+(25, 'paco', 17, 2, 12, 5),
+(32, 'paco', 17, 1, 145, 5),
+(33, 'paco', 17, 1, 139, 5),
+(34, 'paco', 17, 2, 35, 5),
+(42, 'paco', 17, 1, 39, 5),
+(43, 'paco', 17, 1, 53, 5),
+(44, 'paco', 17, 1, 48, 5);
 
 -- --------------------------------------------------------
 
@@ -112,8 +128,8 @@ CREATE TABLE IF NOT EXISTS `eventos` (
 --
 
 INSERT INTO `eventos` (`ID`, `Nombre`, `Descripcion`, `Fecha`, `Precio`, `Imagen`, `PlazasDisponibles`, `Tipo`, `Promotor`, `Activo`) VALUES
-(1, 'Arenal Sound', 'Festival de indie-rock situado en la Comunitat Valenciana', '2015-07-31 00:00:00', 50.23, 'includes/data/eventos/arenal.jpg', 60000, 0, 'AndresAJ', 1),
-(2, 'Rock in Rio', 'Festival de musica electronica situado en Madrid', '2015-06-24 00:00:00', 30.23, 'includes/data/eventos/rir.jpg', 3000, 0, 'AndresAJ', 1),
+(1, 'Arenal Sound', 'Festival de indie-rock situado en la Comunitat Valenciana', '2015-07-31 00:00:00', 50, 'includes/data/eventos/arenal.jpg', 60000, 0, 'AndresAJ', 1),
+(2, 'Rock in Rio', 'Festival de musica electronica situado en Madrid', '2015-06-24 00:00:00', 30, 'includes/data/eventos/rir.jpg', 3000, 0, 'AndresAJ', 1),
 (4, 'Festival de monegros', 'Festival de musica electronica en medio del desierto, disfruta de los mejores DJs en una alocada fiesta.', '2015-06-10 21:00:00', 65, 'includes/data/eventos/monegros.jpg', 10000, 0, 'AndresAJ', 1),
 (5, 'Grimmey por Palestina', 'Festival de RAP cuyos beneficios seran entregados a una ONG para enviarlos a Palestina. Se puede pagar con alimentos no perecederos.', '2015-06-13 21:00:00', 10, 'includes/data/eventos/grimmpalestina.jpg', 1000, 0, 'AndresAJ', 1),
 (6, 'BOA Fest', 'Festival de los grandes cantantes de HIP-HOP en el auditorio Miguel Rios de Rivas Vaciamadrid.', '2015-06-15 21:00:00', 12, 'includes/data/eventos/boafest.jpg', 750, 0, 'AndresAJ', 1),
@@ -179,10 +195,10 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
 --
 
 INSERT INTO `usuarios` (`Nick`, `Contrasena`, `Correo`, `Nombre`, `Apellidos`, `Edad`, `Avatar`, `Tipo`) VALUES
-('AndresAJ', '1234', 'andresita@gg.com', 'Andresita', 'Aguirre', 20, NULL, 'promotor'),
-('gandalf', 'gandalf', 'itsravenbooking@gmail.com', 'Paquito', 'eeee', 23, NULL, 'admin'),
-('paco', 'paco', 'itsravenbooking@gmail.com', 'Paquito', 'eeee', 23, NULL, 'usuario'),
-('titomc', 'titomc', 'itsravenbooking@gmail.com', 'Paquito', 'eeee', 23, NULL, 'promotor');
+('AndresAJ', '$2y$10$qFiVsUSYp3YNlC/qz4.F/ectSocojiTGu9cwb7GMn50u4mGdLMBSO', 'andresita@gg.com', 'Andresita', 'Aguirre', 20, NULL, 'promotor'),
+('gandalf', '$2y$10$bmFFru3Vha1I7uSzo4NhdODTrM3tdNDHAb71KoD0hX/m9rM23lIoK', 'itsravenbooking@gmail.com', 'Paquito', 'El chocolatero', 23, NULL, 'admin'),
+('paco', '$2y$10$3GmlDzQJWKtrwvr0XVlT8.qL7tf/7Coz3oaP01/qZkmXa2tzppPXm', 'itsravenbooking@gmail.com', 'Paquito', 'eeee', 23, NULL, 'usuario'),
+('titomc', '$2y$10$A/fQzkFnog/RucTrzbya3OmfW1WbUltXw3SBNQ74ePXJM2XUR.chS', 'itsravenbooking@gmail.com', 'Paquito', 'eeee', 23, NULL, 'promotor');
 
 --
 -- Índices para tablas volcadas
@@ -249,7 +265,7 @@ MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
 -- AUTO_INCREMENT de la tabla `compras`
 --
 ALTER TABLE `compras`
-MODIFY `Codigo` int(11) NOT NULL AUTO_INCREMENT;
+MODIFY `Codigo` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=51;
 --
 -- AUTO_INCREMENT de la tabla `eventos`
 --
