@@ -108,3 +108,27 @@ ul.items{
 div.eventosElem{
   padding-bottom: 40px;
 }
+
+#comentario{
+  border-width: 1px;
+  border-radius: 8px;
+  border-color: black;
+  border-style: solid;
+  height: 100px auto;
+  padding-top: 5px;
+  padding-right: 8px;
+  padding-left: 8px;
+  padding-bottom: 5px;
+  margin-top: 10px;
+}
+#nick{
+  font-size: 90%;
+  font-family: Verdana;
+  text-align: justify;
+  font-weight: bold;
+}
+#texto{
+  font-family: Verdana;
+  text-align: justify;
+  margin-left: 10;
+}
