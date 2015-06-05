@@ -63,7 +63,7 @@
 										// Si tiene la peticion de amistad pendiente
 										?>
 										<p class="login button"> 
-											<input type="submit" disabled = 'disabled' value="Seguirrr"> 
+											<input type="submit" disabled = 'disabled' value="Seguir"> 
 										</p>
 									<?php
 									}

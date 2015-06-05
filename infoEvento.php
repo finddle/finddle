@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE HTML>
 <html>
 	<head>
 	  <title>Finddle</title>
@@ -35,12 +35,7 @@
 	  <div class="main">
 		<div class="container">
 		  
-		  <div class="sidebar-left container-fixed col-xs-4 col-sm-4 col-md-3 ">
-			<!-- Barra lateral izquierda -->
-		  </div>
-		  
-		  
-		  <div class="container-fixed col-xs-8 col-sm-8 col-md-6">
+		  <div class="container-fixed col-xs-8 col-sm-8 col-md-8">
 			 <?php 
 				$evento = $_GET['evento'];
 				$info = getInfoEvento($evento);
@@ -64,7 +59,7 @@
 						echo '<p>Lo sentimos, las entradas se han agotado.</p>';
 					}
 					?>
-					<textarea name="comentario" cols="74" rows="4" autofocus form="usrform" placeholder='Escribe aquÃ­ tu comentario!' required></textarea>
+					<textarea name="comentario" cols="74" rows="4" autofocus form="usrform" placeholder='Escribe aqui tu comentario!' required></textarea>
 					<form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" id="usrform">
   						<input type="hidden" name="idEvento" value="<?php echo $evento;?>">
   						<input type="submit"> 
@@ -89,16 +84,36 @@
 					}
 				}
 				else
-					echo '<p> Â¡SÃ© el primero en dejar un comentario!';
+					echo '<p> ¡Sé el primero en dejar un comentario! </p>';
 				?>
 				</div>				
-			</div>
-		  </div>
-
 		  
 		  <div class="clearfix visible-xs-block visible-sm-block"></div>
-		  <div class="sidebar-right container-fixed col-xs-4 col-sm-4 col-md-3"></div>
-		</div>
+		  <div class="sidebar-right container-fixed col-xs-4 col-sm-4 col-md-4">
+				<?php
+					$asistentes = getUsersEvento($evento);
+					echo "<h2> También asistirán...</h2>";
+					if(isset($asistentes)){
+						foreach ($asistentes as $asistente) {
+							if(isset($asistente["Avatar"])){
+								if($_SESSION['username'] == $asistente['Nick'])
+										echo '<div id="fotoAsistente"><a href="perfilUsuario.php"><img class="imgAsistentes" src='.$asistente['Avatar'].'></a></div>';
+								else
+									echo '<div id="fotoAsistente"><a href ="perfilAmigo.php?amigo='.$asistente['Nick'].'"><img class="imgAsistentes" src='.$asistente['Avatar'].'></a></div>';
+							
+							}else{
+								if($_SESSION['username'] == $asistente['Nick'])
+										echo '<div id="fotoAsistente"><a href="perfilUsuario.php"><img class="imgAsistentes" src="includes/img/usuario.png"/></a></div>';
+								else
+									echo '<div id="fotoAsistente"><a href ="perfilAmigo.php?amigo='.$asistente['Nick'].'"><img class="imgAsistentes" src="includes/img/usuario.png"/></a></div>';
+							}
+						}
+					}
+					else
+						echo '<p> ¡Sé el primero en asistir al evento! </p>';
+				?>
+		  </div>
+	  </div>
 	  </div>
 	  
 	  <!--Fin Contenido-->
@@ -113,15 +128,3 @@
 </html>
 
 <?php require(__DIR__.'/includes/php/cleanup.php');?>
-
-
-
-
-
-
-
-
-
-
-
-
