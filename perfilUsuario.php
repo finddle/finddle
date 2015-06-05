@@ -32,7 +32,7 @@
 					$info = getInfoUser($_SESSION['username']);
 					
 					if(isset($info["Avatar"]))
-						echo "<img src=",$info["Avatar"]," /></br>";
+						echo "<a href='editPerfil.php' id='avatar'><img src=",$info["Avatar"]," /></a></br>";
 					else
 						echo "<a href='editPerfil.php' id='avatar'><img src='includes/img/usuario.png'/></a></br>";		
 					echo "<h3>", $info["Nick"], "</h3></br>";

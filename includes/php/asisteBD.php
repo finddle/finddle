@@ -15,7 +15,7 @@ function asisteEvento($user,$evento){
 	$pst->close();
 }
 
-/**/
+/*Obtiene todos los eventos a los que asiste el usuario que se le pasa por parámetro*/
 function getEventosUser($user){
 	global $mysqli;
 	$args = array($user);
@@ -35,7 +35,27 @@ function getEventosUser($user){
 	return $eventos;	
 }
 
-/**/
+/*Obtiene los usuarios que asisten al evento que le pasamos por parámetro*/
+function getUsersEvento($idEvento){
+	global $mysqli;
+	$args = array($idEvento);
+	sanitizeArgs($args);
+	$asistentes = null;
+
+	$pst = $mysqli->prepare("SELECT Nick, Avatar FROM asiste,usuarios WHERE IDEvento = ? AND NickUsuario = Nick");
+	
+	$pst->bind_param("i",$args[0]);
+	$pst->execute();
+	$result = $pst->get_result();
+	while($row = $result->fetch_array(MYSQLI_ASSOC)){
+		$asistentes[] = $row;
+	}
+	
+	$pst->close();
+	return $asistentes;
+}
+
+/*Cuenta el número de usuarios de la web que asisten a ese evento.*/
 function countAsistentes($idEvento){
 	global $mysqli;
 	$args = array($idEvento);

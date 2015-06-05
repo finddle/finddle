@@ -132,3 +132,18 @@ div.eventosElem{
   text-align: justify;
   margin-left: 10;
 }
+#fotoAsistente{
+  border-width: 1px;
+  border-radius: 8px;
+  border-color: green;
+  border-style: solid;
+  height: 100px;
+  width: 100px;
+  margin-top: 10px;
+  text-align: center;
+}
+
+.imgAsistentes{
+  max-height: 99px;
+  max-width: 99px;
+}
