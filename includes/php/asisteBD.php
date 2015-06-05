@@ -22,7 +22,7 @@ function getEventosUser($user){
 	sanitizeArgs($args);
 	$eventos = null;
 
-	$pst = $mysqli->prepare("SELECT IDEvento, Nombre, Imagen FROM asiste,eventos WHERE NickUsuario = ? AND ID = IDEvento");
+	$pst = $mysqli->prepare("SELECT IDEvento, Tipo, Nombre, Imagen FROM asiste,eventos WHERE NickUsuario = ? AND ID = IDEvento");
 	//creamos la cadena de argumentos indicando con s los string e i para integer, de cada argumento del array
 	$pst->bind_param("s",$args[0]);
 	$pst->execute();

@@ -12,7 +12,6 @@
 		  <!--Favicon-->
 		  <link rel="shortcut icon" href="includes/img/favicon.png" />
 	</head>
-	
 	<?php 
 		require(__DIR__.'/includes/php/mensajes.php');
 		if(isset($_POST['menContacto'])) {
@@ -20,13 +19,9 @@
 		}
 	?>
 	<body>
-	
 		<?php 
 			require(__DIR__.'/includes/php/header.php');
-		?>
-		
-		
-		
+		?>	
 		<span>
 		<div class="container"><div class="span-content"></div>
 		  <section><div class="span-content"></div>				

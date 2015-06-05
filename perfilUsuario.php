@@ -18,6 +18,8 @@
 	
 		<?php 
 			require(__DIR__.'/includes/php/header.php');
+			require_once(__DIR__."/includes/php/asisteBD.php"); 
+			require_once(__DIR__."/includes/php/comprasBD.php");
 		?>
 
 	  <!--Inicio Contenido-->
@@ -46,14 +48,13 @@
 		  <!-- EVENTOS A LOS QUE ASISTE -->
 		  <div class="container-fixed col-xs-8 col-sm-8 col-md-6">
 			<div id="contenido">
-				<?php 
-					require_once(__DIR__."/includes/php/asisteBD.php");
+				<?php
 					$eventos = getEventosUser($_SESSION['username']);
 					if(isset($eventos)){
 						foreach($eventos as $evento){
 							echo "<h3>", $evento["Nombre"], "</h3>";
 							echo '<p><a href ="infoEvento.php?evento='.$evento['IDEvento'].'"><img src ="'.$evento['Imagen'].'"/></a></p>';
-							echo "<p>Nº Asistentes: ".countAsistentes($evento['IDEvento'])."</p><br>";
+							echo "<p>Nº Asistentes: ".countAsistentes($evento['IDEvento'],$evento['Tipo'])."</p><br>";
 						}
 					}else
 						echo "<p> Este usuario no asiste a ning?n evento. </p>";

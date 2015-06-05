@@ -1,7 +1,7 @@
 <?php
 require_once(__DIR__."/config.php");
 
-/**/
+/*Añade un evento nuevo a la base de datos, si lo añade un promotr se llama a esta funcion con activo=0*/
 function addPeticionEvento($nombre, $descripcion, $fecha, $precio, $imagen, $plazasDisponibles, $tipo, $promotor,$activo){
 	global $mysqli;
 

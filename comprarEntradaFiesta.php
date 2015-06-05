@@ -14,11 +14,8 @@
   <!--Favicon-->
   <link rel="shortcut icon" href="includes/img/favicon.png" />
 </head>
-<?php 
-  require(__DIR__.'/includes/php/header.php');  
+<?php  
   require_once(__DIR__.'/includes/php/compras.php');
-  require_once(__DIR__.'/includes/php/comprasBD.php');
-  require_once(__DIR__.'/includes/php/eventosBD.php');
   if(isset($_POST['procesarCompra'])) {
     $compra = $_SESSION['compra'];
     $usuario = $_SESSION['username'];
@@ -29,6 +26,11 @@
   }
 ?>
 <body>
+<?php 
+require(__DIR__.'/includes/php/header.php');  
+require_once(__DIR__.'/includes/php/comprasBD.php');
+require_once(__DIR__.'/includes/php/eventosBD.php');
+?>
   <div class="main">
     <div class="container">
       <div class="sidebar-left container-fixed col-xs-4 col-sm-4  col-md-2">

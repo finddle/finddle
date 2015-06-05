@@ -14,11 +14,8 @@
 	</head>
 	
 	<?php
-		require(__DIR__.'/includes/php/header.php');  
-		require(__DIR__.'/includes/php/eventosBD.php');
-		require(__DIR__.'/includes/php/comentariosBD.php');
 		require(__DIR__.'/includes/php/comprasBD.php');
-	
+		
 		if(isset($_POST['comentario'])) {
         	$idEvent=$_POST['idEvento'];
 			header("Location: /finddle/infoEvento.php?evento=".$idEvent);
@@ -30,7 +27,12 @@
 	
 	
 	<body>
-
+	<?php
+	require(__DIR__.'/includes/php/header.php');  
+	require(__DIR__.'/includes/php/eventosBD.php');
+	require(__DIR__.'/includes/php/comentariosBD.php');
+	require(__DIR__.'/includes/php/asisteBD.php');
+	?>
 	  <!--Inicio Contenido-->
 	  <div class="main">
 		<div class="container">
