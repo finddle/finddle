@@ -35,22 +35,5 @@ function getEventosUser($user){
 	return $eventos;	
 }
 
-/**/
-function countAsistentes($idEvento){
-	global $mysqli;
-	$args = array($idEvento);
-	sanitizeArgs($args);
-	$asistentes = null;
-	
-	$pst = $mysqli->prepare("SELECT COUNT(*) AS nAsistentes FROM asiste WHERE IDEvento = ?");
-	$pst->bind_param("i",$args[0]);
-	$pst->execute();
-	$result = $pst->get_result();
-	while($row = $result->fetch_array(MYSQLI_ASSOC)){
-		$asistentes = $row;
-	}
 
-	$pst->close();
-	return $asistentes["nAsistentes"];
-}
 ?>

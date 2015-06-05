@@ -17,7 +17,7 @@
 		require(__DIR__.'/includes/php/header.php');  
 		require(__DIR__.'/includes/php/eventosBD.php');
 		require(__DIR__.'/includes/php/comentariosBD.php');
-		require(__DIR__.'/includes/php/asisteBD.php');
+		require(__DIR__.'/includes/php/comprasBD.php');
 	
 		if(isset($_POST['comentario'])) {
         	$idEvent=$_POST['idEvento'];
@@ -44,7 +44,7 @@
 			 <?php 
 				$evento = $_GET['evento'];
 				$info = getInfoEvento($evento);
-				$nAsistentes = countAsistentes($info['ID']);
+				$nAsistentes = countAsistentes($info['ID'], $info['Tipo']);
 				echo '<div class="eventosElem">';
 				echo '<h2>'.$info['Nombre'].'</h2>';
 				echo '<p>Fecha: '.$info['Fecha'].'</p>';

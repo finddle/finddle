@@ -17,8 +17,8 @@
 <?php 
   require(__DIR__.'/includes/php/header.php');  
   require_once(__DIR__.'/includes/php/compras.php');
+  require_once(__DIR__.'/includes/php/comprasBD.php');
   require_once(__DIR__.'/includes/php/eventosBD.php');
-  require_once(__DIR__.'/includes/php/asisteBD.php');
   if(isset($_POST['procesarCompra'])) {
     $compra = $_SESSION['compra'];
     $usuario = $_SESSION['username'];
@@ -42,7 +42,7 @@
         $_SESSION['compra']['precioEntrada'] = $evento['Precio'];
         $_SESSION['compra']['evento'] = $evento['ID'];
         $_SESSION['compra']['capacidad'] = $evento['PlazasDisponibles'];
-        $_SESSION['compra']['nAsistentes'] = countAsistentes($evento['ID']);
+        $_SESSION['compra']['nAsistentes'] = countAsistentes($evento['ID'],0);
         
         if(isset($result)){
           echo '<ul>';
