@@ -13,21 +13,19 @@
 	  <link rel="shortcut icon" href="includes/img/favicon.png" />
 	</head>
 	
-	<?php 
-		
+	<?php
 		require(__DIR__.'/includes/php/header.php');  
 		require(__DIR__.'/includes/php/eventosBD.php');
 		require(__DIR__.'/includes/php/comentariosBD.php');
 		require(__DIR__.'/includes/php/asisteBD.php');
 	
 		if(isset($_POST['comentario'])) {
-        	//$result = comentario($_POST);
-        	print_r($_POST);
         	$idEvent=$_POST['idEvento'];
+			header("Location: /finddle/infoEvento.php?evento=".$idEvent);
         	$usr=$_SESSION['username'];
         	$com=$_POST['comentario'];
         	commentEvent($usr, $idEvent, $com);
-    }
+		}
 	?>
 	
 	
@@ -66,7 +64,7 @@
 						echo '<p>Lo sentimos, las entradas se han agotado.</p>';
 					}
 					?>
-					<textarea name="comentario" cols="74" rows="4" autofocus form="usrform"> Escribe aquí tu comentario! </textarea>
+					<textarea name="comentario" cols="74" rows="4" autofocus form="usrform" placeholder='Escribe aquí tu comentario!' required></textarea>
 					<form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" id="usrform">
   						<input type="hidden" name="idEvento" value="<?php echo $evento;?>">
   						<input type="submit"> 
@@ -80,19 +78,21 @@
 				}
 				
 				$coment = getComentarios($evento);
-				foreach ($coment as $comentario) {
-					echo '<div id="comentario">';
-					
-					echo '<div id="nick">',$comentario["NickUsuario"],"   ", "</div>";
-					echo '<div id="texto">',$comentario["Texto"], "</div>";
-					
-					echo "</div>";
+				if(isset($coment)){
+					foreach ($coment as $comentario) {
+						echo '<div id="comentario">';
+						
+						echo '<div id="nick">',$comentario["NickUsuario"],"   ", "</div>";
+						echo '<div id="texto">',$comentario["Texto"], "</div>";
+						
+						echo "</div>";
+					}
 				}
-				echo '</div>';
-				
-				
-				echo '</div>';
-			 ?>
+				else
+					echo '<p> ¡Sé el primero en dejar un comentario!';
+				?>
+				</div>				
+			</div>
 		  </div>
 
 		  

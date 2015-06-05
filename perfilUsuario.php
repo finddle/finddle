@@ -49,11 +49,14 @@
 				<?php 
 					require_once(__DIR__."/includes/php/asisteBD.php");
 					$eventos = getEventosUser($_SESSION['username']);
-					foreach($eventos as $evento){
-						echo "<h3>", $evento["Nombre"], "</h3>";
-						echo '<p><a href ="infoEvento.php?evento='.$evento['IDEvento'].'"><img src ="'.$evento['Imagen'].'"/></a></p>';
-						echo "<p>Nº Asistentes: ".countAsistentes($evento['IDEvento'])."</p><br>";
-					}
+					if(isset($eventos)){
+						foreach($eventos as $evento){
+							echo "<h3>", $evento["Nombre"], "</h3>";
+							echo '<p><a href ="infoEvento.php?evento='.$evento['IDEvento'].'"><img src ="'.$evento['Imagen'].'"/></a></p>';
+							echo "<p>Nº Asistentes: ".countAsistentes($evento['IDEvento'])."</p><br>";
+						}
+					}else
+						echo "<p> Este usuario no asiste a ning?n evento. </p>";
 				?>
 			</div>
 		  </div>
@@ -66,9 +69,13 @@
 					<?php 
 						require_once(__DIR__."/includes/php/amigosBD.php");
 						$amigos = getAmigos($_SESSION['username']);
-						foreach($amigos as $amigo){
-							echo '<p><a href ="perfilAmigo.php?amigo='.$amigo['NickUsuario1'].'">'.$amigo['NickUsuario1']. '</a></p>';
-						}
+						
+						if(isset($amigos)){
+							foreach($amigos as $amigo){
+								echo '<p><a href ="perfilAmigo.php?amigo='.$amigo['NickUsuario1'].'">'.$amigo['NickUsuario1']. '</a></p>';
+							}
+						}else
+							echo "<p> Este usuario no tiene amigos :( </p>";
 					?>
 				</div>
 		  </div>

@@ -16,6 +16,13 @@
 		<link rel="shortcut icon" href="includes/img/favicon.png" />
 	</head>
 	
+	<?php 
+	require(__DIR__.'/includes/php/peticionesBD.php');
+		if(isset($_POST['formAmistad'])) {
+			$result = enviarPeticion($info["Nick"], $_SESSION['username']);
+		}
+	?>
+	
 	<body>
 		<?php 
 			require(__DIR__.'/includes/php/header.php');
@@ -37,17 +44,37 @@
 							else
 								echo "<img src='includes/img/usuario.png'/></br>";	
 							require_once(__DIR__."/includes/php/peticionesBD.php");
-							if(esAmigo($info["Nick"], $_SESSION['username']) == 0 or esAmigo($_SESSION['username'], $info["Nick"]) == 0){ //si no son amigos
-								//el boton deberia hacer el action de enviarPeticion de amigosBD.php
-								//Volveria a cargarse la misma pagina con el boton desactivado (o que al darle mostrase que está en proceso la peticion)
-								echo "<p class=".'login'." ".'button'."> 
-										<input type=".'submit'." value=".'Seguir'."> 
-									  </p>";	
-							}else{ //ya son amigos
+							
+								//si no son amigos
+								if(esAmigo($info["Nick"], $_SESSION['username']) == 0 or esAmigo($_SESSION['username'], $info["Nick"]) == 0){ 
+								
+									// Si aun no le ha enviado la peticion de amistad
+									if(comprobarPeticion($info["Nick"], $_SESSION['username']) == 0 or comprobarPeticion($_SESSION['username'], $info["Nick"]) == 0){ 
+										?>
+										<form method = "POST" action="<?php enviarPeticion($_SESSION['username'], $info["Nick"]);?>" autocomplete="on">
+											<input type="hidden" name="formAmistad"/>
+											<p class="login button"> 
+												<input type="submit" onClick="this.disabled='disabled'" value="Seguir" /> 
+											</p>	
+										</form>
+									<?php
+									}
+									else {
+										// Si tiene la peticion de amistad pendiente
+										?>
+										<p class="login button"> 
+											<input type="submit" disabled = 'disabled' value="Seguirrr"> 
+										</p>
+									<?php
+									}
+									
+								//ya son amigos
 								//abriria el php de mensajes
-								echo "<p class=".'login'." ".'button'."> 
-										<input type=".'submit'." value=".'Enviar'." ".'mensaje'."> 
-									  </p>"; 	
+							}else{ ?>
+								<p class="login button"> 
+									<input type="submit" value="Enviar mensaje"> 
+								</p> 
+							<?php
 							}
 						?>
 					</div>
@@ -81,7 +108,10 @@
 							$amigos = getAmigos($info["Nick"]);
 							if(isset($amigos)){
 								foreach($amigos as $amigo){
-									echo '<p><a href ="perfilAmigo.php?amigo='.$amigo['NickUsuario1'].'">'.$amigo['NickUsuario1']. '</a></p>';
+									if($_SESSION['username'] == $amigo['NickUsuario1'])
+										echo '<p><a href="perfilUsuario.php">'.$amigo['NickUsuario1'].'</a></p>';
+									else
+										echo '<p><a href ="perfilAmigo.php?amigo='.$amigo['NickUsuario1'].'">'.$amigo['NickUsuario1']. '</a></p>';
 								}
 							}else
 								echo "<p> Este usuario no tiene amigos :( </p>";
