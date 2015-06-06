@@ -1,21 +1,21 @@
+<?php require_once(__DIR__.'/includes/php/config.php');?>
 <!DOCTYPE html>
-
 <html>
-
 	<head>
 		  <title>Finddle</title>
         <meta charset="utf-8" />
-		<link rel="shortcut icon" href="includes/img/favicon1.png" />
-		 <!-- Latest compiled CSS -->
-		<link rel="stylesheet" type="text/css" href="includes/css/bootstrap.css">
-		<!-- Optional theme -->
-		<link rel="stylesheet" type="text/css" href="includes/css/bootstrap-theme.min.css">
-		<!-- Personal CSS -->
-		<link rel="stylesheet" type="text/css" href="includes/css/mycss.css">
-		<link rel="stylesheet" type="text/css" href="includes/css/formularios.css" />
+		<!-- Latest compiled CSS -->
+	    <link rel="stylesheet" type="text/css" href="<?= ROOT_DIR?>/includes/css/bootstrap.css">
+	    <!-- Optional theme -->
+	    <link rel="stylesheet" type="text/css" href="<?= ROOT_DIR?>/includes/css/bootstrap-theme.min.css">
+	    <!-- Personal CSS -->
+	    <link rel="stylesheet" type="text/css" href="<?= ROOT_DIR?>/includes/css/mycss.css">
+	    <!--Favicon-->
+	    <link rel="stylesheet" type="text/css" href="<?= ROOT_DIR?>/includes/css/formularios.css">
+	    <!--Favicon-->
+	    <link rel="shortcut icon" href="<?= ROOT_DIR?>/includes/img/favicon.png" />
 	
 	</head>
-	
 	<?php 
 		require(__DIR__.'/includes/php/mensajes.php');
 		if(isset($_POST['menUser'])) {
@@ -23,11 +23,7 @@
 		}
 	?>
 	<body>
-
-		<?php 
-			require(__DIR__.'/includes/php/header.php');  
-		?>
-		
+	<?php require(__DIR__.'/includes/php/header.php');?>
 		<div class="container">
 		  <section>			
                 <div id="container_demo" >
@@ -61,11 +57,8 @@
 				</div>
 			</section>
 		</div>
-		<?php 
-			require(__DIR__.'/includes/php/footer.php');
-		?>
-		<script src="includes/js/jquery.min.js"></script>
-  		<script src="includes/js/bootstrap.js"></script>
+		<?php require(__DIR__.'/includes/php/footer.php');?>
+		<script src="<?= ROOT_DIR?>/includes/js/jquery.min.js"></script>
+  		<script src="<?= ROOT_DIR?>/includes/js/bootstrap.js"></script>
 	</body>
-
 	</html>

@@ -14,12 +14,12 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
           </button>
-          <a href="index.php" class="navbar-brand">FINDDLE</a>
+          <a href="<?= ROOT_DIR?>/" class="navbar-brand">FINDDLE</a>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            <li><a href="cartelera.php">Cine</a></li>
-            <li><a href="proximosEventos.php">Fiestas</a></li>
+            <li><a href="<?= ROOT_DIR?>/cartelera.php">Cine</a></li>
+            <li><a href="<?= ROOT_DIR?>/proximosEventos.php">Fiestas</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
             <?php 
@@ -28,10 +28,10 @@
             }
             
               if(isset($_SESSION['username'])){
-                echo ''.$_SESSION['username'].'<a href="perfilUsuario.php"><img  id="userPhoto" src="'.$_SESSION['picture'].'"/></a>';
-                echo '<li><a href="includes/php/logout.php">Logout</a></li>';
+                echo ''.$_SESSION['username'].'<a href="'.ROOT_DIR.'/perfilUsuario.php"><img  id="userPhoto" src="'.ROOT_DIR.'/'.$_SESSION['picture'].'"/></a>';
+                echo '<li><a href="'.ROOT_DIR.'/includes/php/logout.php">Logout</a></li>';
               }else{
-                echo '<li><a href="login.php">Ingresar</a></li>';
+                echo '<li><a href="'.ROOT_DIR.'/login.php">Ingresar</a></li>';
               }
             ?>
           </ul>

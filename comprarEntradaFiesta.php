@@ -1,18 +1,20 @@
+<?php require_once(__DIR__.'/includes/php/config.php');?>
 <!DOCTYPE html>
 <html>
 <head>
   <title>Finddle</title>
   <meta charset="utf-8" />
   <!-- Latest compiled CSS -->
-  <link rel="stylesheet" type="text/css" href="includes/css/bootstrap.css">
+  <link rel="stylesheet" type="text/css" href="<?= ROOT_DIR?>/includes/css/bootstrap.css">
   <!-- Optional theme -->
-  <link rel="stylesheet" type="text/css" href="includes/css/bootstrap-theme.min.css">
+  <link rel="stylesheet" type="text/css" href="<?= ROOT_DIR?>/includes/css/bootstrap-theme.min.css">
   <!-- Personal CSS -->
-  <link rel="stylesheet" type="text/css" href="includes/css/mycss.css">
-  <link rel="stylesheet" type="text/css" href="includes/css/entradasCine.css">
-  <link rel="stylesheet" type="text/css" href="includes/css/formularios.css" />
+  <link rel="stylesheet" type="text/css" href="<?= ROOT_DIR?>/includes/css/mycss.css">
   <!--Favicon-->
-  <link rel="shortcut icon" href="includes/img/favicon.png" />
+  <link rel="shortcut icon" href="<?= ROOT_DIR?>/includes/img/favicon.png" />
+  <link rel="stylesheet" type="text/css" href="<?= ROOT_DIR?>/includes/css/entradasCine.css">
+  <link rel="stylesheet" type="text/css" href="<?= ROOT_DIR?>/includes/css/formularios.css" />
+
 </head>
 <?php  
   require_once(__DIR__.'/includes/php/compras.php');
@@ -37,7 +39,7 @@ require_once(__DIR__.'/includes/php/eventosBD.php');
         <!-- Barra lateral izquierda -->
       </div>
       <div class="container-fixed col-xs-8 col-sm-8 col-md-10">
-        <h1><img src="includes/img/toastl.png"/> Elige tus entradas  <img src="includes/img/toast.png"/></h1>
+        <h1><img src="<?= ROOT_DIR?>/includes/img/toastl.png"/> Elige tus entradas  <img src="<?= ROOT_DIR?>/includes/img/toast.png"/></h1>
         <?php
         
         $evento = getInfoEvento($_GET['evento']);
@@ -75,8 +77,8 @@ require_once(__DIR__.'/includes/php/eventosBD.php');
     </div>
   </div>
   <?php require(__DIR__.'/includes/php/footer.php');?>
-  <script src="includes/js/jquery.min.js"></script>
-  <script src="includes/js/bootstrap.js"></script>
+  <script src="<?= ROOT_DIR?>/includes/js/jquery.min.js"></script>
+  <script src="<?= ROOT_DIR?>/includes/js/bootstrap.js"></script>
   <script type="text/javascript">
   $(document).ready(function(){
     $(".numbers-row").append('<div class="inc button">+</div><div class="dec button">-</div>');

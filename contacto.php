@@ -1,17 +1,17 @@
+<?php require_once(__DIR__.'/includes/php/config.php');?>
 <!DOCTYPE html>
 	<head>
-		<title>Finddle</title>
-		  <meta charset="utf-8" />
-		  <!-- Latest compiled CSS -->
-		  <link rel="stylesheet" type="text/css" href="includes/css/bootstrap.css">
-		  <!-- Optional theme -->
-		  <link rel="stylesheet" type="text/css" href="includes/css/bootstrap-theme.min.css">
-		  <!-- Personal CSS -->
-		  <link rel="stylesheet" type="text/css" href="includes/css/mycss.css">
-		  <link rel="stylesheet" type="text/css" href="includes/css/formularios.css">
-		  <!--Favicon-->
-		  <link rel="shortcut icon" href="includes/img/favicon.png" />
-	</head>
+	<title>Finddle</title>
+	<meta charset="utf-8" />
+	<!-- Latest compiled CSS -->
+	<link rel="stylesheet" type="text/css" href="<?= ROOT_DIR?>/includes/css/bootstrap.css">
+	<!-- Optional theme -->
+	<link rel="stylesheet" type="text/css" href="<?= ROOT_DIR?>/includes/css/bootstrap-theme.min.css">
+	<!-- Personal CSS -->
+	<link rel="stylesheet" type="text/css" href="<?= ROOT_DIR?>/includes/css/mycss.css">
+	<link rel="stylesheet" type="text/css" href="<?= ROOT_DIR?>/includes/css/formularios.css">
+	<!--Favicon-->
+	<link rel="shortcut icon" href="<?= ROOT_DIR?>/includes/img/favicon.png" />
 	<?php 
 		require(__DIR__.'/includes/php/mensajes.php');
 		if(isset($_POST['menContacto'])) {
@@ -19,9 +19,7 @@
 		}
 	?>
 	<body>
-		<?php 
-			require(__DIR__.'/includes/php/header.php');
-		?>	
+	<?php require(__DIR__.'/includes/php/header.php');?>	
 		<span>
 		<div class="container"><div class="span-content"></div>
 		  <section><div class="span-content"></div>				
@@ -70,7 +68,8 @@
 		<?php 
 			require(__DIR__.'/includes/php/footer.php');
 		?>
-	<script src="includes/js/jquery.min.js"></script>
-  	<script src="includes/js/bootstrap.js"></script>
+	<script src="<?= ROOT_DIR?>/includes/js/jquery.min.js"></script>
+ 	<script src="<?= ROOT_DIR?>/includes/js/bootstrap.js"></script>
 	</body>
 </html>
+<?php require(__DIR__.'/includes/php/cleanup.php');?>

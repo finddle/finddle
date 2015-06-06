@@ -6,6 +6,7 @@ define('BD_USER', 'root');
 define('BD_PASS', '');
 define('PAG_SIZE',3);
 define('PIMIENTA', '0AsDfMoViE0');
+define('ROOT_DIR',"http://".$_SERVER['SERVER_NAME'].'/finddle');
 
 if (session_status() == PHP_SESSION_NONE) {
     session_start();

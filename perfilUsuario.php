@@ -1,17 +1,18 @@
+<?php require_once(__DIR__.'/includes/php/config.php');?>
 <!DOCTYPE html>
 <html>
 	<head>
 	  <title>Finddle</title>
 	  <meta charset="utf-8" />
-	  <!-- Latest compiled CSS -->
-	  <link rel="stylesheet" type="text/css" href="includes/css/bootstrap.css">
-	  <!-- Optional theme -->
-	  <link rel="stylesheet" type="text/css" href="includes/css/bootstrap-theme.min.css">
-	  <!-- Personal CSS -->
-	  <link rel="stylesheet" type="text/css" href="includes/css/mycss.css">
-	  <link rel="stylesheet" type="text/css" href="includes/css/perfilUsuario.css">
-	  <!--Favicon-->
-	  <link rel="shortcut icon" href="includes/img/favicon.png" />
+		<!-- Latest compiled CSS -->
+		<link rel="stylesheet" type="text/css" href="<?= ROOT_DIR?>/includes/css/bootstrap.css">
+		<!-- Optional theme -->
+		<link rel="stylesheet" type="text/css" href="<?= ROOT_DIR?>/includes/css/bootstrap-theme.min.css">
+		<!-- Personal CSS -->
+		<link rel="stylesheet" type="text/css" href="<?= ROOT_DIR?>/includes/css/mycss.css">
+		<!--Favicon-->
+		<link rel="shortcut icon" href="<?= ROOT_DIR?>/includes/img/favicon.png" />
+		<link rel="stylesheet" type="text/css" href="<?= ROOT_DIR?>/includes/css/perfilUsuario.css">
 	</head>
 	
 	<body>
@@ -83,17 +84,9 @@
 		  
 		</div>
 	  </div>
-	  
-	  <!--Fin Contenido-->
-	  <?php 
-		require(__DIR__.'/includes/php/footer.php');
-	  ?>
-	  
-		<script src="includes/js/jquery.min.js"></script>
-  		<script src="includes/js/bootstrap.js"></script>
+	  <?php require(__DIR__.'/includes/php/footer.php');?>
+	<script src="<?= ROOT_DIR?>/includes/js/jquery.min.js"></script>
+	<script src="<?= ROOT_DIR?>/includes/js/bootstrap.js"></script>
 	</body>
 </html>
-
-<?php 
-	require(__DIR__.'/includes/php/cleanup.php');
-?>
+<?php require(__DIR__.'/includes/php/cleanup.php');?>

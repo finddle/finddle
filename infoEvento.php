@@ -1,18 +1,18 @@
+<?php require_once(__DIR__.'/includes/php/config.php');?>
 <!DOCTYPE HTML>
 <html>
 	<head>
 	  <title>Finddle</title>
 	  <meta charset="utf-8" />
 	  <!-- Latest compiled CSS -->
-	  <link rel="stylesheet" type="text/css" href="includes/css/bootstrap.css">
+	  <link rel="stylesheet" type="text/css" href="<?= ROOT_DIR?>/includes/css/bootstrap.css">
 	  <!-- Optional theme -->
-	  <link rel="stylesheet" type="text/css" href="includes/css/bootstrap-theme.min.css">
+	  <link rel="stylesheet" type="text/css" href="<?= ROOT_DIR?>/includes/css/bootstrap-theme.min.css">
 	  <!-- Personal CSS -->
-	  <link rel="stylesheet" type="text/css" href="includes/css/mycss.css">
+	  <link rel="stylesheet" type="text/css" href="<?= ROOT_DIR?>/includes/css/mycss.css">
 	  <!--Favicon-->
-	  <link rel="shortcut icon" href="includes/img/favicon.png" />
+	  <link rel="shortcut icon" href="<?= ROOT_DIR?>/includes/img/favicon.png" />
 	</head>
-	
 	<?php
 		require(__DIR__.'/includes/php/comprasBD.php');
 		
@@ -24,8 +24,6 @@
         	commentEvent($usr, $idEvent, $com);
 		}
 	?>
-	
-	
 	<body>
 	<?php
 	require(__DIR__.'/includes/php/header.php');  
@@ -33,10 +31,8 @@
 	require(__DIR__.'/includes/php/comentariosBD.php');
 	require(__DIR__.'/includes/php/asisteBD.php');
 	?>
-	  <!--Inicio Contenido-->
 	  <div class="main">
 		<div class="container">
-		  
 		  <div class="container-fixed col-xs-8 col-sm-8 col-md-8">
 			 <?php 
 				$evento = $_GET['evento'];
@@ -48,13 +44,13 @@
 				echo '<p>Descripcion: '.$info['Descripcion'].'</p>';
 				echo '<p>Plazas: '.$info['PlazasDisponibles'].'</p>';
 				echo '<p>Asistentes: '.$nAsistentes.'</p>';
-				echo '<p><img src ="'.$info['Imagen'].'"/></p>';
+				echo '<p><img src ="'.ROOT_DIR.'/'.$info['Imagen'].'"/></p>';
 				if(isset($_SESSION['username'])){
 					if($nAsistentes < $info['PlazasDisponibles']){
 						if($info['Tipo']==0){
-							echo '<p><a class="btn btn-primary" href="comprarEntradaFiesta.php?evento='.$info['ID'].'">Comprar Entrada</a></p>';	
+							echo '<p><a class="btn btn-primary" href="'.ROOT_DIR.'/comprarEntradaFiesta.php?evento='.$info['ID'].'">Comprar Entrada</a></p>';	
 						}else {
-							echo '<p><a class="btn btn-primary" href="comprarEntradaCine.php?evento='.$info['ID'].'">Comprar Entrada</a></p>';
+							echo '<p><a class="btn btn-primary" href="'.ROOT_DIR.'/comprarEntradaCine.php?evento='.$info['ID'].'">Comprar Entrada</a></p>';
 						}
 						
 					}else{
@@ -89,7 +85,6 @@
 					echo '<p> ¡Sé el primero en dejar un comentario! </p>';
 				?>
 				</div>				
-		  
 		  <div class="clearfix visible-xs-block visible-sm-block"></div>
 		  <div class="sidebar-right container-fixed col-xs-4 col-sm-4 col-md-4">
 				<?php
@@ -99,15 +94,15 @@
 						foreach ($asistentes as $asistente) {
 							if(isset($asistente["Avatar"])){
 								if($_SESSION['username'] == $asistente['Nick'])
-										echo '<div id="fotoAsistente"><a href="perfilUsuario.php"><img class="imgAsistentes" src='.$asistente['Avatar'].'></a></div>';
+										echo '<div id="fotoAsistente"><a href="'.ROOT_DIR.'/perfilUsuario.php"><img class="imgAsistentes" src="'.ROOT_DIR.'/'.$asistente['Avatar'].'"></a></div>';
 								else
-									echo '<div id="fotoAsistente"><a href ="perfilAmigo.php?amigo='.$asistente['Nick'].'"><img class="imgAsistentes" src='.$asistente['Avatar'].'></a></div>';
+									echo '<div id="fotoAsistente"><a href ="'.ROOT_DIR.'/perfilAmigo.php?amigo='.$asistente['Nick'].'"><img class="imgAsistentes" src="'.ROOT_DIR.'/'.$asistente['Avatar'].'"></a></div>';
 							
 							}else{
 								if($_SESSION['username'] == $asistente['Nick'])
-										echo '<div id="fotoAsistente"><a href="perfilUsuario.php"><img class="imgAsistentes" src="includes/img/usuario.png"/></a></div>';
+										echo '<div id="fotoAsistente"><a href="'.ROOT_DIR.'/perfilUsuario.php"><img class="imgAsistentes" src="'.ROOT_DIR.'/includes/img/usuario.png"/></a></div>';
 								else
-									echo '<div id="fotoAsistente"><a href ="perfilAmigo.php?amigo='.$asistente['Nick'].'"><img class="imgAsistentes" src="includes/img/usuario.png"/></a></div>';
+									echo '<div id="fotoAsistente"><a href ="'.ROOT_DIR.'/perfilAmigo.php?amigo='.$asistente['Nick'].'"><img class="imgAsistentes" src="'.ROOT_DIR.'/includes/img/usuario.png"/></a></div>';
 							}
 						}
 					}
@@ -117,16 +112,9 @@
 		  </div>
 	  </div>
 	  </div>
-	  
-	  <!--Fin Contenido-->
-		<?php 
-			require(__DIR__.'/includes/php/footer.php');
-		?>
-		
-		<script src="includes/js/jquery.min.js"></script>
-  		<script src="includes/js/bootstrap.js"></script>
+		<?php require(__DIR__.'/includes/php/footer.php');?>
+		<script src="<?= ROOT_DIR?>/includes/js/jquery.min.js"></script>
+  		<script src="<?= ROOT_DIR?>/includes/js/bootstrap.js"></script>
 	</body>
-
 </html>
-
 <?php require(__DIR__.'/includes/php/cleanup.php');?>
