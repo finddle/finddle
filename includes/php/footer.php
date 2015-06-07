@@ -6,7 +6,7 @@
   </div>
   <div class="container footer-right">
     <div class="container footer-word-links">
-      <a class="footer" href="<?= ROOT_DIR?>/atencionCliente.php">About</a> |
+      <a class="footer" href="<?= ROOT_DIR?>/about.php">About</a> |
       <a class="footer" href="<?= ROOT_DIR?>/contacto.php">Contact</a> |
       <a class="footer" href="<?= ROOT_DIR?>/condicionesLegales.php">Terms of Service</a> |
       <a href="https://twitter.com/FinddleProyect" >    

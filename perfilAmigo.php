@@ -85,7 +85,7 @@
 							if(isset($eventos)){
 								foreach($eventos as $evento){
 									echo "<h3>", $evento["Nombre"], "</h3>";
-									echo '<p><a href ="'.ROOT_DIR.'/infoEvento.php?evento='.$evento['IDEvento'].'"><img src ="'.ROOT_DIR.'/'.$evento['Imagen'].'"/></a></p>';
+									echo '<p><a href ="'.ROOT_DIR.'/evento/'.$evento['IDEvento'].'"><img src ="'.ROOT_DIR.'/'.$evento['Imagen'].'"/></a></p>';
 									echo "<p>Nº Asistentes: ".countAsistentes($evento['IDEvento'],$evento['Tipo'])."</p><br>";
 								}
 							}else
@@ -104,7 +104,7 @@
 									if($_SESSION['username'] == $amigo['NickUsuario1'])
 										echo '<p><a href="'.ROOT_DIR.'/perfilUsuario.php">'.$amigo['NickUsuario1'].'</a></p>';
 									else
-										echo '<p><a href ="'.ROOT_DIR.'/perfilAmigo.php?amigo='.$amigo['NickUsuario1'].'">'.$amigo['NickUsuario1']. '</a></p>';
+										echo '<p><a href ="'.ROOT_DIR.'/usuario/'.$amigo['NickUsuario1'].'">'.$amigo['NickUsuario1']. '</a></p>';
 								}
 							}else
 								echo "<p> Este usuario no tiene amigos :( </p>";

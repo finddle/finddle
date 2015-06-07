@@ -48,9 +48,9 @@
 				if(isset($_SESSION['username'])){
 					if($nAsistentes < $info['PlazasDisponibles']){
 						if($info['Tipo']==0){
-							echo '<p><a class="btn btn-primary" href="'.ROOT_DIR.'/comprarEntradaFiesta.php?evento='.$info['ID'].'">Comprar Entrada</a></p>';	
+							echo '<p><a class="btn btn-primary" href="'.ROOT_DIR.'/fiesta/comprar/'.$info['ID'].'">Comprar Entrada</a></p>';	
 						}else {
-							echo '<p><a class="btn btn-primary" href="'.ROOT_DIR.'/comprarEntradaCine.php?evento='.$info['ID'].'">Comprar Entrada</a></p>';
+							echo '<p><a class="btn btn-primary" href="'.ROOT_DIR.'/cine/comprar/'.$info['ID'].'">Comprar Entrada</a></p>';
 						}
 						
 					}else{

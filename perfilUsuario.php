@@ -54,7 +54,7 @@
 					if(isset($eventos)){
 						foreach($eventos as $evento){
 							echo "<h3>", $evento["Nombre"], "</h3>";
-							echo '<p><a href ="infoEvento.php?evento='.$evento['IDEvento'].'"><img src ="'.$evento['Imagen'].'"/></a></p>';
+							echo '<p><a href ="'.ROOT_DIR.'/evento/'.$evento['IDEvento'].'"><img src ="'.$evento['Imagen'].'"/></a></p>';
 							echo "<p>Nº Asistentes: ".countAsistentes($evento['IDEvento'],$evento['Tipo'])."</p><br>";
 						}
 					}else
@@ -74,7 +74,7 @@
 						
 						if(isset($amigos)){
 							foreach($amigos as $amigo){
-								echo '<p><a href ="perfilAmigo.php?amigo='.$amigo['NickUsuario1'].'">'.$amigo['NickUsuario1']. '</a></p>';
+								echo '<p><a href ="'.ROOT_DIR.'/usuario/'.$amigo['NickUsuario1'].'">'.$amigo['NickUsuario1']. '</a></p>';
 							}
 						}else
 							echo "<p> Este usuario no tiene amigos :( </p>";

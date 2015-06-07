@@ -22,6 +22,7 @@
   <!--Inicio Contenido-->
   <div class="main">
     <div class="container">
+      <a id="root_app" type="hidden" href="<?= ROOT_DIR?>"></a>
       <div class="sidebar-left container-fixed col-xs-4 col-sm-4 col-md-3 ">
         <!-- Barra lateral izquierda -->
       </div>
@@ -40,7 +41,7 @@
           foreach($eventos as $evento){
             echo '<li><div class="row"><div class="col-sm-8 col-md-6"><div class="thumbnail"><div class="caption">';
          		echo '<h2>'.$evento['Nombre'].'</h2>';
-         		echo '<p><a href ="infoEvento.php?evento='.$evento['ID'].'"><img data-holder-rendered="true" src ="'.$evento['Imagen'].'"/></a></p>';
+         		echo '<p><a href ="'.ROOT_DIR.'/evento/'.$evento['ID'].'"><img data-holder-rendered="true" src ="'.ROOT_DIR.'/'.$evento['Imagen'].'"/></a></p>';
             echo '<p>Fecha: '.$evento['Fecha'].'</p>';
          		echo '</div></div></div></div></li>';
          	}
@@ -59,24 +60,24 @@
   <script src="<?= ROOT_DIR?>/includes/js/bootstrap.js"></script>
   <script type="text/javascript">
   $(document).ready(function(){
-
+  var root_app = $('#root_app').attr("href");
   var maxEventos = 0;
-  $.get("includes/php/countEventos.php?tipo=0", function(data){
+  $.get(root_app+"/includes/php/countEventos.php?tipo=0", function(data){
       maxEventos = data;
     });
   
     function lastAddedLiveFunc()
     {
-        $('div#lastPostsLoader').html('<img src="includes/img/loading.gif"/>');
+        $('div#lastPostsLoader').html('<img src="'+root_app+'/includes/img/loading.gif"/>');
 
-        $.get("includes/php/loadevents.php?tipo=0", function(data){
+        $.get(root_app+"/includes/php/loadevents.php?tipo=0", function(data){
             if (data != "") {
                 var eventos = JSON.parse(data);
                 var htmlEventos = "";
                 for(var i=0; i<eventos.length; i++){
                   htmlEventos += '<li class="nostyle"><div class="row"><div class="col-sm-8 col-md-6"><div class="thumbnail"><div class="caption"><h2>'
-                  +eventos[i]['Nombre']+'</h2><p><a href ="infoEvento.php?evento='
-                  +eventos[i]['ID']+'"><img data-holder-rendered="true" src ="'+eventos[i]['Imagen']
+                  +eventos[i]['Nombre']+'</h2><p><a href ="'+root_app+'/evento/'
+                  +eventos[i]['ID']+'"><img data-holder-rendered="true" src ="'+root_app+'/'+eventos[i]['Imagen']
                   +'"/></a></p><p>Fecha: '+eventos[i]['Fecha']+'</p></div></div></div></div></li>';
                 }
                 $(".items").append(htmlEventos);

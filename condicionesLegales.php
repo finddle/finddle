@@ -39,12 +39,8 @@
 					exclusiva de FINDDLE, S.A. o de sus propietarios. Cualquier acto de transmisión, modificación, distribución, cesión, reproducción, almacenamiento 
 					o comunicación pública total o parcial, debe contar con el consentimiento expreso de FINDDLE, S.A.</p>
 				<h2>POLITICA DE COOKIES</h2>
-				<p>En nuestra pagina WEB utilizamos "cookies" para facilitar el acceso de nuestros usuarios a nuestros servicios. Las "cookies" son unos pequeños ficheros
-					de texto introducidos por un sitio web en el disco duro, que agilizan y optimizan el uso de la web. Las "cookies" almacenan información sobre las 
-					referencias de un usuario para un determinado sitio web. En ningún caso las "cookies" almacenan información referente a datos personales de los usuarios.</p>
-				<p>El usuario puede configurar su navegador para ser avisado de la recepción de "cookies" así como para aceptar o rechazar las "cookies", para ampliar 
-					esta información consulte las guías de ayuda de su navegador. Nuestras "cookies" no se pueden utilizar para ejecutar programas o transmitir virus 
-					al equipo informático del usuario.</p>
+				<p>En nuestra pagina WEB nos comprometemos a proteger sus contraseñas con algoritmos de encriptación seguros(BCRYPT), además de utilizar SAL y PIMIENTA para
+					aumetnar la seguridad de las contraseñas.</p>
 				<div class="span-content">
 				<h3>Ley de Protección de Datos</h3>
 				<p>De acuerdo con la Ley Orgánica de Protección de Datos de Carácter Personal (LO 15/1999 de 13 de diciembre), se entiende por datos personales 

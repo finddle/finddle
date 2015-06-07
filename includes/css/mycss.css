@@ -149,3 +149,18 @@ div.eventosElem{
   max-width: 99px;
 }
 
+div#alCenter {
+  margin: 0 auto;
+  text-align: center;
+}
+
+
+div#alCenter img{
+  margin: 25px auto;
+}
+
+div#abCenter p{
+  font-size: 16px;
+  text-align: center;
+  margin: 20px auto;
+}
