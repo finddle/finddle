@@ -42,11 +42,16 @@
 <!--Fin Cabecera-->
 <script type="text/javascript">
 $(function(){
-  if($('#isLogged').length){//Procesa el codigo solo si estas logeado. Se genera una etiqueta escondida para comprobarlo
+  if($('#isLogged').length){//Procesa el codigo solo si estas logeado. Se genera una etiqueta escondida para comprobarlo.
     var root_app = $('#root_app').attr("href");
     $('#notificationLink').popover(
       {title:"Notificaciones",
       html:true,
+      placement: function(){
+      //Subo a la parte de arriba de la ventana para que el pop-up se muestre en la posicion correcta en caso de que el scroll se encuentre abajo.
+        window.scrollTo(0,0); 
+        return "bottom";
+      },
       content:function(){
         return $('#popoverContent').html();
       }});
