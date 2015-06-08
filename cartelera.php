@@ -12,6 +12,8 @@
   <link rel="stylesheet" type="text/css" href="<?= ROOT_DIR?>/includes/css/mycss.css">
   <!--Favicon-->
   <link rel="shortcut icon" href="<?= ROOT_DIR?>/includes/img/favicon.png" />
+  <script src="<?= ROOT_DIR?>/includes/js/jquery.min.js"></script>
+  <script src="<?= ROOT_DIR?>/includes/js/bootstrap.js"></script>
 </head>
 <body>
 <?php 
@@ -26,7 +28,6 @@
         <!-- Barra lateral izquierda -->
       </div>
       <div class="container-fixed col-xs-8 col-sm-8 col-md-6">
-      <a id="root_app" type="hidden" href="<?= ROOT_DIR?>"></a>
          <?php 
           if (session_status() == PHP_SESSION_NONE) {
             session_start();
@@ -56,8 +57,6 @@
   </div>
   <!--Fin Contenido-->
   <?php require(__DIR__.'/includes/php/footer.php');?>
-  <script src="<?= ROOT_DIR?>/includes/js/jquery.min.js"></script>
-  <script src="<?= ROOT_DIR?>/includes/js/bootstrap.js"></script>
   <script type="text/javascript">
   $(document).ready(function(){
   var root_app = $('#root_app').attr("href");
@@ -76,7 +75,7 @@
                 var htmlEventos = "";
                 for(var i=0; i<eventos.length; i++){
                   htmlEventos += '<li class="nostyle"><div class="row"><div class="col-sm-8 col-md-6"><div class="thumbnail"><div class="caption"><h3>'
-                  +eventos[i]['Nombre']+'</h3><p><a href ="+'root_app'+/evento/'
+                  +eventos[i]['Nombre']+'</h3><p><a href ="'+root_app+'/evento/'
                   +eventos[i]['ID']+'"><img data-holder-rendered="true" src ="'+root_app+'/'+eventos[i]['Imagen']
                   +'"/></a></p><p>Fecha: '+eventos[i]['Fecha']+'</p></div></div></div></div></li>';
                 }

@@ -13,6 +13,8 @@
 		<!--Favicon-->
 		<link rel="shortcut icon" href="<?= ROOT_DIR?>/includes/img/favicon.png" />
 		<link rel="stylesheet" type="text/css" href="<?= ROOT_DIR?>/includes/css/perfilUsuario.css">
+		<script src="<?= ROOT_DIR?>/includes/js/jquery.min.js"></script>
+		<script src="<?= ROOT_DIR?>/includes/js/bootstrap.js"></script>
 	</head>
 	<?php 
 	require(__DIR__.'/includes/php/peticionesBD.php');
@@ -115,8 +117,6 @@
 		</div>	
 	<!--Fin Contenido-->
 	  <?php require(__DIR__.'/includes/php/footer.php'); ?>
-	<script src="<?= ROOT_DIR?>/includes/js/jquery.min.js"></script>
-	<script src="<?= ROOT_DIR?>/includes/js/bootstrap.js"></script>
 	</body>
 </html>
 <?php require(__DIR__.'/includes/php/cleanup.php');?>

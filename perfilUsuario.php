@@ -13,21 +13,19 @@
 		<!--Favicon-->
 		<link rel="shortcut icon" href="<?= ROOT_DIR?>/includes/img/favicon.png" />
 		<link rel="stylesheet" type="text/css" href="<?= ROOT_DIR?>/includes/css/perfilUsuario.css">
+		<script src="<?= ROOT_DIR?>/includes/js/jquery.min.js"></script>
+		<script src="<?= ROOT_DIR?>/includes/js/bootstrap.js"></script>
 	</head>
-	
 	<body>
-	
 		<?php 
 			require(__DIR__.'/includes/php/header.php');
 			require_once(__DIR__."/includes/php/asisteBD.php"); 
 			require_once(__DIR__."/includes/php/comprasBD.php");
 		?>
-
 	  <!--Inicio Contenido-->
 	  <div class="main">
 		<div class="container">
-		  <div class="sidebar-left container-fixed col-xs-4 col-sm-4 col-md-3 ">
-			
+		  <div class="sidebar-left container-fixed col-xs-4 col-sm-4 col-md-3 ">	
 			<!--INFO USUARIO-->
 			<div id="barra-lateral-izq">
 				<?php 
@@ -45,7 +43,6 @@
 				?>
 			</div>
 		  </div>
-		  
 		  <!-- EVENTOS A LOS QUE ASISTE -->
 		  <div class="container-fixed col-xs-8 col-sm-8 col-md-6">
 			<div id="contenido">
@@ -62,8 +59,6 @@
 				?>
 			</div>
 		  </div>
-		 
-		  
 		  <!-- AMIGOS -->
 		  <div class="sidebar-right container-fixed col-xs-4 col-sm-4 col-md-3">
 			  <div id="barra-lateral-dcha">
@@ -81,12 +76,9 @@
 					?>
 				</div>
 		  </div>
-		  
 		</div>
 	  </div>
 	  <?php require(__DIR__.'/includes/php/footer.php');?>
-	<script src="<?= ROOT_DIR?>/includes/js/jquery.min.js"></script>
-	<script src="<?= ROOT_DIR?>/includes/js/bootstrap.js"></script>
 	</body>
 </html>
 <?php require(__DIR__.'/includes/php/cleanup.php');?>

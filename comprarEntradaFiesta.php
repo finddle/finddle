@@ -14,7 +14,8 @@
   <link rel="shortcut icon" href="<?= ROOT_DIR?>/includes/img/favicon.png" />
   <link rel="stylesheet" type="text/css" href="<?= ROOT_DIR?>/includes/css/entradasCine.css">
   <link rel="stylesheet" type="text/css" href="<?= ROOT_DIR?>/includes/css/formularios.css" />
-
+  <script src="<?= ROOT_DIR?>/includes/js/jquery.min.js"></script>
+  <script src="<?= ROOT_DIR?>/includes/js/bootstrap.js"></script>
 </head>
 <?php  
   require_once(__DIR__.'/includes/php/compras.php');
@@ -77,8 +78,6 @@ require_once(__DIR__.'/includes/php/eventosBD.php');
     </div>
   </div>
   <?php require(__DIR__.'/includes/php/footer.php');?>
-  <script src="<?= ROOT_DIR?>/includes/js/jquery.min.js"></script>
-  <script src="<?= ROOT_DIR?>/includes/js/bootstrap.js"></script>
   <script type="text/javascript">
   $(document).ready(function(){
     $(".numbers-row").append('<div class="inc button">+</div><div class="dec button">-</div>');

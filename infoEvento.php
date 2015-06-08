@@ -12,6 +12,8 @@
 	  <link rel="stylesheet" type="text/css" href="<?= ROOT_DIR?>/includes/css/mycss.css">
 	  <!--Favicon-->
 	  <link rel="shortcut icon" href="<?= ROOT_DIR?>/includes/img/favicon.png" />
+	  <script src="<?= ROOT_DIR?>/includes/js/jquery.min.js"></script>
+      <script src="<?= ROOT_DIR?>/includes/js/bootstrap.js"></script>
 	</head>
 	<?php
 		require(__DIR__.'/includes/php/comprasBD.php');
@@ -52,7 +54,19 @@
 						}else {
 							echo '<p><a class="btn btn-primary" href="'.ROOT_DIR.'/cine/comprar/'.$info['ID'].'">Comprar Entrada</a></p>';
 						}
-						
+						$coment = getComentarios($evento);
+						if(isset($coment)){
+							foreach ($coment as $comentario) {
+								echo '<div id="comentario">';
+								
+								echo '<div id="nick">',$comentario["NickUsuario"],"   ", "</div>";
+								echo '<div id="texto">',$comentario["Texto"], "</div>";
+								
+								echo "</div>";
+							}
+						}
+						else
+							echo '<p> ¡Sé el primero en dejar un comentario! </p>';
 					}else{
 						echo '<p>Lo sentimos, las entradas se han agotado.</p>';
 					}
@@ -67,54 +81,42 @@
 				}else{
 					echo '<div class="alert alert-info" role="alert">
 					<span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
- 					Inicia sesion para comprar tu entrada a este evento</div> ';
+ 					Inicia sesion para comprar tu entrada,poder comentar y ver los asistentes de este evento</div> ';
 				}
 				
-				$coment = getComentarios($evento);
-				if(isset($coment)){
-					foreach ($coment as $comentario) {
-						echo '<div id="comentario">';
-						
-						echo '<div id="nick">',$comentario["NickUsuario"],"   ", "</div>";
-						echo '<div id="texto">',$comentario["Texto"], "</div>";
-						
-						echo "</div>";
-					}
-				}
-				else
-					echo '<p> ¡Sé el primero en dejar un comentario! </p>';
+				
 				?>
 				</div>				
 		  <div class="clearfix visible-xs-block visible-sm-block"></div>
 		  <div class="sidebar-right container-fixed col-xs-4 col-sm-4 col-md-4">
 				<?php
+				if(isset($_SESSION['username'])){
 					$asistentes = getUsersEvento($evento);
-					echo "<h2> También asistirán...</h2>";
+					echo "<h3> Tambien asistiran...</h2>";
 					if(isset($asistentes)){
 						foreach ($asistentes as $asistente) {
 							if(isset($asistente["Avatar"])){
 								if($_SESSION['username'] == $asistente['Nick'])
 										echo '<div id="fotoAsistente"><a href="'.ROOT_DIR.'/perfilUsuario.php"><img class="imgAsistentes" src="'.ROOT_DIR.'/'.$asistente['Avatar'].'"></a></div>';
 								else
-									echo '<div id="fotoAsistente"><a href ="'.ROOT_DIR.'/perfilAmigo.php?amigo='.$asistente['Nick'].'"><img class="imgAsistentes" src="'.ROOT_DIR.'/'.$asistente['Avatar'].'"></a></div>';
+									echo '<div id="fotoAsistente"><a href ="'.ROOT_DIR.'/usuario/'.$asistente['Nick'].'"><img class="imgAsistentes" src="'.ROOT_DIR.'/'.$asistente['Avatar'].'"></a></div>';
 							
 							}else{
 								if($_SESSION['username'] == $asistente['Nick'])
 										echo '<div id="fotoAsistente"><a href="'.ROOT_DIR.'/perfilUsuario.php"><img class="imgAsistentes" src="'.ROOT_DIR.'/includes/img/usuario.png"/></a></div>';
 								else
-									echo '<div id="fotoAsistente"><a href ="'.ROOT_DIR.'/perfilAmigo.php?amigo='.$asistente['Nick'].'"><img class="imgAsistentes" src="'.ROOT_DIR.'/includes/img/usuario.png"/></a></div>';
+									echo '<div id="fotoAsistente"><a href ="'.ROOT_DIR.'/usuario/'.$asistente['Nick'].'"><img class="imgAsistentes" src="'.ROOT_DIR.'/includes/img/usuario.png"/></a></div>';
 							}
 						}
 					}
 					else
 						echo '<p> ¡Sé el primero en asistir al evento! </p>';
+				}
 				?>
 		  </div>
 	  </div>
 	  </div>
 		<?php require(__DIR__.'/includes/php/footer.php');?>
-		<script src="<?= ROOT_DIR?>/includes/js/jquery.min.js"></script>
-  		<script src="<?= ROOT_DIR?>/includes/js/bootstrap.js"></script>
 	</body>
 </html>
 <?php require(__DIR__.'/includes/php/cleanup.php');?>

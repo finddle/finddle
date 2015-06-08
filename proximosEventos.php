@@ -12,6 +12,8 @@
     <link rel="stylesheet" type="text/css" href="<?= ROOT_DIR?>/includes/css/mycss.css">
     <!--Favicon-->
     <link rel="shortcut icon" href="<?= ROOT_DIR?>/includes/img/favicon.png" />
+    <script src="<?= ROOT_DIR?>/includes/js/jquery.min.js"></script>
+    <script src="<?= ROOT_DIR?>/includes/js/bootstrap.js"></script>
 </head>
 <body>
 <?php 
@@ -22,7 +24,6 @@
   <!--Inicio Contenido-->
   <div class="main">
     <div class="container">
-      <a id="root_app" type="hidden" href="<?= ROOT_DIR?>"></a>
       <div class="sidebar-left container-fixed col-xs-4 col-sm-4 col-md-3 ">
         <!-- Barra lateral izquierda -->
       </div>
@@ -56,8 +57,6 @@
   </div>
   <!--Fin Contenido-->
   <?php require(__DIR__.'/includes/php/footer.php');?>
-  <script src="<?= ROOT_DIR?>/includes/js/jquery.min.js"></script>
-  <script src="<?= ROOT_DIR?>/includes/js/bootstrap.js"></script>
   <script type="text/javascript">
   $(document).ready(function(){
   var root_app = $('#root_app').attr("href");

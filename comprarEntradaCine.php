@@ -14,6 +14,8 @@
   <link rel="shortcut icon" href="<?= ROOT_DIR?>/includes/img/favicon.png" />
   <link rel="stylesheet" type="text/css" href="<?= ROOT_DIR?>/includes/css/entradasCine.css">
   <link rel="stylesheet" type="text/css" href="<?= ROOT_DIR?>/includes/css/formularios.css" />
+  <script src="<?= ROOT_DIR?>/includes/js/jquery.min.js"></script>
+  <script src="<?= ROOT_DIR?>/includes/js/bootstrap.js"></script>
 </head>
 <body>
 <?php 
@@ -25,7 +27,6 @@
     <div class="container">
      
       <div class="container-fixed eventosElem">
-        <a id="root_app" type="hidden" href="<?= ROOT_DIR?>"></a>
         <h1><img src="<?= ROOT_DIR?>/includes/img/cinemal.png"/> Elige tus asientos  <img src="<?= ROOT_DIR?>/includes/img/cinema.png"/></h1>
         
          <?php 
@@ -64,13 +65,10 @@
     </div>
   </div>
   <?php require(__DIR__.'/includes/php/footer.php');?>
-  <script src="<?= ROOT_DIR?>/includes/js/jquery.min.js"></script>
-  <script src="<?= ROOT_DIR?>/includes/js/bootstrap.js"></script>
   <script type="text/javascript">
   $(document).ready(function(){
     var butacasSeleccionadas = [];
     var precio = $('#precio').attr("value");
-    var root_app = $('#root_app').attr("href");
 
     $('.butacaLibre').click(function(){
       var id = $(this).attr("id").substring("button_".length);

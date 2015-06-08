@@ -10,8 +10,10 @@
 	  <link rel="stylesheet" type="text/css" href="<?= ROOT_DIR?>/includes/css/bootstrap-theme.min.css">
 	  <!-- Personal CSS -->
 	  <link rel="stylesheet" type="text/css" href="<?= ROOT_DIR?>/includes/css/mycss.css">
-	  <!--Favicon-->
-	  <link rel="shortcut icon" href="<?= ROOT_DIR?>/includes/img/favicon.png" />
+	<!--Favicon-->
+	<link rel="shortcut icon" href="<?= ROOT_DIR?>/includes/img/favicon.png" />
+	<script src="<?= ROOT_DIR?>/includes/js/jquery.min.js"></script>
+	<script src="<?= ROOT_DIR?>/includes/js/bootstrap.js"></script>	
 	</head>
 	<body>
 	<?php require(__DIR__.'/includes/php/header.php');?>
@@ -51,10 +53,7 @@
 					<div class="span-content"></div>
 			</div>
 		</div>
-
 	<?php require(__DIR__.'/includes/php/footer.php');?>
-	<script src="<?= ROOT_DIR?>/includes/js/jquery.min.js"></script>
-  	<script src="<?= ROOT_DIR?>/includes/js/bootstrap.js"></script>	
 	</body>
 </html>
 <?php require(__DIR__.'/includes/php/cleanup.php');?>
