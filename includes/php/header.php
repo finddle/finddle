@@ -58,13 +58,17 @@ $(function(){
      
     function comprobarAvisos(){
       var nAvisos = 0;
-      var html;
+      var html = "";
       var arrayN;
       $.get(root_app+"/includes/php/comprobarNotificaciones.php", function(data){
         arrayN = JSON.parse(data);
         nAvisos = arrayN.length;
         //..recorrer array rellenando el html..
-
+                for(var i=0; i<arrayN.length; i++){
+                  html += '<p> Tienes una notificacion de ' + arrayN[i]['NickUsuario1']+'</p>'
+				  + '<p class="login button"><input type="submit" ation = "aceptarPeticion($_SESSION["username"], arrayN[i]["NickUsuario1"])" value="Aceptar"></p>'
+				  + '<p class="login button"><input type="submit" ation = "cancelarPeticion($_SESSION["username"], arrayN[i]["NickUsuario1"])" value="Rechazar"></p>';
+                }
 
         if(nAvisos > 0){
           $('#popoverContent').html(html);

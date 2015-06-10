@@ -67,5 +67,26 @@
 		return $result->num_rows;
 	}
 	
+	//Comprueba si un usuario tiene notificaciones pendientes. Devuelve el número de notificaciones pendientes.
+	function getNotificaciones($user){
+		global $mysqli;
+		
+		$args = array($user);
+		sanitizeArgs($args);	
+		$info = null;
+		$pst = $mysqli->prepare("SELECT * FROM peticionesamistad WHERE NickUsuario1 = ?
+								UNION
+								SELECT ID FROM mensajes WHERE NickReceptor = ?");
+		
+		$pst->bind_param("ss", $args[0], $args[0]);
+		$pst->execute();
+		$result = $pst->get_result();
+		while($row = $result->fetch_array(MYSQLI_ASSOC)){
+			$info = $row;
+		}
+		$pst->close();
+		return $info;
+	}
+	
 
 ?>
