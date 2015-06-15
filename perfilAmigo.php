@@ -18,8 +18,8 @@
 	</head>
 	<?php 
 	require(__DIR__.'/includes/php/peticionesBD.php');
-		if(isset($_POST['formAmistad'])) {
-			$result = enviarPeticion($info["Nick"], $_SESSION['username']);
+		if(isset($_POST['amigo'])) {
+			$result = enviarPeticion($_SESSION['username'],$_POST["amigo"]);
 		}
 	?>
 	<body>
@@ -50,10 +50,10 @@
 									// Si aun no le ha enviado la peticion de amistad
 									if(comprobarPeticion($info["Nick"], $_SESSION['username']) == 0 or comprobarPeticion($_SESSION['username'], $info["Nick"]) == 0){ 
 										?>
-										<form method = "POST" action="<?php enviarPeticion($_SESSION['username'], $info["Nick"]);?>" autocomplete="on">
-											<input type="hidden" name="formAmistad"/>
+										<form method = "POST" action="/finddle/usuario/<?= $amigo?>" autocomplete="on">
+											<input type="hidden" name="amigo" value="<?= $amigo?>"/>
 											<p class="login button"> 
-												<input type="submit" onClick="this.disabled='disabled'" value="Seguir" /> 
+												<input type="submit" value="Seguir" /> 
 											</p>	
 										</form>
 									<?php

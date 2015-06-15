@@ -72,21 +72,29 @@
 		global $mysqli;
 		
 		$args = array($user);
-		sanitizeArgs($args);	
-		$info = null;
-		$pst = $mysqli->prepare("SELECT * FROM peticionesamistad WHERE NickUsuario1 = ?
-								UNION
-								SELECT ID FROM mensajes WHERE NickReceptor = ?");
+		sanitizeArgs($args);
 		
-		$pst->bind_param("ss", $args[0], $args[0]);
+		$info = null;
+		$pst = $mysqli->prepare("SELECT * FROM peticionesamistad WHERE NickUsuario2 = ?")  or trigger_error($mysqli->error);
+		
+		$pst->bind_param("s", $args[0]);
 		$pst->execute();
 		$result = $pst->get_result();
 		while($row = $result->fetch_array(MYSQLI_ASSOC)){
-			$info = $row;
+			$info[] = $row;
+		}
+		$pst->close();
+
+		$pst = $mysqli->prepare("SELECT NickEmisor,ID FROM mensajes WHERE NickReceptor = ?")  or trigger_error($mysqli->error);
+		
+		$pst->bind_param("s", $args[0]);
+		$pst->execute();
+		$result = $pst->get_result();
+		while($row = $result->fetch_array(MYSQLI_ASSOC)){
+			$info[] = $row;
 		}
 		$pst->close();
 		return $info;
 	}
-	
 
 ?>
