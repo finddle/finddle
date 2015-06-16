@@ -86,13 +86,23 @@
 		?>
 		
 		<script>
-			$("#nick").change(function(){
-			<?php 
-			require_once(__DIR__."/usuariosBD.php");
-			?>
-			var url="buscarNick()nick=" + $("#nick").val();
-			$.get(url,usuarioExiste);
-			});							
+		
+		$("#nick").change(function(){
+			$.get('url?usuario=' + $("#nick").val() ,function(data){
+				if(data == true) $("#imgOk").show();
+				else $("#imgNo").show();
+			});	
+			function usuarioExiste(data,status){
+			if($result == 1){
+			alert("El usuario ya existe");
+			$("#imgOk").hide(); // Ocultar icono verde
+			$("#imgNo").show(); // Mostrar icono rojo
+		}
+		else{
+			$("#imgNo").hide(); // Ocultar icono rojo
+			$("#imgOk").show();	// Mostrar icono verde
+		}
+	}					
 		</script>
 		
     <script src="includes/js/jquery.min.js"></script>

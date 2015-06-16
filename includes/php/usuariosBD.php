@@ -50,7 +50,7 @@ require_once(__DIR__."/config.php");
 		return $info;	
 	}
 
-function buscarUser($nick){
+function buscarExisteUser($nick){
 	global $mysqli;
 	$arr = null;
 	$query="SELECT * FROM usuarios WHERE nick = '$nick'";
@@ -91,9 +91,6 @@ function buscarNick($nick){
 		$pst->bind_param("s",$args[0]);
 		$pst->execute();
 		$result = $pst->get_result();
-		$numregistros=$result->num_rows;
-		if($numregistros == 1) $err = 1;
-		
-		return $err;
+		return $numregistros=$result->num_rows;
 }
 ?>

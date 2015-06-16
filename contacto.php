@@ -24,9 +24,6 @@
 		<?php 
 			require(__DIR__.'/includes/php/header.php');
 		?>
-		
-		
-		
 		<span>
 		<div class="container"><div class="span-content"></div>
 		  <section><div class="span-content"></div>				
@@ -58,7 +55,7 @@
 								
 								<p>
 									<label> Mensaje </label>
-									<input type="text" name="mensaje" placeholder="Mensaje" required/>
+								<div id = "Textarea"><textarea rows="4" cols="52" input id="mensaje" name="mensaje" required="required" type="text"/></textarea></div>
 								</p>
 								<input type="hidden" name="menContacto"/>
 								<p class="login button">

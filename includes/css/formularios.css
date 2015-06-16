@@ -388,3 +388,7 @@ li.resultError{
 li.resultOk{
 	color: #00FF00;
 }
+
+#Textarea{
+	resize: none;
+}

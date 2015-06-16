@@ -4,6 +4,7 @@
   margin-right: auto;
   margin-left: auto;
   margin-top: 51px;
+  margin-bottom: 50px;
   padding-top: 15px;
 
 }
@@ -15,6 +16,11 @@
 .span-sub-tittle{
 	min-height: 30px;
 }
+
+.span-mensaje{
+	min-height: 5px;
+}
+
 
 .span-content{
   padding:  50px;
@@ -104,4 +110,88 @@ ul.items{
 #userPhoto{
   width: 50px;
   height: 50px;
+}
+div.eventosElem{
+  padding-bottom: 40px;
+}
+
+#comentario{
+  border-width: 1px;
+  border-radius: 8px;
+  border-color: black;
+  border-style: solid;
+  height: 100px auto;
+  padding-top: 5px;
+  padding-right: 8px;
+  padding-left: 8px;
+  padding-bottom: 5px;
+  margin-top: 10px;
+}
+#fotoAsistente{
+  border-width: 1px;
+  border-radius: 8px;
+  border-color: green;
+  border-style: solid;
+  height: 100px;
+  width: 100px;
+  margin-top: 10px;
+  text-align: center;
+}
+
+.imgAsistentes{
+  max-height: 99px;
+  max-width: 99px;
+}
+
+div#alCenter {
+  margin: 0 auto;
+  text-align: center;
+}
+
+
+div#alCenter img{
+  margin: 25px auto;
+}
+
+div#abCenter p{
+  font-size: 16px;
+  text-align: center;
+  margin: 20px auto;
+}
+
+#notificationLink{
+  margin-right: 10px;
+}
+[data-notifications] {
+  position: relative;
+}
+
+[data-notifications]:after {
+  content: attr(data-notifications);
+  position: absolute;
+  background: red;
+  border-radius: 50%;
+  display: inline-block;
+  padding: 0.3em;
+  color: #f2f2f2;
+  right: -15px;
+  top: -15px;
+}
+
+#papelera{
+text-align: right;
+}
+
+.notificaciones{
+  margin-top: 5px;
+  margin-bottom: 5px;
+  border-radius: 25px;
+  border: 2px solid grey;
+  padding : 10px;
+}
+
+.notificaciones p{
+  margin-top: 5px;
+  margin-bottom: 5px;
+
 }

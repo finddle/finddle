@@ -16,13 +16,12 @@ function mensajeContacto($correo, $texto){
 }
 
 
-function mensajeUsuario($nick2,$descripcion,$titulo){
+function mensajeUsuario($nick1,$nick2,$descripcion,$titulo){
 	global $mysqli;
 	$err = 0;
 	$fecha=strftime("%Y-%m-%d-%H-%M:%S", time());
 	$vacio = NULL;
 	$leido = 0;
-	$nick1 = 'paco';
 	require_once(__DIR__."/usuariosBD.php");
 	if(buscarNick($nick1)){
 	$query="INSERT INTO mensajes VALUES ('$vacio', '$nick1', '$nick2', '$vacio', '$titulo', '$descripcion','$fecha', '$leido')";
@@ -34,33 +33,26 @@ function mensajeUsuario($nick2,$descripcion,$titulo){
 }
 
 function bandejaEntrada($nick){
-	
 	global $mysqli;
 	$args = array($nick);
 	sanitizeArgs($args);
-	$pst = $mysqli->prepare("SELECT NickEmisor, Titulo, Fecha FROM mensajes WHERE NickReceptor = ?");
+	$pst = $mysqli->prepare("SELECT ID, Leido, NickEmisor, Fecha, Titulo FROM mensajes WHERE NickReceptor = ? ORDER BY Fecha DESC");
 	$pst->bind_param("s",$args[0]);
 	$pst->execute();
-	$mensajes = null;
 	$result = $pst->get_result();
+	$mensajes = null;
 	while($row = $result->fetch_array(MYSQLI_ASSOC)){
 				$mensajes[] = $row;
 	}
 	$pst->close();
-	foreach($mensajes as $mensaje){
-					echo $mensaje["NickEmisor"];
-					echo $mensaje["Titulo"];
-					echo $mensaje["Fecha"];
-	}
+	return $mensajes;
 	
-
 }
-
 function mensajesEnviados($nick){
 	global $mysqli;
 	$args = array($nick);
 	sanitizeArgs($args);
-	$pst = $mysqli->prepare("SELECT NickReceptor, Titulo, Fecha FROM mensajes WHERE NickEmisor = ?");
+	$pst = $mysqli->prepare("SELECT NickReceptor, Fecha, Titulo FROM mensajes WHERE NickEmisor = ? ORDER BY Fecha DESC");
 	$pst->bind_param("s",$args[0]);
 	$pst->execute();
 	$result = $pst->get_result();
@@ -69,10 +61,35 @@ function mensajesEnviados($nick){
 				$mensajes[] = $row;
 	}
 	$pst->close();
-	foreach($mensajes as $mensaje){
-					echo $mensaje["NickReceptor"];
-					echo $mensaje["Titulo"];
-					echo $mensaje["Fecha"];
-	}
+	return $mensajes;
+	
 }
+
+function consultarMensaje($id){
+	global $mysqli;
+	$args = array($id);
+	sanitizeArgs($args);
+	$mensaje = null;
+	$pst = $mysqli->prepare("SELECT NickEmisor, Titulo, TextoMensaje FROM mensajes WHERE ID = ?");
+	$pst->bind_param("i",$args[0]);
+	$pst->execute();
+	$result = $pst->get_result();
+	while($row = $result->fetch_array(MYSQLI_ASSOC)){
+		$mensaje = $row;
+	}
+	$pst->close();
+	return $mensaje;
+}
+
+function modificarLeido($id){
+	global $mysqli;
+	$leido = 1;
+	$args = array($leido);
+	sanitizeArgs($args);
+	$pst = $mysqli->prepare("UPDATE mensajes SET Leido = ? WHERE ID = $id");
+	$pst->bind_param("i",$args[0]);
+	$pst->execute();
+	$pst->close();
+}
+
 ?>

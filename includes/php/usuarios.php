@@ -2,6 +2,8 @@
 require_once __DIR__.'/config.php';
 require_once __DIR__.'/usuariosBD.php';
 
+
+
 function comprobarFormulario($params){
 	$nick = $params['nick'];
 	$contrasena = $params['contrasena'];
@@ -109,5 +111,9 @@ function login($nombreUsuario, $password) {
   }
   return $ok;
   
+}
+function buscarUser($nick){
+	$result = buscarNick($nick);
+	return $result;
 }
 ?>
