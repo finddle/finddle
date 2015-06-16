@@ -122,17 +122,6 @@ div.eventosElem{
   padding-bottom: 5px;
   margin-top: 10px;
 }
-#nick{
-  font-size: 90%;
-  font-family: Verdana;
-  text-align: justify;
-  font-weight: bold;
-}
-#texto{
-  font-family: Verdana;
-  text-align: justify;
-  margin-left: 10;
-}
 #fotoAsistente{
   border-width: 1px;
   border-radius: 8px;
@@ -184,6 +173,10 @@ div#abCenter p{
   top: -15px;
 }
 
+#papelera{
+text-align: right;
+}
+
 .notificaciones{
   margin-top: 5px;
   margin-bottom: 5px;
@@ -195,4 +188,5 @@ div#abCenter p{
 .notificaciones p{
   margin-top: 5px;
   margin-bottom: 5px;
+
 }
