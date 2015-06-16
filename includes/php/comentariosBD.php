@@ -35,6 +35,7 @@ function commentEvent($user, $event, $comment){
 	print_r($args);
 	print_r($fecha);
 	$pst->close();
+	
 
 }
 
