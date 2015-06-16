@@ -25,8 +25,8 @@
                 session_start();
             }
             if(isset($_SESSION['username'])){
-              echo '<a id="notificationLink" data-notifications="1" href="#" data-container="body" data-toggle="popover" data-placement="bottom"><img src="'.ROOT_DIR.'/includes/img/wbell.png"/></a>';
-              echo '<a href="'.ROOT_DIR.'/perfilUsuario.php"><img  id="userPhoto" src="'.ROOT_DIR.'/'.$_SESSION['picture'].'"/></a><p class="hide" id="isLogged">Logeado</p>';
+              echo '<a id="notificationLink" href="#" data-container="body" data-toggle="popover" data-placement="bottom"><img src="'.ROOT_DIR.'/includes/img/wbell.png"/></a>';
+              echo '<a href="'.ROOT_DIR.'/perfilUsuario.php"><img  id="userPhoto" src="'.ROOT_DIR.'/'.$_SESSION['picture'].'"/></a><p class="hide" id="isLogged" user="'.$_SESSION['username'].'">Logeado</p>';
               echo '<li><a href="'.ROOT_DIR.'/includes/php/logout.php">Logout</a></li>';
             }else{
               echo '<li><a href="'.ROOT_DIR.'/login.php">Ingresar</a></li>';
@@ -57,30 +57,58 @@ $(function(){
       }});
      
     function comprobarAvisos(){
+     
       var nAvisos = 0;
       var html = "";
-      var arrayN;
-      $.get(root_app+"/includes/php/comprobarNotificaciones.php", function(data){
-        arrayN = JSON.parse(data);
-        nAvisos = arrayN.length;
-        //..recorrer array rellenando el html..
-                for(var i=0; i<arrayN.length; i++){
-                  html += '<p> Tienes una notificacion de ' + arrayN[i]['NickUsuario1']+'</p>'
-				  + '<p class="login button"><input type="submit" ation = "aceptarPeticion($_SESSION["username"], arrayN[i]["NickUsuario1"])" value="Aceptar"></p>'
-				  + '<p class="login button"><input type="submit" ation = "cancelarPeticion($_SESSION["username"], arrayN[i]["NickUsuario1"])" value="Rechazar"></p>';
-                }
+      var user = $('#isLogged').attr("user");
+     
+      $.get(root_app+"/includes/php/comprobarNotificaciones.php?user="+user, function(data){
+        console.log(data);
+        if (data != "") {
+          var arrayN = JSON.parse(data);
+          nAvisos = arrayN.length;
+        for(var i=0; i<arrayN.length; i++){
+          if(typeof arrayN[i]["ID"] != 'undefined'){//isset en javascript
+            html += '<div class="notificaciones"><p>  Mensaje de : ' + arrayN[i]['NickEmisor']+'</p>'
+         + '<a href="responderMensaje.php?mensaje='+arrayN[i]["ID"]+'" type="button" class="btn btn-default">Responder</button></div>';
+          }else{
+            html += '<div class="notificaciones"><p> Peticion de amistad: ' + arrayN[i]['NickUsuario1']+'</p>'+
+            '<a type="button" accion="aceptar" class="peticiones btn btn-default" user1="'+arrayN[i]['NickUsuario1']+'" user2="'+arrayN[i]['NickUsuario2']+'">Aceptar</a>'+
+            '<button type="button" accion="rechazar" class="peticiones btn btn-default" user1="'+arrayN[i]['NickUsuario1']+'" user2="'+arrayN[i]['NickUsuario2']+'">Rechazar</button></div>';
+          }
+         
+        }
 
-        if(nAvisos > 0){
-          $('#popoverContent').html(html);
-          $('#notificationLink').attr("data-notifications",nAvisos);
-        }else{
-          $('#popoverContent').html("<p> No hay notificaciones. </p>");
-          $('#notificationLink').removeAttr("data-notifications");
+          if(nAvisos > 0){
+            $('#popoverContent').html(html);
+            $('#notificationLink').attr("data-notifications",nAvisos);
+            $('.peticiones').click(function(){
+              var tipo = $(this).attr("accion");
+              var user1 = $(this).attr("user1");
+              var user2 = $(this).attr("user2");
+              var button = $(this);
+
+              $.post(root_app+"/includes/php/procesaPeticion.php", 
+              {
+                accion : tipo,
+                userSource : user1,
+                userTarget : user2
+              },
+              function(data) {
+                button.parent().remove();
+              }); 
+            });
+          }else{
+            $('#popoverContent').html("<p> No hay notificaciones. </p>");
+            $('#notificationLink').removeAttr("data-notifications");
+          }
         }
       });
       
     }
-    //setInterval(comprobarAvisos, 5000);
+    setInterval(comprobarAvisos, 5000);
+
+    
 
   }
 });

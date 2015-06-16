@@ -70,6 +70,7 @@
         $('div#lastPostsLoader').html('<img src="'+root_app+'/includes/img/loading.gif"/>');
 
         $.get(root_app+"/includes/php/loadevents.php?tipo=1", function(data){
+          console.log(data);
             if (data != "") {
                 var eventos = JSON.parse(data);
                 var htmlEventos = "";
