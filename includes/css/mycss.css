@@ -172,6 +172,21 @@ div#abCenter p{
   right: -15px;
   top: -15px;
 }
+
 #papelera{
 text-align: right;
+}
+
+.notificaciones{
+  margin-top: 5px;
+  margin-bottom: 5px;
+  border-radius: 25px;
+  border: 2px solid grey;
+  padding : 10px;
+}
+
+.notificaciones p{
+  margin-top: 5px;
+  margin-bottom: 5px;
+
 }
