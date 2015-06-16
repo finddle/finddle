@@ -39,11 +39,12 @@
 						<?php
 							$amigo = $_GET['amigo'];
 							$info = getInfoUser($amigo);				
-							echo '<h2>'.$info["Nick"].'</h2>';
+							echo '<h2>'.$info["Nick"].'</h2><div class="span-sub-tittle"></div>';
 							if(isset($info["Avatar"]))
-								echo "<img src='".ROOT_DIR."/".$info["Avatar"]."'/></br>";
+								echo "<div id='fotoPerfil'><img class='imgPerfil' src='".ROOT_DIR."/".$info["Avatar"]."'/></div>";
 							else
-								echo "<img src='".ROOT_DIR."/includes/img/usuario.png'/></br>";	
+								echo "<div id='fotoPerfil'><img class='imgPerfil' src='".ROOT_DIR."/includes/img/usuario.png'/></div>";	
+								echo "<div class='span-sub-tittle'></div>";
 								//si no son amigos
 								if(esAmigo($info["Nick"], $_SESSION['username']) == 0 or esAmigo($_SESSION['username'], $info["Nick"]) == 0){ 
 								
@@ -78,28 +79,32 @@
 						?>
 					</div>
 				</div>
+				
 				<div class="container-fixed col-xs-8 col-sm-8 col-md-6">
 					<div id="contenido">
 						<?php 
-		
 							$eventos = getEventosUser($info["Nick"]);
-							echo "<h2> Eventos a los que asiste ".$info["Nick"]."</h2>";
+							echo "<h2> Eventos de ".$info["Nick"]."</h2><div class='span-sub-tittle'></div>";
+							echo "<div class='transEventos'>";
 							if(isset($eventos)){
 								foreach($eventos as $evento){
 									echo "<h3>", $evento["Nombre"], "</h3>";
-									echo '<p><a href ="'.ROOT_DIR.'/evento/'.$evento['IDEvento'].'"><img src ="'.ROOT_DIR.'/'.$evento['Imagen'].'"/></a></p>';
-									echo "<p>Nº Asistentes: ".countAsistentes($evento['IDEvento'],$evento['Tipo'])."</p><br>";
+									echo '<p><a href ="'.ROOT_DIR.'/evento/'.$evento['IDEvento'].'"><img class="imgEventos" src ="'.ROOT_DIR.'/'.$evento['Imagen'].'"/></a></p>';
+									echo "<p>Nº Asistentes: ".countAsistentes($evento['IDEvento'],$evento['Tipo'])."</p><div class='span-sub-tittle'></div>";
 								}
 							}else
 								echo "<p> Este usuario no asiste a ningún evento. </p>";
+							echo "</div>";
 						?>
 					</div>
 				</div>	
 		<!--SUS AMIGOS-->
 				<div class="sidebar-right container-fixed col-xs-4 col-sm-4 col-md-3">
 					<div id="barra-lateral-dcha">
+						<h2> Amigos </h2>
+						<div class='span-sub-tittle'></div>
+						<div class="trans">
 						<?php 
-							echo '<h2> Amigos </h2>';
 							$amigos = getAmigos($info["Nick"]);
 							if(isset($amigos)){
 								foreach($amigos as $amigo){
@@ -111,6 +116,7 @@
 							}else
 								echo "<p> Este usuario no tiene amigos :( </p>";
 						?>
+					</div>
 					</div>
 				</div>
 			</div>

@@ -36,12 +36,15 @@
 		<!--CONTENIDO-->
 		<div class="container-fixed col-xs-8 col-sm-8 col-md-6">
             <div id="vu-contenido">
+			<div class="span-tittle"></div>
 				<section>				
                 <div id="container_demo" >
                     <a class="hiddenanchor" id="toregister"></a>
                     <a class="hiddenanchor" id="tologin"></a>
                     <div id="wrapper">
+					
                         <div id="login" class="animate form">
+						
                             <form  method = "POST" <?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?> enctype="multipart/form-data"> 
                                 <h1>Editar perfil</h1> 
                                 <p> 

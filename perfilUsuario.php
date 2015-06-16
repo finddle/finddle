@@ -33,10 +33,11 @@
 					$info = getInfoUser($_SESSION['username']);
 					
 					if(isset($info["Avatar"]))
-						echo "<a href='editPerfil.php' id='avatar'><img src=",$info["Avatar"]," /></a></br>";
+						echo "<div id='fotoPerfil'><a href='editPerfil.php' id='avatar'><img class='imgPerfil' src=",$info["Avatar"]," /></a></div>";
 					else
-						echo "<a href='editPerfil.php' id='avatar'><img src='includes/img/usuario.png'/></a></br>";		
-					echo "<h3>", $info["Nick"], "</h3></br>";
+						echo "<div id='fotoPerfil'><a href='editPerfil.php' id='avatar'><img class='imgPerfil' src='includes/img/usuario.png'/></a></div>";
+					echo "<div class='span-sub-tittle'></div>";	
+					echo "<h3>", $info["Nick"], "</h3><div class='span-sub-tittle'></div>";
 					echo "<p>", $info["Nombre"], "</p>";
 					echo "<p>", $info["Apellidos"], "</p>";
 					echo "<p>", $info["Edad"], "</p>";
@@ -46,23 +47,27 @@
 		  <!-- EVENTOS A LOS QUE ASISTE -->
 		  <div class="container-fixed col-xs-8 col-sm-8 col-md-6">
 			<div id="contenido">
+			<div class="transEventos">
 				<?php
 					$eventos = getEventosUser($_SESSION['username']);
 					if(isset($eventos)){
 						foreach($eventos as $evento){
 							echo "<h3>", $evento["Nombre"], "</h3>";
-							echo '<p><a href ="'.ROOT_DIR.'/evento/'.$evento['IDEvento'].'"><img src ="'.$evento['Imagen'].'"/></a></p>';
-							echo "<p>Nº Asistentes: ".countAsistentes($evento['IDEvento'],$evento['Tipo'])."</p><br>";
+							echo '<p><a href ="'.ROOT_DIR.'/evento/'.$evento['IDEvento'].'"><img class="imgEventos" src ="'.$evento['Imagen'].'"/></a></p>';
+							echo "<p>Nº Asistentes: ".countAsistentes($evento['IDEvento'],$evento['Tipo'])."</p><div class='span-sub-tittle'></div>";
 						}
 					}else
 						echo "<p> Este usuario no asiste a ning?n evento. </p>";
 				?>
+			</div>
 			</div>
 		  </div>
 		  <!-- AMIGOS -->
 		  <div class="sidebar-right container-fixed col-xs-4 col-sm-4 col-md-3">
 			  <div id="barra-lateral-dcha">
 					<h2> Amigos </h2>
+					<div class='span-sub-tittle'></div>
+					<div class="trans">
 					<?php 
 						require_once(__DIR__."/includes/php/amigosBD.php");
 						$amigos = getAmigos($_SESSION['username']);
@@ -74,7 +79,8 @@
 						}else
 							echo "<p> Este usuario no tiene amigos :( </p>";
 					?>
-				</div>
+					</div>
+			</div>
 		  </div>
 		</div>
 	  </div>
