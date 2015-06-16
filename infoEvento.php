@@ -16,26 +16,28 @@
       <script src="<?= ROOT_DIR?>/includes/js/bootstrap.js"></script>
 	</head>
 	<?php
-		require(__DIR__.'/includes/php/comprasBD.php');
+		
+		require(__DIR__.'/includes/php/comentarios.php');
 		
 		if(isset($_POST['comentario'])) {
         	$idEvent=$_POST['idEvento'];
-			header("Location: /finddle/infoEvento.php?evento=".$idEvent);
         	$usr=$_SESSION['username'];
         	$com=$_POST['comentario'];
-        	commentEvent($usr, $idEvent, $com);
-		}
+        	$result = comprobarComentario($usr, $idEvent, $com);
+
+        }
 	?>
 	<body>
 	<?php
+	
 	require(__DIR__.'/includes/php/header.php');  
 	require(__DIR__.'/includes/php/eventosBD.php');
-	require(__DIR__.'/includes/php/comentariosBD.php');
+	require(__DIR__.'/includes/php/comprasBD.php');
 	require(__DIR__.'/includes/php/asisteBD.php');
 	?>
 	  <div class="main">
 		<div class="container">
-		  <div class="container-fixed col-xs-8 col-sm-8 col-md-8">
+		  <div class="container col-xs-8 col-sm-8 col-md-8">
 			 <?php 
 				$evento = $_GET['evento'];
 				$info = getInfoEvento($evento);
@@ -46,7 +48,7 @@
 				echo '<p>Descripcion: '.$info['Descripcion'].'</p>';
 				echo '<p>Plazas: '.$info['PlazasDisponibles'].'</p>';
 				echo '<p>Asistentes: '.$nAsistentes.'</p>';
-				echo '<p><img src ="'.ROOT_DIR.'/'.$info['Imagen'].'"/></p>';
+				echo '<p><img src ="'.ROOT_DIR.'/'.$info['Imagen'].'"/></p></div>';
 				if(isset($_SESSION['username'])){
 					if($nAsistentes < $info['PlazasDisponibles']){
 						if($info['Tipo']==0){
@@ -58,10 +60,11 @@
 						if(isset($coment)){
 							foreach ($coment as $comentario) {
 								echo '<div id="comentario">';
-								
-								echo '<div id="nick">',$comentario["NickUsuario"],"   ", "</div>";
-								echo '<div id="texto">',$comentario["Texto"], "</div>";
-								
+								echo '<p><a href ="'.ROOT_DIR.'/usuario/'.$comentario['NickUsuario'].'">'.$comentario['NickUsuario']. '</a></p>';
+								echo '<p>',$comentario["Texto"], "</p>";
+
+								if ($comentario["NickUsuario"] == $_SESSION['username']) 
+									echo '<div id="papelera"> <a href="#" class="comment" id="comment_'.$comentario["ID"].'">Borrar <img src="'.ROOT_DIR.'/includes/img/borrar.png" height="14" width="14"></a></div>';
 								echo "</div>";
 							}
 						}
@@ -71,6 +74,7 @@
 						echo '<p>Lo sentimos, las entradas se han agotado.</p>';
 					}
 					?>
+					</br>
 					<textarea name="comentario" cols="74" rows="4" autofocus form="usrform" placeholder='Escribe aqui tu comentario!' required></textarea>
 					<form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" id="usrform">
   						<input type="hidden" name="idEvento" value="<?php echo $evento;?>">
@@ -78,6 +82,18 @@
 					</form>
 					<?php
 	
+
+                        if(isset($result)){
+                           echo '<ul>';
+                           foreach($result as $error){
+                             echo '<li class = "resultError">'.$error.'</li>';
+                           }
+                           echo '</ul>';
+                        }
+                                
+
+
+
 				}else{
 					echo '<div class="alert alert-info" role="alert">
 					<span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
@@ -86,8 +102,9 @@
 				
 				
 				?>
-				</div>				
-		  <div class="clearfix visible-xs-block visible-sm-block"></div>
+				</div>	
+
+		  
 		  <div class="sidebar-right container-fixed col-xs-4 col-sm-4 col-md-4">
 				<?php
 				if(isset($_SESSION['username'])){
@@ -96,15 +113,11 @@
 					if(isset($asistentes)){
 						foreach ($asistentes as $asistente) {
 							if(isset($asistente["Avatar"])){
-								if($_SESSION['username'] == $asistente['Nick'])
-										echo '<div id="fotoAsistente"><a href="'.ROOT_DIR.'/perfilUsuario.php"><img class="imgAsistentes" src="'.ROOT_DIR.'/'.$asistente['Avatar'].'"></a></div>';
-								else
+								if($_SESSION['username'] != $asistente['Nick'])
 									echo '<div id="fotoAsistente"><a href ="'.ROOT_DIR.'/usuario/'.$asistente['Nick'].'"><img class="imgAsistentes" src="'.ROOT_DIR.'/'.$asistente['Avatar'].'"></a></div>';
 							
 							}else{
-								if($_SESSION['username'] == $asistente['Nick'])
-										echo '<div id="fotoAsistente"><a href="'.ROOT_DIR.'/perfilUsuario.php"><img class="imgAsistentes" src="'.ROOT_DIR.'/includes/img/usuario.png"/></a></div>';
-								else
+								if($_SESSION['username'] != $asistente['Nick'])
 									echo '<div id="fotoAsistente"><a href ="'.ROOT_DIR.'/usuario/'.$asistente['Nick'].'"><img class="imgAsistentes" src="'.ROOT_DIR.'/includes/img/usuario.png"/></a></div>';
 							}
 						}
@@ -114,9 +127,34 @@
 				}
 				?>
 		  </div>
-	  </div>
-	  </div>
+	  </div	>
+	 </div>
 		<?php require(__DIR__.'/includes/php/footer.php');?>
+
+		<script type="text/javascript">
+		  
+
+		    $('.comment').click(function(){
+		      var id = $(this).attr("id").substring("comment_".length);
+		      var divcomment = $(this);
+		     $.post(root_app+"/includes/php/borrarComentario.php", 
+		      {
+		        ID : id,
+		      },
+		      function(data) {
+		      	console.log(data);
+		        if(data == true){
+		          divcomment.parent().parent().remove();
+		        }else{
+		          alert("Ha habido un error al borrar su comentario.");
+		        }
+		      }); 
+
+				   
+
+				  });
+
+		  </script>
 	</body>
 </html>
 <?php require(__DIR__.'/includes/php/cleanup.php');?>
