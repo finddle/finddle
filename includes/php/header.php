@@ -1,3 +1,22 @@
+<script type="text/javascript">
+function peticionClick(button){
+  var tipo = button.attr("accion");
+  var user1 = button.attr("user1");
+  var user2 = button.attr("user2");
+
+  $.post(root_app+"/includes/php/procesaPeticion.php", 
+  {
+    accion : tipo,
+    userSource : user1,
+    userTarget : user2
+  },
+  function(data) {
+    button.parent().remove();
+    var nAvisos= $('#notificationLink').attr("data-notifications");
+    $('#notificationLink').attr("data-notifications",nAvisos-1);
+  });
+}
+</script>
 <?php require_once(__DIR__.'/config.php');?>
 <!--Inicio Cabecera-->
 <div class="container">
@@ -42,6 +61,7 @@
 <!--Fin Cabecera-->
 <script type="text/javascript">
 $(function(){
+  
   if($('#isLogged').length){//Procesa el codigo solo si estas logeado. Se genera una etiqueta escondida para comprobarlo.
     var root_app = $('#root_app').attr("href");
     $('#notificationLink').popover(
@@ -57,47 +77,28 @@ $(function(){
       }});
      
     function comprobarAvisos(){
-     
       var nAvisos = 0;
       var html = "";
       var user = $('#isLogged').attr("user");
      
       $.get(root_app+"/includes/php/comprobarNotificaciones.php?user="+user, function(data){
-        console.log(data);
         if (data != "") {
           var arrayN = JSON.parse(data);
           nAvisos = arrayN.length;
         for(var i=0; i<arrayN.length; i++){
           if(typeof arrayN[i]["ID"] != 'undefined'){//isset en javascript
             html += '<div class="notificaciones"><p>  Mensaje de : ' + arrayN[i]['NickEmisor']+'</p>'
-         + '<a href="responderMensaje.php?mensaje='+arrayN[i]["ID"]+'" type="button" class="btn btn-default">Responder</button></div>';
+         + '<a href="responderMensaje.php?mensaje='+arrayN[i]["ID"]+'" class="btn btn-default">Responder</a></div>';
           }else{
             html += '<div class="notificaciones"><p> Peticion de amistad: ' + arrayN[i]['NickUsuario1']+'</p>'+
-            '<a type="button" accion="aceptar" class="peticiones btn btn-default" user1="'+arrayN[i]['NickUsuario1']+'" user2="'+arrayN[i]['NickUsuario2']+'">Aceptar</a>'+
-            '<button type="button" accion="rechazar" class="peticiones btn btn-default" user1="'+arrayN[i]['NickUsuario1']+'" user2="'+arrayN[i]['NickUsuario2']+'">Rechazar</button></div>';
+            '<button type="button" accion="aceptar" onclick="peticionClick($(this));" class="peticiones btn btn-default" user1="'+arrayN[i]['NickUsuario1']+'" user2="'+arrayN[i]['NickUsuario2']+'">Aceptar</button>'+
+            '<button type="button" accion="rechazar" onclick="peticionClick($(this));" class="peticiones btn btn-default" user1="'+arrayN[i]['NickUsuario1']+'" user2="'+arrayN[i]['NickUsuario2']+'">Rechazar</button></div>';
           }
          
         }
-
           if(nAvisos > 0){
             $('#popoverContent').html(html);
             $('#notificationLink').attr("data-notifications",nAvisos);
-            $('.peticiones').click(function(){
-              var tipo = $(this).attr("accion");
-              var user1 = $(this).attr("user1");
-              var user2 = $(this).attr("user2");
-              var button = $(this);
-
-              $.post(root_app+"/includes/php/procesaPeticion.php", 
-              {
-                accion : tipo,
-                userSource : user1,
-                userTarget : user2
-              },
-              function(data) {
-                button.parent().remove();
-              }); 
-            });
           }else{
             $('#popoverContent').html("<p> No hay notificaciones. </p>");
             $('#notificationLink').removeAttr("data-notifications");
@@ -106,10 +107,8 @@ $(function(){
       });
       
     }
+    comprobarAvisos();
     setInterval(comprobarAvisos, 5000);
-
-    
-
   }
 });
 </script>
