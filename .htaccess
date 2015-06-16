@@ -1,0 +1,10 @@
+Options +FollowSymLinks
+RewriteEngine On
+ 
+RewriteCond %{SCRIPT_FILENAME} !-d
+RewriteCond %{SCRIPT_FILENAME} !-f
+ 
+RewriteRule ^cine/comprar/(\d+)*$ ./comprarEntradaCine.php?evento=$1
+RewriteRule ^fiesta/comprar/(\d+)*$ ./comprarEntradaFiesta.php?evento=$1
+RewriteRule ^evento/(\d+)*$ ./infoEvento.php?evento=$1
+RewriteRule ^usuario/([a-zA-Z0-9_-]{3,16})$ ./perfilAmigo.php?amigo=$1

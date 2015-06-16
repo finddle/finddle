@@ -1,4 +1,6 @@
 <?php
+/*Este script se encarga de hacer el logout de un usuario
+(destruye la sesión y redirige a index.php*/
 require_once(__DIR__.'/config.php');
 	if (session_status() == PHP_SESSION_NONE) {
     	session_start();
@@ -6,5 +8,5 @@ require_once(__DIR__.'/config.php');
 	if(isset($_SESSION['username'])) {
 		session_destroy();
 	}
-	header("Location: ../../index.php");
+	header("Location: /finddle/index.php");
 ?>

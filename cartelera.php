@@ -1,16 +1,19 @@
+<?php require_once(__DIR__.'/includes/php/config.php');?>
 <!DOCTYPE html>
 <html>
 <head>
   <title>Finddle</title>
   <meta charset="utf-8" />
   <!-- Latest compiled CSS -->
-  <link rel="stylesheet" type="text/css" href="includes/css/bootstrap.css">
+  <link rel="stylesheet" type="text/css" href="<?= ROOT_DIR?>/includes/css/bootstrap.css">
   <!-- Optional theme -->
-  <link rel="stylesheet" type="text/css" href="includes/css/bootstrap-theme.min.css">
+  <link rel="stylesheet" type="text/css" href="<?= ROOT_DIR?>/includes/css/bootstrap-theme.min.css">
   <!-- Personal CSS -->
-  <link rel="stylesheet" type="text/css" href="includes/css/mycss.css">
+  <link rel="stylesheet" type="text/css" href="<?= ROOT_DIR?>/includes/css/mycss.css">
   <!--Favicon-->
-  <link rel="shortcut icon" href="includes/img/favicon.png" />
+  <link rel="shortcut icon" href="<?= ROOT_DIR?>/includes/img/favicon.png" />
+  <script src="<?= ROOT_DIR?>/includes/js/jquery.min.js"></script>
+  <script src="<?= ROOT_DIR?>/includes/js/bootstrap.js"></script>
 </head>
 <body>
 <?php 
@@ -39,7 +42,7 @@
           foreach($eventos as $evento){
             echo '<li><div class="row"><div class="col-sm-8 col-md-6"><div class="thumbnail"><div class="caption">';
             echo '<h3>'.$evento['Nombre'].'</h3>';
-            echo '<p><a href ="infoEvento.php?evento='.$evento['ID'].'"><img data-holder-rendered="true" src ="'.$evento['Imagen'].'"/></a></p>';
+            echo '<p><a href ="'.ROOT_DIR.'/evento/'.$evento['ID'].'"><img data-holder-rendered="true" src ="'.ROOT_DIR.'/'.$evento['Imagen'].'"/></a></p>';
             echo '<p>Fecha: '.$evento['Fecha'].'</p>';
             echo '</div></div></div></div></li>';
           }
@@ -54,28 +57,26 @@
   </div>
   <!--Fin Contenido-->
   <?php require(__DIR__.'/includes/php/footer.php');?>
-  <script src="includes/js/jquery.min.js"></script>
-  <script src="includes/js/bootstrap.js"></script>
   <script type="text/javascript">
   $(document).ready(function(){
-
+  var root_app = $('#root_app').attr("href");
   var maxEventos = 0;
-  $.get("includes/php/countEventos.php?tipo=1", function(data){
+  $.get(root_app+"/includes/php/countEventos.php?tipo=1", function(data){
       maxEventos = data;
     });
   
     function lastAddedLiveFunc()
     {
-        $('div#lastPostsLoader').html('<img src="includes/img/loading.gif"/>');
+        $('div#lastPostsLoader').html('<img src="'+root_app+'/includes/img/loading.gif"/>');
 
-        $.get("includes/php/loadevents.php?tipo=1", function(data){
+        $.get(root_app+"/includes/php/loadevents.php?tipo=1", function(data){
             if (data != "") {
                 var eventos = JSON.parse(data);
                 var htmlEventos = "";
                 for(var i=0; i<eventos.length; i++){
                   htmlEventos += '<li class="nostyle"><div class="row"><div class="col-sm-8 col-md-6"><div class="thumbnail"><div class="caption"><h3>'
-                  +eventos[i]['Nombre']+'</h3><p><a href ="infoEvento.php?evento='
-                  +eventos[i]['ID']+'"><img data-holder-rendered="true" src ="'+eventos[i]['Imagen']
+                  +eventos[i]['Nombre']+'</h3><p><a href ="'+root_app+'/evento/'
+                  +eventos[i]['ID']+'"><img data-holder-rendered="true" src ="'+root_app+'/'+eventos[i]['Imagen']
                   +'"/></a></p><p>Fecha: '+eventos[i]['Fecha']+'</p></div></div></div></div></li>';
                 }
                 $(".items").append(htmlEventos);

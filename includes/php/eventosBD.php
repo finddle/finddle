@@ -1,11 +1,8 @@
 <?php
 require_once(__DIR__."/config.php");
 
-/*
-bind_param recibe un primer parametro que tendra s por cada string(date es string) e i por cada integer
-*/
+/*Añade un evento nuevo a la base de datos, si lo añade un promotr se llama a esta funcion con activo=0*/
 function addPeticionEvento($nombre, $descripcion, $fecha, $precio, $imagen, $plazasDisponibles, $tipo, $promotor,$activo){
-
 	global $mysqli;
 
 	$args = array($nombre, $descripcion, $fecha, $precio, $imagen, $plazasDisponibles, $tipo, $promotor,$activo);
@@ -18,6 +15,8 @@ function addPeticionEvento($nombre, $descripcion, $fecha, $precio, $imagen, $pla
 
 }
 
+/*Cuenta el numero de eventos que hay de un tipo determinado por el parametro. 
+Función empleada para la paginación de tipo scroll infinito.*/
 function countEventos($tipo){
 	global $mysqli;
 
@@ -35,6 +34,8 @@ function countEventos($tipo){
 	return $row['nEventos'];
 }
 
+/*Devuelve los eventos de un tipo concreto (fiestas o cine) ordenados por fecha. Se limita el 
+numero de resultados para implementar la paginacion de tipo scroll infinito(3 eventos por peticion)*/
 function getEventos($tipo){
 	global $mysqli;
 	$off = 0;
@@ -69,6 +70,7 @@ function getEventos($tipo){
 	return $eventos;
 }
 
+/*Obtiene la información de un evento determinado por el parámetro*/
 function getInfoEvento($idEvento){
 	global $mysqli;
 
@@ -91,7 +93,8 @@ function getInfoEvento($idEvento){
 
 
 
-/*En funcion de si la llama un admin o un promotor se llama con unos parametros u otros, un admin puede cambiar activo*/
+/* Actualiza un evento con un determinado ID con la información recibida en la función. En funcion de si 
+la llama un admin o un promotor se llama con unos parametros u otros, un admin puede cambiar activo*/
 function updateEvento($id, $nombre,$descripcion,$fecha,$precio,$imagen,$plazas,$promotor,$activo){
 
 	global $mysqli;
