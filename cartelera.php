@@ -37,7 +37,7 @@
           }
             
           $eventos = getEventos(1);
-          echo '<h2>CARTELERA</h2>';
+          echo '<h2 id="scrollTitle">CARTELERA</h2>';
           echo '<ul class="items">';
           foreach($eventos as $evento){
             echo '<li><div class="row"><div class="col-sm-8 col-md-6"><div class="thumbnail"><div class="caption">';

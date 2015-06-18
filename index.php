@@ -49,7 +49,7 @@
                 <div class="span-tittle"></div>
                 <h6>Eventos</h6>
                 <div class="span-sub-tittle"></div>
-                <p>Sé el primero en apuntarte a los eventos más exclusivos de tu ciudad</p>
+                <p>Conoce gente que comparta tus intereses</p>
               </div>
         </div>
         </li>
