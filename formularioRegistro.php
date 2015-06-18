@@ -12,6 +12,8 @@
 		<!-- Personal CSS -->
 		<link rel="stylesheet" type="text/css" href="includes/css/mycss.css">
 		<link rel="stylesheet" type="text/css" href="includes/css/formularios.css" />
+		<script src="includes/js/jquery.min.js"></script>
+		<script src="includes/js/bootstrap.js"></script>
 		
     </head>
 
@@ -23,9 +25,7 @@
 	?>
 	
 	<body>
-		<?php 
-			require(__DIR__.'/includes/php/header.php');  
-		?>
+		
         <div class="span-content"></div>
 		  <div class="container">
 		  <section>				
@@ -40,14 +40,18 @@
                                     if(isset($result)){
                                         echo '<ul>';
                                         foreach($result as $error){
+										if($error == "Usuario registrado con éxito"){
+											echo '<li class = "resultOk">'.$error.'</li>';
+										} else {
                                             echo '<li class = "resultError">'.$error.'</li>';
                                         }
+										}
                                         echo '</ul>';
                                     }
                                 ?>								
                                 <p> 
-                                    <label> Nick </label>
-                                    <input name="nick" required="required" type="text" placeholder="username"/>
+                                    <label> Nick </label> <img id="imgErrN" src="includes/img/no.png"/>
+                                    <input id="nick" name="nick" required="required" type="text" placeholder="username"/>
                                 </p>
                                 <p> 
                                     <label> Contraseña </label>
@@ -63,7 +67,7 @@
                                 </p>
 								 <p> 
                                     <label> Apellidos </label>
-                                    <input id="apellidos" pattern="[a-zA-Z]+" title = "No introduzca elementos númericos" name="apellidos" required="apellidos" type="text" placeholder="surnames" /> 
+                                    <input id="apellidos" pattern="[a-zA-Z ]+" title = "No introduzca elementos númericos" name="apellidos" required="apellidos" type="text" placeholder="surnames" /> 
                                 </p>
 								 <p> 
                                     <label> Edad </label>
@@ -85,28 +89,22 @@
 			require(__DIR__.'/includes/php/footer.php');
 		?>
 		
-		<script>
-		
-		$("#nick").change(function(){
-			$.get('url?usuario=' + $("#nick").val() ,function(data){
-				if(data == true) $("#imgOk").show();
-				else $("#imgNo").show();
-			});	
-			function usuarioExiste(data,status){
-			if($result == 1){
-			alert("El usuario ya existe");
-			$("#imgOk").hide(); // Ocultar icono verde
-			$("#imgNo").show(); // Mostrar icono rojo
-		}
-		else{
-			$("#imgNo").hide(); // Ocultar icono rojo
-			$("#imgOk").show();	// Mostrar icono verde
-		}
-	}					
+		<script type="text/javascript">
+		$(function(){
+			$("#nick").change(function(){
+						var url="comprobarUsuario.php?user=" + $("#nick").val();
+						$.get(url,usuarioExiste);
+			});
+		function usuarioExiste(data,status){
+						if(data){
+							$('#imgErrN').attr("src","includes/img/ok.png");
+						}else{
+							$('#imgErrN').attr("src","includes/img/no.png");
+						}
+			}
+		});
 		</script>
-		
-    <script src="includes/js/jquery.min.js"></script>
-    <script src="includes/js/bootstrap.js"></script>
+ 
     </body>
 
 </html>

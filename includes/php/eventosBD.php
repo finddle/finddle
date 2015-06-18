@@ -109,4 +109,23 @@ function updateEvento($id, $nombre,$descripcion,$fecha,$precio,$imagen,$plazas,$
 
 }
 
+
+function eventosCadena($cadena){
+	$c = $cadena['cuadro'];
+	global $mysqli;
+	$cad = '%'.$c.'%';
+	$args = array($cad);
+	sanitizeArgs($args);
+	$pst = $mysqli->prepare("SELECT * FROM eventos WHERE Nombre LIKE ?");
+	$pst->bind_param("s",$args[0]);
+	$pst->execute();
+	$result = $pst->get_result();
+	$eventos[] = null;
+	while($row = $result->fetch_array(MYSQLI_ASSOC)){
+				$eventos[] = $row;
+	}
+	$pst->close();
+	return $eventos;
+}
+
 ?>

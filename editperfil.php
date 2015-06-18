@@ -53,7 +53,7 @@
                                 </p>
 								<p> 
                                     <label> Apellidos </label>
-                                    <input id="apellidos" pattern="[a-zA-Z]+" title = "No introduzca elementos númericos" name="apellidos" required="apellidos" type="text" placeholder="surnames" /> 
+                                    <input id="apellidos" pattern="[a-zA-Z ]+" title = "No introduzca elementos númericos" name="apellidos" required="apellidos" type="text" placeholder="surnames" /> 
                                 </p>
 								<p> 
                                     <label> Edad </label>
