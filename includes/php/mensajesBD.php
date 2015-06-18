@@ -52,7 +52,7 @@ function mensajesEnviados($nick){
 	global $mysqli;
 	$args = array($nick);
 	sanitizeArgs($args);
-	$pst = $mysqli->prepare("SELECT NickReceptor, Fecha, Titulo FROM mensajes WHERE NickEmisor = ? ORDER BY Fecha DESC");
+	$pst = $mysqli->prepare("SELECT ID, NickReceptor, Fecha, Titulo FROM mensajes WHERE NickEmisor = ? ORDER BY Fecha DESC");
 	$pst->bind_param("s",$args[0]);
 	$pst->execute();
 	$result = $pst->get_result();
@@ -79,6 +79,23 @@ function consultarMensaje($id){
 	}
 	$pst->close();
 	return $mensaje;
+}
+
+function consultarMensajeEnviado($id){
+	lobal $mysqli;
+	$args = array($id);
+	sanitizeArgs($args);
+	$mensaje = null;
+	$pst = $mysqli->prepare("SELECT NickReceptor, Titulo, TextoMensaje FROM mensajes WHERE ID = ?");
+	$pst->bind_param("i",$args[0]);
+	$pst->execute();
+	$result = $pst->get_result();
+	while($row = $result->fetch_array(MYSQLI_ASSOC)){
+		$mensaje = $row;
+	}
+	$pst->close();
+	return $mensaje;
+	
 }
 
 function modificarLeido($id){

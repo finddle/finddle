@@ -47,7 +47,7 @@
 		  <td>'.$res['NickReceptor'].'</td>
 		  <td>'.$res['Fecha'].'</td>
 		  <td>
-			<a href="#" class="button">'.$res['Titulo'].'</a>
+			<a href= abrirMensajeEnviado.php?mensaje='.$res["ID"].' class="button">'.$res['Titulo'].'</a>
 		  </td>
 		</tr>';
 		}

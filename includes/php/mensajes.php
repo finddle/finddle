@@ -54,6 +54,12 @@ function abrirMensaje($id){
 	return $result;
 }
 
+function abrirMensajeEnviado($id){
+
+	$result = consultarMensajeEnviado($id);
+	return $result;
+}
+
 function modificarMensajeLeido($id){
 
 	modificarLeido($id);
@@ -64,7 +70,7 @@ function responderFormMensaje($params){
 	$titulo = $params['titulo'];
 	$receptor = $params['emisor'];
 	mensajeUsuario($_SESSION['username'],$receptor,$mensaje,$titulo);
-	header("Location: /finddle/mensajesBandeja.php");
+	header("Location: /finddle/mensajesEnviados.php");
 }
 
 ?>

@@ -55,7 +55,7 @@
 		 <td><img src='.$ruta.'></td>
 		 <td>'.$res['NickEmisor'].'</td>
 		  <td>'.$res['Fecha'].'</td>
-		  <td><a href=abrirMensaje.php?mensaje='.$res["ID"].' class="button">'.$res['Titulo'].'</a></td>
+		  <td><a href=abrirMensajeRecibido.php?mensaje='.$res["ID"].' class="button">'.$res['Titulo'].'</a></td>
 		</tr>';
 		}
 	}
