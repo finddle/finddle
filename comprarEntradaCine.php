@@ -17,12 +17,15 @@
   <script src="<?= ROOT_DIR?>/includes/js/jquery.min.js"></script>
   <script src="<?= ROOT_DIR?>/includes/js/bootstrap.js"></script>
 </head>
+
 <body>
+
 <?php 
     require_once(__DIR__.'/includes/php/header.php');  
     require_once(__DIR__.'/includes/php/comprasBD.php');
     require_once(__DIR__.'/includes/php/eventosBD.php');
 ?>
+
   <div class="main">
     <div class="container">
      
@@ -31,11 +34,11 @@
         
          <?php 
          	$evento = getInfoEvento($_GET['evento']);
-          $_SESSION['compra']['precioEntrada'] = $evento['Precio'];
-          $_SESSION['compra']['evento'] = $evento['ID'];
+            $_SESSION['compra']['precioEntrada'] = $evento['Precio'];
+            $_SESSION['compra']['evento'] = $evento['ID'];
          	$butacas =  getButacasOcupadas($evento['ID']);
-          $_SESSION['compra']['capacidad'] = $evento['PlazasDisponibles'];
-          $_SESSION['compra']['nAsistentes'] =  count($butacas);
+            $_SESSION['compra']['capacidad'] = $evento['PlazasDisponibles'];
+            $_SESSION['compra']['nAsistentes'] =  count($butacas);
             $n = 1;
          		echo '<div id ="cuadroButacas">';
             for($i = 1; $i<=10; $i++){
@@ -64,57 +67,59 @@
     
     </div>
   </div>
+  
   <?php require(__DIR__.'/includes/php/footer.php');?>
+ 
   <script type="text/javascript">
-  $(document).ready(function(){
-    var butacasSeleccionadas = [];
-    var precio = $('#precio').attr("value");
+	  $(document).ready(function(){
+		var butacasSeleccionadas = [];
+		var precio = $('#precio').attr("value");
 
-    $('.butacaLibre').click(function(){
-      var id = $(this).attr("id").substring("button_".length);
-      var on = $(this).attr("on");
-      if(on == 0){
-        $(this).attr("on", "1");
-        $('#listaSelected').append("<li id="+id+">"+id+"</li>");
-        butacasSeleccionadas.push(id);
-        $("#img_"+id).attr("src",root_app+"/includes/img/seat-selected.png");
-      }else{
-        $(this).attr("on", "0");
-        $("#"+id).remove();
-         butacasSeleccionadas.splice(butacasSeleccionadas.indexOf(id), 1);
-        $("#img_"+id).attr("src",root_app+"/includes/img/seat-empty.png");
-      }
-      if(butacasSeleccionadas.length>0)
-        $("#precio").html("Precio total: "+butacasSeleccionadas.length*precio+"€");
-      else
-        $("#precio").html("Precio/entrada: "+precio+"€");
+		$('.butacaLibre').click(function(){
+		  var id = $(this).attr("id").substring("button_".length);
+		  var on = $(this).attr("on");
+		  if(on == 0){
+			$(this).attr("on", "1");
+			$('#listaSelected').append("<li id="+id+">"+id+"</li>");
+			butacasSeleccionadas.push(id);
+			$("#img_"+id).attr("src",root_app+"/includes/img/seat-selected.png");
+		  }else{
+			$(this).attr("on", "0");
+			$("#"+id).remove();
+			 butacasSeleccionadas.splice(butacasSeleccionadas.indexOf(id), 1);
+			$("#img_"+id).attr("src",root_app+"/includes/img/seat-empty.png");
+		  }
+		  if(butacasSeleccionadas.length>0)
+			$("#precio").html("Precio total: "+butacasSeleccionadas.length*precio+"€");
+		  else
+			$("#precio").html("Precio/entrada: "+precio+"€");
 
-    });
+		});
 
-    $('#procesaCompra').click(function(){
-    if(butacasSeleccionadas.length>0){
-      $.post(root_app+"/includes/php/procesaCompra.php", 
-      {
-        Butacas : butacasSeleccionadas,
-        NumEntradas : butacasSeleccionadas.length,
-      },
-      function(data) {
-        if(data == true){
-          window.location = root_app+"/perfilUsuario.php";
+		$('#procesaCompra').click(function(){
+		if(butacasSeleccionadas.length>0){
+		  $.post(root_app+"/includes/php/procesaCompra.php", 
+		  {
+			Butacas : butacasSeleccionadas,
+			NumEntradas : butacasSeleccionadas.length,
+		  },
+		  function(data) {
+			if(data == true){
+			  window.location = root_app+"/perfilUsuario.php";
 
-        }else{
-          alert("Ha habido un error con el procesamiento de su compra, intentalo de nuevo o contacta con un administrador.");
-        }
-      });  
-    }else{
-      alert("Es necesario seleccionar al menos una butaca");
-    }
-    
-    });
+			}else{
+			  alert("Ha habido un error con el procesamiento de su compra, intentalo de nuevo o contacta con un administrador.");
+			}
+		  });  
+		}else{
+		  alert("Es necesario seleccionar al menos una butaca");
+		}
+		
+		});
 
-  });
-
+	  });
   </script>
+  
 </body>
 </html>
 <?php require(__DIR__.'/includes/php/cleanup.php');?>
