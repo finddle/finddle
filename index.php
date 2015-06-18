@@ -17,6 +17,11 @@
     <link rel="stylesheet" type="text/css" href="<?= ROOT_DIR?>/includes/css/index.css">
     <script src="<?= ROOT_DIR?>/includes/js/jquery.min.js"></script>
     <script src="<?= ROOT_DIR?>/includes/js/bootstrap.js"></script>
+    <script src ="<?= ROOT_DIR?>/includes/js/index.js"></script>
+    <script src="http://s.cdpn.io/17920/jquery.easing.1.3.js"></script>
+    <script src="http://s.cdpn.io/17920/jquery.animate-enhanced.min.js"></script>
+    <script src="http://s.cdpn.io/17920/hammer.min.js"></script>   
+    <script src="http://s.cdpn.io/17920/jquery.superslides.js" type="text/javascript" charset="utf-8"></script>
 	</head>
 	<body>
     <?php require_once(__DIR__.'/includes/php/header.php');?>
@@ -59,11 +64,6 @@
       <a href="#" class="prev">Previous</a>
     </nav>
   </div>
-  <script src="http://s.cdpn.io/17920/jquery.easing.1.3.js"></script>
-  <script src="http://s.cdpn.io/17920/jquery.animate-enhanced.min.js"></script>  
-  <script src="http://s.cdpn.io/17920/hammer.min.js"></script>   
-  <script src="http://s.cdpn.io/17920/jquery.superslides.js" type="text/javascript" charset="utf-8"></script>
-  <script src ="<?= ROOT_DIR?>/includes/js/index.js"></script>
 	</body>
 </html>
 <?php require(__DIR__.'/includes/php/cleanup.php');?>

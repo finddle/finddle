@@ -1,8 +1,6 @@
 <?php require_once(__DIR__.'/includes/php/config.php');?>
 <!DOCTYPE html>
-
 <html>
-
 	<head>
 		  <title>Finddle</title>
         <meta charset="utf-8" />
@@ -14,6 +12,8 @@
 		<!-- Personal CSS -->
 		<link rel="stylesheet" type="text/css" href="includes/css/mycss.css">
 		<link rel="stylesheet" type="text/css" href="includes/css/formularios.css">
+		<script src="<?= ROOT_DIR?>/includes/js/jquery.min.js"></script>
+    	<script src="<?= ROOT_DIR?>/includes/js/bootstrap.js"></script>
 	</head>
 		<?php 
 		require(__DIR__.'/includes/php/mensajes.php');
@@ -88,7 +88,7 @@
 		</div>
 		</div>
 	   <?php require(__DIR__.'/includes/php/footer.php');?>
-  <script src="includes/js/jquery.min.js"></script>
-  <script src="includes/js/bootstrap.js"></script>
+  
 </body>
 </html>
+<?php require_once(__DIR__.'/includes/php/cleanup.php');?>

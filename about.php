@@ -29,7 +29,7 @@
         </div>
         <div id="abCenter">
         <p>¡Los mejores planes con quien tu quieras!</p>
-        <p>En Finddle podrás encontrar fácilmente los mejores eventos(películas, fiestas,...) que tendrán lugar,
+        <p>En Finddle podrás encontrar fácilmente los mejores eventos(películas, fiestas, conciertos,...) que tendrán lugar,
          ver los asistentes a dichos eventos y comentar en ellos para conocer gente que también asista o quedar 
          para ir con tus amigos.</p>
         <p>También disponemos de un sistema para comprar entrada para tí y tus amigos(aunque no tengan cuenta 

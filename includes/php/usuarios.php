@@ -2,8 +2,6 @@
 require_once __DIR__.'/config.php';
 require_once __DIR__.'/usuariosBD.php';
 
-
-
 function comprobarFormulario($params){
 	$nick = $params['nick'];
 	$contrasena = $params['contrasena'];
@@ -24,7 +22,7 @@ function comprobarFormulario($params){
 	if ( $validParams ) {
 		$hashedpass = password_hash($contrasena.PIMIENTA, PASSWORD_BCRYPT);
     	insertarUsuario($nick, $hashedpass, $correo, $nombre, $apellidos, $edad);
-		$result[] =  "Usuario registrado con éxito";
+		login($nick, $contrasena);
 	}
   return $result;
 }
@@ -113,11 +111,5 @@ function login($nombreUsuario, $password) {
   return $ok;
   
 }
-function buscarUser($nick){
-	$result = buscarNick($nick);
-	return $result;
-}
-
-
 
 ?>

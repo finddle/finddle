@@ -85,18 +85,16 @@
 				</section>
 			</div>
 		</div>
-		
      </div>
-
-		<script>
-			$("#nick").change(function(){
-			<?php 
-			require_once(__DIR__."/usuariosBD.php");
-			?>
-			var url="buscarNick()nick=" + $("#nick").val();
-			$.get(url,usuarioExiste);
-			});							
-		</script>
+	<script>
+		$("#nick").change(function(){
+		<?php 
+		require_once(__DIR__."/usuariosBD.php");
+		?>
+		var url="buscarNick()nick=" + $("#nick").val();
+		$.get(url,usuarioExiste);
+		});							
+	</script>
     </body>
 </html>
 <?php require(__DIR__.'/includes/php/cleanup.php');?>

@@ -17,7 +17,6 @@
   <script src="<?= ROOT_DIR?>/includes/js/jquery.min.js"></script>
   <script src="<?= ROOT_DIR?>/includes/js/bootstrap.js"></script>
 </head>
-
 <?php  
   require_once(__DIR__.'/includes/php/compras.php');
   if(isset($_POST['procesarCompra'])) {
@@ -29,7 +28,6 @@
     $result = procesaCompra($compra,$usuario,$butacas,$nEntradas);
   }
 ?>
-
 <body>
 	<?php 
 		require(__DIR__.'/includes/php/header.php');  
@@ -42,10 +40,8 @@
 			<!-- Barra lateral izquierda -->
 		  </div>
 		  <div class="container-fixed col-xs-8 col-sm-8 col-md-10">
-			<h1><img src="<?= ROOT_DIR?>/includes/img/toastl.png"/> Elige tus entradas  <img src="<?= ROOT_DIR?>/includes/img/toast.png"/></h1>
-			
+			<h1><img src="<?= ROOT_DIR?>/includes/img/toast.png"/> Elige tus entradas  <img src="<?= ROOT_DIR?>/includes/img/toast.png"/></h1>
 			<?php
-			
 				$evento = getInfoEvento($_GET['evento']);
 				$_SESSION['compra']['precioEntrada'] = $evento['Precio'];
 				$_SESSION['compra']['evento'] = $evento['ID'];
@@ -73,20 +69,14 @@
 			  <div class="buttons">
 				<input class="myButton" type="submit" value="Confirmar" id="submit"/>
 			  </div>
-			</form>
-			
-				
+			</form>			
 		  </div>
 		  <div class="clearfix visible-xs-block visible-sm-block"></div>
 		  <div class="sidebar-right container-fixed col-xs-4 col-sm-4 ">
 		  </div>
 		</div>
 	  </div>
-	  
-	  
 	  <?php require(__DIR__.'/includes/php/footer.php');?>
-	  
-	  
 	  <script type="text/javascript">
 		  $(document).ready(function(){
 			$(".numbers-row").append('<div class="inc button">+</div><div class="dec button">-</div>');

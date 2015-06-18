@@ -14,6 +14,8 @@
 		<!-- Personal CSS -->
 		<link rel="stylesheet" type="text/css" href="includes/css/mycss.css">
 		<link rel="stylesheet" type="text/css" href="includes/css/tablas.css">
+		<script src="<?= ROOT_DIR?>/includes/js/jquery.min.js"></script>
+    	<script src="<?= ROOT_DIR?>/includes/js/bootstrap.js"></script>
 	</head>
 	<body>
 	<?php 
@@ -39,41 +41,36 @@
       <th colspan="2">Fecha</th>
     </tr>
   </thead>
-  <?php
-	require(__DIR__.'/includes/php/mensajes.php');
-	$result = conseguirMensajesBandeja();
-    echo'<tbody>';
-   if(count($result) > 0){
-	   foreach($result as $res){
-	    $url ="abrirMensaje.php?mensaje="+$res['ID'];
-	     if($res['Leido'] == 0){
-		  $ruta = 'includes/img/noleido.png';
-		  }
-		  else{
-			$ruta = 'includes/img/leido.png';
-		  } 
-		echo '<tr>
-		 <td><img src='.$ruta.'></td>
-		 <td>'.$res['NickEmisor'].'</td>
-		  <td>'.$res['Fecha'].'</td>
-		  <td><a href=abrirMensajeRecibido.php?mensaje='.$res["ID"].' class="button">'.$res['Titulo'].'</a></td>
-		</tr>';
+		<?php
+		require(__DIR__.'/includes/php/mensajes.php');
+		$result = conseguirMensajesBandeja();
+		echo'<tbody>';
+		if(count($result) > 0){
+		   foreach($result as $res){
+		    $url ="abrirMensaje.php?mensaje="+$res['ID'];
+		     if($res['Leido'] == 0){
+			  $ruta = 'includes/img/noleido.png';
+			  }
+			  else{
+				$ruta = 'includes/img/leido.png';
+			  } 
+			echo '<tr>
+			 <td><img src='.$ruta.'></td>
+			 <td>'.$res['NickEmisor'].'</td>
+			  <td>'.$res['Fecha'].'</td>
+			  <td><a href=abrirMensajeRecibido.php?mensaje='.$res["ID"].' class="button">'.$res['Titulo'].'</a></td>
+			</tr>';
+			}
 		}
-	}
-	echo'</tbody>';
-?>
-</table>
-      </div>
-      <div class="clearfix visible-xs-block visible-sm-block"></div>
-      <div class="sidebar-right container-fixed col-xs-4 col-sm-4 col-md-3">
-      </div>
-    </div>
-  </div>
-	
-		<?php 
-			require(__DIR__.'/includes/php/footer.php');
+		echo'</tbody>';
 		?>
-		<script src="includes/js/jquery.min.js"></script>
-  		<script src="includes/js/bootstrap.js"></script>
-	</body>
+		</table>
+	  </div>
+	  <div class="clearfix visible-xs-block visible-sm-block"></div>
+	  <div class="sidebar-right container-fixed col-xs-4 col-sm-4 col-md-3"></div>
+	</div>
+	</div>	
+	<?php require(__DIR__.'/includes/php/footer.php');?>
+</body>
 </html>
+<?php require(__DIR__.'/includes/php/cleanup.php');?>

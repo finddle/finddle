@@ -16,7 +16,6 @@
       <script src="<?= ROOT_DIR?>/includes/js/bootstrap.js"></script>
 	</head>
 	<?php
-		
 		require(__DIR__.'/includes/php/comentarios.php');
 		
 		if(isset($_POST['comentario'])) {
@@ -29,7 +28,6 @@
 	?>
 	<body>
 	<?php
-	
 	require(__DIR__.'/includes/php/header.php');  
 	require(__DIR__.'/includes/php/eventosBD.php');
 	require(__DIR__.'/includes/php/comprasBD.php');
