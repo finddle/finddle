@@ -49,34 +49,8 @@ function getInfoUser($nick){
 	while($row = $result->fetch_array(MYSQLI_ASSOC)){
 		$info = $row;
 	}
-
-<<<<<<< HEAD
-function buscarExisteUser($nick){
-=======
-	$pst->close();		
-	return $info;	
-}
-
-/**/
-function buscarUser($nick){
->>>>>>> origin/master
-	global $mysqli;
-	$arr = null;
-
-	$query="SELECT * FROM usuarios WHERE nick = '$nick'";
-		$resultado=$mysqli->query($query);
-		$numregistros=$resultado->num_rows;	
-		if($numregistros == 1){
-			while($fila = $resultado->fetch_row()){
-				$nickU = $fila[0];	$arr[] = $nickU;
-				$contrasenaU = $fila[1];	$arr[] = $contrasenaU;
-				$correoU = $fila[2];	$arr[] = $correoU;
-				$nombreU = $fila[3];	$arr[] = $nombreU;
-				$apellidosU = $fila[4];	$arr[] = $apellidosU;
-				$edadU = $fila[5];	$arr[] = $edadU;
-			}
-			}
-	return $arr;
+	$pst->close();
+	return $info;
 }
 
 /**/
@@ -91,35 +65,22 @@ function modificarDatosUser ($nick, $contrasena, $correo, $nombre, $apellidos, $
 
 /**/
 function buscarNick($nick){
-<<<<<<< HEAD
-		global $mysqli;
-		$err = 0;
-		$args = array($nick);
-		sanitizeArgs($args);
-		$info = null;
-		//preparamos la consulta con un PreparedStatement
-		$pst = $mysqli->prepare("SELECT Nick FROM usuarios WHERE Nick = ?");
-		//creamos la cadena de argumentos indicando con s los string e i para integer, de cada argumento del array
-		$pst->bind_param("s",$args[0]);
-		$pst->execute();
-		$result = $pst->get_result();
-		return $numregistros=$result->num_rows;
-=======
 	global $mysqli;
 	$err = 0;
 	$args = array($nick);
 	sanitizeArgs($args);
 	$info = null;
-
+	//preparamos la consulta con un PreparedStatement
 	$pst = $mysqli->prepare("SELECT Nick FROM usuarios WHERE Nick = ?");
+	//creamos la cadena de argumentos indicando con s los string e i para integer, de cada argumento del array
 	$pst->bind_param("s",$args[0]);
 	$pst->execute();
-
 	$result = $pst->get_result();
 	$numregistros=$result->num_rows;
-	if($numregistros == 1) 
-		$err = 1;
-	return $err;
->>>>>>> origin/master
+	$pst->close();
+
+	return $numregistros;
 }
+
+
 ?>
