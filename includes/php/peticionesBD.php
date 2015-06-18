@@ -85,7 +85,7 @@
 		}
 		$pst->close();
 
-		$pst = $mysqli->prepare("SELECT NickEmisor,ID FROM mensajes WHERE NickReceptor = ?")  or trigger_error($mysqli->error);
+		$pst = $mysqli->prepare("SELECT NickEmisor,ID FROM mensajes WHERE NickReceptor = ? AND Leido = 0")  or trigger_error($mysqli->error);
 		
 		$pst->bind_param("s", $args[0]);
 		$pst->execute();

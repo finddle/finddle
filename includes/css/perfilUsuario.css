@@ -2,15 +2,15 @@ h3{
 	color: #000000;
 }
 
-p{
-	color: #000000;
+h2{
+	color: #00FFFF;
 }
 
 #contenido{
 	margin: 30px;
 	float: center;
 	text-align: center;
-	color: #00FFFF;
+	color: #000000;
 	font-size: 16px;
 	font-family: calibri;
 }
@@ -72,7 +72,7 @@ p{
 	margin-right: 20px;
 	float: right;
 	text-align: center;
-	color: #00FFFF;
+	color: #000000;
 	padding: 10px;
 	font-size: 18px;
 	font-family: calibri;
