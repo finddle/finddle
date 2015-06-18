@@ -24,6 +24,7 @@ function comprobarFormulario($params){
 	if ( $validParams ) {
 		$hashedpass = password_hash($contrasena.PIMIENTA, PASSWORD_BCRYPT);
     	insertarUsuario($nick, $hashedpass, $correo, $nombre, $apellidos, $edad);
+		$result[] =  "Usuario registrado con éxito";
 	}
   return $result;
 }
@@ -116,4 +117,7 @@ function buscarUser($nick){
 	$result = buscarNick($nick);
 	return $result;
 }
+
+
+
 ?>

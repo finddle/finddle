@@ -1,3 +1,4 @@
+<?php require_once(__DIR__.'/includes/php/config.php');?>
 <!DOCTYPE html>
 
 <html>
@@ -55,8 +56,17 @@
                                     }
                                 ?>								
                                 <p> 
-                                    <label> Destinatario </label>
-                                    <input id="destinatario" name="destinatario" required="required" type="text" placeholder="addressee"/>
+								<?php
+									if(isset($_GET['usuario'])){
+										$usuario = $_GET['usuario'];
+										echo '<label> Destinatario </label>';
+										echo '<input id="destinatario" name="destinatario" value ="'.$usuario.'" required="required" type="text" placeholder="addressee"/>';
+									}
+									else{
+										echo '<label> Destinatario </label>';
+										echo '<input id="destinatario" name="destinatario" required="required" type="text" placeholder="addressee"/>';
+									}
+								?> 
                                 </p>
                                 <p> 
                                     <label> Titulo </label>

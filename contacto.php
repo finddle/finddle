@@ -1,3 +1,4 @@
+<?php require_once(__DIR__.'/includes/php/config.php');?>
 <!DOCTYPE html>
 	<head>
 		<title>Finddle</title>
@@ -26,7 +27,7 @@
 		?>
 		<span>
 		<div class="container"><div class="span-content"></div>
-		  <section><div class="span-content"></div>				
+		  <section>			
                 <div id="container_demo" >
                     <a class="hiddenanchor" id="toregister"></a>
                     <a class="hiddenanchor" id="tologin"></a>

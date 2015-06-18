@@ -34,7 +34,7 @@ require(__DIR__.'/includes/php/usuarios.php');
         <!-- Barra lateral izquierda -->
       </div>
       <div class="container-fixed col-xs-8 col-sm-8 col-md-6">
-          <section>             
+          <section><div class="span-content">            
                 <div id="container_demo" >
                     <a class="hiddenanchor" id="toregister"></a>
                     <a class="hiddenanchor" id="tologin"></a>

@@ -1,3 +1,4 @@
+<?php require_once(__DIR__.'/includes/php/config.php');?>
 <!DOCTYPE html>
 <html>
 
@@ -13,10 +14,6 @@
 		<link rel="stylesheet" type="text/css" href="includes/css/mycss.css">
 		
     </head>
-	
-	<?php
-		
-	?>
 	<body>
 		<?php 
 			require(__DIR__.'/includes/php/header.php');  
@@ -33,6 +30,7 @@
 	  <div class ="container-fixed col-xs-8 col-sm-8 col-md-6">
 	 
 	  <?php
+	  require_once __DIR__.'/includes/php/mensajes.php';
 		$mensaje = $_GET['mensaje'];
 		$result = abrirMensajeEnviado($mensaje);
 	  echo '<div id="comentario">', 'Para: ',$result['NickReceptor'];
