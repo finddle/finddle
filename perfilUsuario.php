@@ -37,10 +37,11 @@
 					else
 						echo "<div id='fotoPerfil'><a href='editPerfil.php' id='avatar'><img class='imgPerfil' src='includes/img/usuario.png'/></a></div>";
 					echo "<div class='span-sub-tittle'></div>";	
-					echo "<h3>", $info["Nick"], "</h3><div class='span-sub-tittle'></div>";
+					echo "<h2>", $info["Nick"], "</h2><div class='span-sub-tittle'></div>";
 					echo "<p>", $info["Nombre"], "</p>";
 					echo "<p>", $info["Apellidos"], "</p>";
 					echo "<p>", $info["Edad"], "</p>";
+					echo '<a href="'.ROOT_DIR.'/mensajesBandeja.php" class="btn btn-default">Mensajes</a>';
 				?>
 			</div>
 		  </div>

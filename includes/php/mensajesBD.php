@@ -82,7 +82,7 @@ function consultarMensaje($id){
 }
 
 function consultarMensajeEnviado($id){
-	lobal $mysqli;
+	global $mysqli;
 	$args = array($id);
 	sanitizeArgs($args);
 	$mensaje = null;

@@ -69,12 +69,9 @@
 									}
 									
 								//ya son amigos
-								//abriria el php de mensajes
-							}else{ ?>
-								<p class="login button"> 
-									<input type="submit" value="Enviar mensaje"> 
-								</p> 
-							<?php
+							}else{
+								echo '<a href="'.ROOT_DIR.'/nuevoMensaje.php?usuario='.$info["Nick"].'" class="btn btn-default">Enviar mensaje</a>';
+							
 							}
 						?>
 					</div>

@@ -61,7 +61,6 @@ function peticionClick(button){
 <!--Fin Cabecera-->
 <script type="text/javascript">
 $(function(){
-  
   if($('#isLogged').length){//Procesa el codigo solo si estas logeado. Se genera una etiqueta escondida para comprobarlo.
     var root_app = $('#root_app').attr("href");
     $('#notificationLink').popover(
@@ -88,7 +87,7 @@ $(function(){
         for(var i=0; i<arrayN.length; i++){
           if(typeof arrayN[i]["ID"] != 'undefined'){//isset en javascript
             html += '<div class="notificaciones"><p>  Mensaje de : ' + arrayN[i]['NickEmisor']+'</p>'
-         + '<a href="responderMensaje.php?mensaje='+arrayN[i]["ID"]+'" class="btn btn-default">Responder</a></div>';
+         + '<a href="'+root_app+'/abrirMensajeRecibido.php?mensaje='+arrayN[i]["ID"]+'" class="btn btn-default">Responder</a></div>';
           }else{
             html += '<div class="notificaciones"><p> Peticion de amistad: ' + arrayN[i]['NickUsuario1']+'</p>'+
             '<button type="button" accion="aceptar" onclick="peticionClick($(this));" class="peticiones btn btn-default" user1="'+arrayN[i]['NickUsuario1']+'" user2="'+arrayN[i]['NickUsuario2']+'">Aceptar</button>'+
