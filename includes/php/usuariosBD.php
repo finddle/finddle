@@ -1,7 +1,7 @@
 <?php
 require_once(__DIR__."/config.php");
 
-/**/
+/*Devuelve 0 si el usuario no se encuentra en la base de datos, o 1 si éste se encuentra registrado*/
 function insertarUsuario($nick, $contrasena, $correo, $nombre, $apellidos, $edad){
 	global $mysqli;
 	$tipo = 'usuario';
@@ -17,7 +17,7 @@ function insertarUsuario($nick, $contrasena, $correo, $nombre, $apellidos, $edad
 	$pst->close();
 }
 
-/**/
+/*Modifica los datos de un usuario registrado en la base de datos*/
 function editarUsuario($nick, $contrasena, $correo, $nombre, $apellidos, $edad, $avatar){
 	global $mysqli;
 	$args = array($contrasena, $correo, $nombre, $apellidos, $edad, $avatar);
@@ -33,7 +33,7 @@ function editarUsuario($nick, $contrasena, $correo, $nombre, $apellidos, $edad, 
 	$pst->close();
 }
 
-/**/
+/*Obtiene un array con los datos del usuario que se le pasa por parámetro*/
 function getInfoUser($nick){
 	global $mysqli;
 	
@@ -53,17 +53,7 @@ function getInfoUser($nick){
 	return $info;
 }
 
-/**/
-function modificarDatosUser ($nick, $contrasena, $correo, $nombre, $apellidos, $edad){
-	global $mysqli;
-	$err = 0;
-	$query="UPDATE usuario SET contrasena = '$contrasena' AND correo = '$correo' AND nombre = '$nombre' AND apellidos = '$apellidos' AND edad = '$edad' WHERE nick = '$nick'";
-	$resultado=$mysqli->query($query) or $err = 1;
-	
-	return $err;
-}
-
-/**/
+/*Devuelve 0 si el usuario no se encuentra en la base de datos, o 1 si éste se encuentra registrado*/
 function buscarNick($nick){
 	global $mysqli;
 	$err = 0;
@@ -81,6 +71,7 @@ function buscarNick($nick){
 	return $numregistros;
 }
 
+/**/
 function usersCadena($cadena){
 	$c = $cadena['cuadro'];
 	global $mysqli;
@@ -97,6 +88,10 @@ function usersCadena($cadena){
 	}
 	$pst->close();
 	return $users;
+
+/*Elimina un usuario de la tabla usuarios*/ 
+function borrarUsuario($nick){
+	
 }
 
 ?>
