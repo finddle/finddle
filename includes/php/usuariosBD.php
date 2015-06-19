@@ -93,5 +93,6 @@ function usersCadena($cadena){
 function borrarUsuario($nick){
 	
 }
+}
 
 ?>
