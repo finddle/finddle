@@ -57,7 +57,7 @@
 				}
 				echo '<p>Nombre: '.$evento['Nombre'].'</p>';
 				echo '<p>Fecha: '.$evento['Fecha'].'</p>';
-				echo '<p>Precio/entrada: '.$evento['Precio']."€".'</p>';
+				echo '<p id="precio" val="'.$evento['Precio'].'">Precio/entrada: '.$evento['Precio']."€".'</p>';
 			?>
 			
 			<form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
@@ -79,6 +79,7 @@
 	  <?php require(__DIR__.'/includes/php/footer.php');?>
 	  <script type="text/javascript">
 		  $(document).ready(function(){
+		  	var precio = parseInt($('#precio').attr("val"));
 			$(".numbers-row").append('<div class="inc button">+</div><div class="dec button">-</div>');
 
 			$(".button").on("click", function() {
@@ -88,7 +89,6 @@
 
 			  if ($button.text() == "+") {
 				var newVal = parseFloat(oldValue) + 1;
-				$("#precio").html("Precio total: "+parseFloat(newVal)*precio+"€");
 			  } else {
 			   // Don't allow decrementing below zero
 				if (oldValue > 1) {
@@ -97,7 +97,7 @@
 				  newVal = 1;
 				}
 			  }
-
+			  $("#precio").html("Precio total: "+parseFloat(newVal)*precio+"€");
 			  $button.parent().find("input").val(newVal);
 
 			});
