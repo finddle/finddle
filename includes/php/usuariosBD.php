@@ -89,10 +89,11 @@ function usersCadena($cadena){
 	$pst->close();
 	return $users;
 
+}
+
 /*Elimina un usuario de la tabla usuarios*/ 
 function borrarUsuario($nick){
 	
-}
 }
 
 ?>
