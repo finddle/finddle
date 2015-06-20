@@ -1,7 +1,6 @@
 <?php require_once(__DIR__.'/includes/php/config.php');?>
 <!DOCTYPE html>
 <html>
-
     <head>
         <title>Finddle</title>
         <meta charset="utf-8" />
@@ -41,31 +40,66 @@
           <li role="presentation"><a href="mensajesEnviados.php">Mensajes enviados</a></li>
         </ul>
       </div>
-	  <div class ="container-fixed col-xs-8 col-sm-8 col-md-6">
-	 
+	  <div id="contenidoPrincipal" class ="container-fixed col-xs-8 col-sm-8 col-md-6">
+	  <p id="loadButton"><a id="loadMore" class="glyphicon glyphicon-refresh" aria-label="Cargar anteriores"></a></p>
+	  <div id="loadMessages"></div>
 	  <?php
 		$mensaje = $_GET['mensaje'];
 		modificarMensajeLeido($mensaje);
 		$result = abrirMensaje($mensaje);
-	  echo '<div id="comentario">', 'De: ',$result['NickEmisor'];
-	  echo '<div class="span-mensaje"></div>';
-	  echo 'Titulo: ', $result['Titulo'];
-	  echo '<div class="span-sub-tittle"></div>';
-	  echo $result['TextoMensaje'];
-	  echo '</div>';
-	  
+		if(isset($_SESSION['offsetm'])){
+            unset($_SESSION['offsetm']);
+      	}
+	  echo '<div id="comentario">'. '<p class="mHeader"><strong>De:</strong> '.$result['NickEmisor'].' <strong>Titulo: </strong>'.$result['Titulo'].'<strong> Fecha: </strong>'.$result['Fecha'].'</p> ';
+	  echo '<p><strong>Contenido: </strong></p><p>'.$result['TextoMensaje'].'</p></div>';	  
 	  ?>
-	  <form  method = "POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>"> 
-		  <div class="span-sub-tittle"></div>
+	  <form class="mForm" method = "POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>"> 
 		  <input type="text" name="titulo" placeholder='Titulo' required>
-		  <div class ="span-mensaje"></div>
-		  <textarea name="mensaje" cols="74" rows="4" autofocus placeholder='Respuesta' required></textarea>
+		  <textarea name="mensaje" cols="70" rows="4" autofocus placeholder='Respuesta' required></textarea>
 		  <input type="hidden" name="formRespuesta"/>
-		  <?php echo '<input type="hidden" name="emisor" value="'.$result['NickEmisor'].'"/> '?>
+		  <?php echo '<input type="hidden" id="idEmisor" name="emisor" value="'.$result['NickEmisor'].'" msg="'.$result['ID'].'"/> '?>
 		  <input type="submit"/> 
 	  </form>
-		
-		<?php 
+<script type="text/javascript">
+$(document).ready(function(){
+
+	var root_app = $('#root_app').attr("href");
+	var emisor = $('#idEmisor').attr("value");
+	var idMensaje = parseInt($('#idEmisor').attr("msg"));
+	var user = $('#isLogged').attr("user");
+
+	$('#loadMore').click(function(){
+		$.get(root_app+"/includes/php/loadmessages.php?emisor="+emisor+"&mensaje="+idMensaje, function(data){
+		    if (data != "null") {
+		        var result = JSON.parse(data);
+		        var htmlMensajes = "";
+		        for(var i=0; i<result.length; i++){
+		        	if(result[i]['NickEmisor']==user){
+		        		var titulo = result[i]['Titulo'];
+		        		if(titulo==null){
+		        			titulo = "";
+		        		}
+		        		htmlMensajes += '<div id="comentario" class="misMensajes">'+ '<p class="mHeader"><strong>Yo</strong> ,'
+				          +'<strong> Titulo: </strong>'+titulo+'<strong> Fecha: </strong>'+result[i]['Fecha']
+				          +'</p><p><strong>Contenido: </strong></p><p>'+result[i]['TextoMensaje']+'</p></div>';
+		        	}else{
+		        		htmlMensajes += '<div id="comentario">'+ '<p class="mHeader"><strong>De:</strong> '+result[i]['NickEmisor']
+				          +'<strong> Titulo: </strong>'+titulo+'<strong> Fecha: </strong>'+result[i]['Fecha']
+				          +'</p><p><strong>Contenido: </strong></p><p>'+result[i]['TextoMensaje']+'</p></div>';
+		        	}
+		          
+		        }
+		        $("#loadMessages").prepend(htmlMensajes);
+		    }else{
+		    	$('#loadButton').html('<p> No hay mas mensajes de este usuario. </p>');
+		    }
+	
+		});
+	});
+
+});
+</script>
+	<?php 
 			require(__DIR__.'/includes/php/footer.php');
 		?>
 		</div>

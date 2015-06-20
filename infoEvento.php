@@ -35,7 +35,7 @@
 	?>
 	  <div class="main">
 		<div class="container">
-		  <div class="container col-xs-8 col-sm-8 col-md-8">
+		  <div id="contenidoPrincipal" class="container col-xs-8 col-sm-8 col-md-8">
 			 <?php 
 				$evento = $_GET['evento'];
 				$info = getInfoEvento($evento);

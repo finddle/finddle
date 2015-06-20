@@ -81,7 +81,7 @@ $(function(){
       var user = $('#isLogged').attr("user");
      
       $.get(root_app+"/includes/php/comprobarNotificaciones.php?user="+user, function(data){
-        if (data != "") {
+        if (data != "null") {
           var arrayN = JSON.parse(data);
           nAvisos = arrayN.length;
         for(var i=0; i<arrayN.length; i++){
@@ -95,13 +95,13 @@ $(function(){
           }
          
         }
-          if(nAvisos > 0){
-            $('#popoverContent').html(html);
-            $('#notificationLink').attr("data-notifications",nAvisos);
-          }else{
-            $('#popoverContent').html("<p> No hay notificaciones. </p>");
-            $('#notificationLink').removeAttr("data-notifications");
-          }
+        
+        $('#popoverContent').html(html);
+        $('#notificationLink').attr("data-notifications",nAvisos);
+          
+        }else{
+          $('#popoverContent').html("<p> No hay notificaciones. </p>");
+          $('#notificationLink').removeAttr("data-notifications");
         }
       });
       

@@ -26,7 +26,7 @@
           <li role="presentation" class="active"><a href="mensajesEnviados.php">Mensajes enviados</a></li>
         </ul>
       </div>
-      <div class="container-fixed col-xs-8 col-sm-8 col-md-8">
+      <div id="contenidoPrincipal" class="container-fixed col-xs-8 col-sm-8 col-md-8">
 	<table>
 		<thead>
 		<tr><th colspan="3">Mensajes enviados</th></tr>
@@ -45,7 +45,7 @@
 		  <td>'.$res['NickReceptor'].'</td>
 		  <td>'.$res['Fecha'].'</td>
 		  <td>
-			<a href= abrirMensajeEnviado.php?mensaje='.$res["ID"].' class="button">'.$res['Titulo'].'</a>
+			<a href= abrirMensajeEnviado.php?mensaje='.$res["ID"].' class="btn btn-default">Ver mensaje</a>
 		  </td>
 		</tr>';
 		}

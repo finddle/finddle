@@ -29,7 +29,7 @@
   <div class="main">
     <div class="container">
      
-      <div class="container-fixed eventosElem">
+      <div id="contenidoPrincipal" class="container-fixed eventosElem">
         <h1><img src="<?= ROOT_DIR?>/includes/img/cinemal.png"/> Elige tus asientos  <img src="<?= ROOT_DIR?>/includes/img/cinema.png"/></h1>
         
          <?php 

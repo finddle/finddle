@@ -28,18 +28,14 @@
           <li role="presentation"><a href="mensajesEnviados.php">Mensajes enviados</a></li>
         </ul>
       </div>
-	  <div class ="container-fixed col-xs-8 col-sm-8 col-md-6">
+	  <div id="contenidoPrincipal" class ="container-fixed col-xs-8 col-sm-8 col-md-6">
 	 
 	  <?php
 	  require_once __DIR__.'/includes/php/mensajes.php';
 		$mensaje = $_GET['mensaje'];
 		$result = abrirMensajeEnviado($mensaje);
-	  echo '<div id="comentario">', 'Para: ',$result['NickReceptor'];
-	  echo '<div class="span-mensaje"></div>';
-	  echo 'Titulo: ', $result['Titulo'];
-	  echo '<div class="span-sub-tittle"></div>';
-	  echo $result['TextoMensaje'];
-	  echo '</div>';
+	  echo '<div id="comentario">'. '<p class="mHeader"><strong>De:</strong> Yo <strong>Titulo: </strong>'.$result['Titulo'].'<strong> Fecha: </strong>'.$result['Fecha'].'</p> ';
+	  echo '<p><strong>Contenido: </strong></p><p>'.$result['TextoMensaje'].'</p></div>';
 	  
 	  ?>
 		

@@ -65,8 +65,7 @@
       maxEventos = data;
     });
   
-    function lastAddedLiveFunc()
-    {
+    function lastAddedLiveFunc(){
         $('div#lastPostsLoader').html('<img src="'+root_app+'/includes/img/loading.gif"/>');
 
         $.get(root_app+"/includes/php/loadevents.php?tipo=1", function(data){

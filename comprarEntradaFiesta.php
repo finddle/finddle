@@ -39,7 +39,7 @@
 		  <div class="sidebar-left container-fixed col-xs-4 col-sm-4  col-md-2">
 			<!-- Barra lateral izquierda -->
 		  </div>
-		  <div class="container-fixed col-xs-8 col-sm-8 col-md-10">
+		  <div id="contenidoPrincipal" class="container-fixed col-xs-8 col-sm-8 col-md-10">
 			<h1><img src="<?= ROOT_DIR?>/includes/img/toast.png"/> Elige tus entradas  <img src="<?= ROOT_DIR?>/includes/img/toast.png"/></h1>
 			<?php
 				$evento = getInfoEvento($_GET['evento']);

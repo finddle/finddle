@@ -126,7 +126,13 @@ div.eventosElem{
   padding-left: 8px;
   padding-bottom: 5px;
   margin-top: 10px;
+  margin-bottom: 10px;
 }
+#comentario p{
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
 #fotoAsistente{
   border-width: 1px;
   border-radius: 8px;
@@ -199,4 +205,41 @@ text-align: right;
 #scrollTitle{
   color: white;
   margin-left: 85px;
+}
+
+#loadButton{
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+div#contenidoPrincipal{
+  background-color: white;
+  opacity: 0.7;
+  padding-bottom: 25px; 
+}
+
+form.mForm{
+   border-top: 1px solid #ccc;
+   margin-top: 30px;
+}
+
+form.mForm input{
+   border-top: 1px solid #ccc;
+   margin-top: 10px;
+   margin-bottom: 10px;
+}
+p.mHeader{
+  border-bottom: 1px solid #ccc;
+}
+.misMensajes{
+  text-align: right;
+  border-width: 1px;
+  border-radius: 8px;
+  border-color: green;
+  border-style: solid;
+}
+.eventosElem{
+  padding-left: 15px;
+  padding-right: 15px;
 }

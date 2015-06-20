@@ -31,7 +31,7 @@
           <li role="presentation"><a href="mensajesEnviados.php">Mensajes enviados</a></li>
         </ul>
       </div>
-      <div class="container-fixed col-xs-8 col-sm-8 col-md-8">
+      <div id="contenidoPrincipal" class="container-fixed col-xs-8 col-sm-8 col-md-8">
         <table>
   <thead>
     <tr><th colspan="4">Bandeja de entrada</th></tr>
@@ -58,7 +58,7 @@
 			 <td><img src='.$ruta.'></td>
 			 <td>'.$res['NickEmisor'].'</td>
 			  <td>'.$res['Fecha'].'</td>
-			  <td><a href=abrirMensajeRecibido.php?mensaje='.$res["ID"].' class="button">'.$res['Titulo'].'</a></td>
+			  <td><a href=abrirMensajeRecibido.php?mensaje='.$res["ID"].' class="btn btn-default">Ver mensaje</a></td>
 			</tr>';
 			}
 		}
