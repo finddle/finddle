@@ -1,7 +1,7 @@
 <?php
 require_once(__DIR__."/config.php");
 
-/**/
+/*Inserta en la tabla "asiste" una nueva fila con el nick del usuario y el ID del evento pasado por parámetro*/
 function asisteEvento($user,$evento){
 	global $mysqli;
 

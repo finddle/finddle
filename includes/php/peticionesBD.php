@@ -1,6 +1,8 @@
 <?php
 	require_once(__DIR__."/config.php");
 	
+	
+	/*Inserta en la tabla de peticionesamistad una nueva fila con los valores de $user1 y $user2*/
 	function enviarPeticion($user1, $user2){
 		global $mysqli;
 		
@@ -16,6 +18,7 @@
 		$pst->close();
 	}
 	
+	/*Elimina la peticion de amistad pendiente de la base de datos*/
 	function cancelarPeticion($user1, $user2){
 		global $mysqli;
 		
@@ -31,7 +34,8 @@
 		$pst->close();
 	}
 	
-	//elimina la peticion de amistad de la tabla peticionesamistad e inserta la nueva relacion de amistad a la tabla de amigos
+	/*Elimina la peticion de amistad de la tabla peticionesamistad 
+	e inserta la nueva relacion de amistad a la tabla de amigos*/
 	function aceptarPeticion($user1, $user2){
 		global $mysqli;
 		
@@ -49,7 +53,8 @@
 		cancelarPeticion($user1, $user2);
 	}
 	
-	//comprueba en la tabla de peticionesamistad si está pendiente esa peticion. Devuelve 0 si no existe en la tabla.
+	/*Comprueba en la tabla de peticionesamistad si está pendiente esa peticion. Devuelve 0 si no existe en la tabla.
+	Si un usuario tiene pendiente de aceptación una petición de amistad, no podrá mandarle otra hasta que ésta no sea respondida (aceptada o rechazada)*/
 	function comprobarPeticion($user1, $user2){
 		global $mysqli;
 		
@@ -67,7 +72,8 @@
 		return $result->num_rows;
 	}
 	
-	//Comprueba si un usuario tiene notificaciones pendientes. Devuelve el número de notificaciones pendientes.
+	/*Dado un usuario, devuelve un array con las peticiones de amistad y mensajes pendientes
+	que dicho usuario tiene en la base de datos*/
 	function getNotificaciones($user){
 		global $mysqli;
 		

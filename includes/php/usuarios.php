@@ -2,6 +2,8 @@
 require_once __DIR__.'/config.php';
 require_once __DIR__.'/usuariosBD.php';
 
+/*Valida los datos del formulario de registro. Si los datos son correctos, llama a la funcion que inserta un usuario 
+en la base de datos (insertaUsuario($params)) en usuariosBD.php*/
 function comprobarFormulario($params){
 	$nick = $params['nick'];
 	$contrasena = $params['contrasena'];
@@ -27,6 +29,8 @@ function comprobarFormulario($params){
   return $result;
 }
 
+/*Valida los datos introducidos en el formulario de Editar Perfil de un usuario y, si son correctos, 
+llama a la funcion que actualiza el usuario en la base de datos*/
 function formEditUser($params){
 	/*$target = "includes/data/"; 
 	$target = $target . basename( $_FILES['avatar']['name']); 
@@ -59,7 +63,10 @@ function formEditUser($params){
 	} */
   return $result;
 }
-	
+
+/* Valida los datos del formulario de Login usando expresiones regulares y llama 
+a la función que comprueba los datos con la base de datos y realiza el login (login()), 
+en caso de que no se cumplan retorna un array con los errores que se han generado para mostrarse en la vista login.php*/	
 function formLogin($params) {
   $name = $params['username'];
   $pass = $params['password'];
@@ -82,6 +89,9 @@ function formLogin($params) {
   return $result;
 }
 
+ /*Comprueba si el usuario que intenta hacer login existe en la BD y 
+ si el hash de la contraseña más la pimienta coincide con el almacenado en 
+ la base de datos, en tal caso se guardan las variables necesarias en la sesión y se redirige al usuario al index*/
 function login($nombreUsuario, $password) {
  
   $ok = false;

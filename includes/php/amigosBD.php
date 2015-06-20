@@ -1,7 +1,7 @@
 <?php
 require_once(__DIR__."/config.php");
 
-/**/
+/*Devuelve la lista de usuarios que son amigos del usuario que se pasa por parámetro*/
 function getAmigos($user){
 	global $mysqli;
 	
