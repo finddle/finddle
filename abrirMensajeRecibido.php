@@ -42,7 +42,7 @@
       </div>
 	  <div id="contenidoPrincipal" class ="container-fixed col-xs-8 col-sm-8 col-md-6">
 	  <p id="loadButton"><a id="loadMore" class="glyphicon glyphicon-refresh" aria-label="Cargar anteriores"></a></p>
-	  <div id="loadMessages"></div>
+	  <div id="loadgif"></div><div id="loadMessages"></div>
 	  <?php
 		$mensaje = $_GET['mensaje'];
 		modificarMensajeLeido($mensaje);
@@ -50,7 +50,8 @@
 		if(isset($_SESSION['offsetm'])){
             unset($_SESSION['offsetm']);
       	}
-	  echo '<div id="comentario">'. '<p class="mHeader"><strong>De:</strong> '.$result['NickEmisor'].' <strong>Titulo: </strong>'.$result['Titulo'].'<strong> Fecha: </strong>'.$result['Fecha'].'</p> ';
+	  echo '<div id="comentario">'. '<p class="mHeader"><strong>De:</strong> '.$result['NickEmisor'];
+	  echo ' <strong>Titulo: </strong>'.$result['Titulo'].'<strong> Fecha: </strong>'.$result['Fecha'].'</p> ';
 	  echo '<p><strong>Contenido: </strong></p><p>'.$result['TextoMensaje'].'</p></div>';	  
 	  ?>
 	  <form class="mForm" method = "POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>"> 
@@ -69,6 +70,8 @@ $(document).ready(function(){
 	var user = $('#isLogged').attr("user");
 
 	$('#loadMore').click(function(){
+		$('#loadgif').html('<img src="'+root_app+'/includes/img/ajax-loader.gif"/>');
+		
 		$.get(root_app+"/includes/php/loadmessages.php?emisor="+emisor+"&mensaje="+idMensaje, function(data){
 		    if (data != "null") {
 		        var result = JSON.parse(data);
@@ -93,8 +96,9 @@ $(document).ready(function(){
 		    }else{
 		    	$('#loadButton').html('<p> No hay mas mensajes de este usuario. </p>');
 		    }
-	
+			$('#loadgif').empty();
 		});
+		
 	});
 
 });

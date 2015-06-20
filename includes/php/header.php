@@ -39,6 +39,13 @@ function peticionClick(button){
             <a id="root_app" type="hidden" href="<?= ROOT_DIR?>"></a>
           </ul>
           <ul class="nav navbar-nav navbar-right">
+           
+              <li><form class="search" method="get" action="#" >
+              <input type="text" id="search" placeholder="Buscar..." />
+               <ul id="searchResults" class="results" >
+               </ul>
+             </form></li>
+           
             <?php 
             if (session_status() == PHP_SESSION_NONE) {
                 session_start();
@@ -61,8 +68,36 @@ function peticionClick(button){
 <!--Fin Cabecera-->
 <script type="text/javascript">
 $(function(){
-  if($('#isLogged').length){//Procesa el codigo solo si estas logeado. Se genera una etiqueta escondida para comprobarlo.
-    var root_app = $('#root_app').attr("href");
+  var root_app = $('#root_app').attr("href");
+  //funcionalidad buscador:
+  $('#search').keyup(function(){
+    var search = $(this).val();
+
+    if(search.length >= 2){
+      $('#searchResults').html('<img id="ajaxgif"src="'+root_app+'/includes/img/ajax-loader.gif"/>');
+      $.get(root_app+"/includes/php/loadsearch.php?search="+search, function(data){
+        if (data != "null") {
+          var arrayN = JSON.parse(data);
+          var html = "";
+          for(var i=0; i<arrayN.length; i++){
+            if(typeof arrayN[i]["ID"] != 'undefined'){//isset en javascript
+              html += '<li><a href="'+root_app+'/evento/'+arrayN[i]["ID"]+'">Evento <br/><span>'+arrayN[i]["Nombre"]+'</span></a></li>';
+            }else{
+               html += '<li><a href="'+root_app+'/usuario/'+arrayN[i]["Nick"]+'">Usuario <br/><span>'+arrayN[i]["Nick"]+'</span></a></li>';
+            }
+          }
+        
+          $('#searchResults').html(html);          
+        }else{
+          $('#searchResults').empty();
+        }
+      });
+    }else{
+        $('#searchResults').empty();
+    }
+  });
+  //funcionalidad notifiaciones:
+  if($('#isLogged').length){//Procesa el codigo solo si estas logeado. Se genera una etiqueta escondida con php si la sesin esta activa para comprobarlo.
     $('#notificationLink').popover(
       {title:"Notificaciones",
       html:true,
@@ -84,7 +119,7 @@ $(function(){
         if (data != "null") {
           var arrayN = JSON.parse(data);
           nAvisos = arrayN.length;
-        for(var i=0; i<arrayN.length; i++){
+        for(var i=0; i<nAvisos; i++){
           if(typeof arrayN[i]["ID"] != 'undefined'){//isset en javascript
             html += '<div class="notificaciones"><p>  Mensaje de : ' + arrayN[i]['NickEmisor']+'</p>'
          + '<a href="'+root_app+'/abrirMensajeRecibido.php?mensaje='+arrayN[i]["ID"]+'" class="btn btn-default">Responder</a></div>';

@@ -71,26 +71,6 @@ function buscarNick($nick){
 	return $numregistros;
 }
 
-/**/
-function usersCadena($cadena){
-	$c = $cadena['cuadro'];
-	global $mysqli;
-	$cad = '%'.$c.'%';
-	$args = array($cad);
-	sanitizeArgs($args);
-	$pst = $mysqli->prepare("SELECT * FROM usuarios WHERE Nick LIKE ?");
-	$pst->bind_param("s",$args[0]);
-	$pst->execute();
-	$result = $pst->get_result();
-	$users[] = null;
-	while($row = $result->fetch_array(MYSQLI_ASSOC)){
-				$users[] = $row;
-	}
-	$pst->close();
-	return $users;
-
-}
-
 /*Elimina un usuario de la tabla usuarios*/ 
 function borrarUsuario($nick){
 	

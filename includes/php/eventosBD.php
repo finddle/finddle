@@ -109,23 +109,37 @@ function updateEvento($id, $nombre,$descripcion,$fecha,$precio,$imagen,$plazas,$
 
 }
 
-
-function eventosCadena($cadena){
-	$c = $cadena['cuadro'];
+function procesarBusqueda($search){
 	global $mysqli;
-	$cad = '%'.$c.'%';
-	$args = array($cad);
+	
+	$userActual = null;
+	if(isset($_SESSION['username']))
+		$userActual = $_SESSION['username'];
+
+	$args = array("%".$search."%");
 	sanitizeArgs($args);
-	$pst = $mysqli->prepare("SELECT * FROM eventos WHERE Nombre LIKE ?");
-	$pst->bind_param("s",$args[0]);
+	
+	$info = null;
+	$pst = $mysqli->prepare("SELECT ID, Nombre FROM eventos WHERE Nombre LIKE ?")  or trigger_error($mysqli->error);
+	$pst->bind_param("s", $args[0]);
+	
 	$pst->execute();
 	$result = $pst->get_result();
-	$eventos[] = null;
 	while($row = $result->fetch_array(MYSQLI_ASSOC)){
-				$eventos[] = $row;
+		$info[] = $row;
 	}
 	$pst->close();
-	return $eventos;
+
+	$pst = $mysqli->prepare("SELECT Nick FROM usuarios WHERE Nick <> ? AND Nick LIKE ?")  or trigger_error($mysqli->error);
+	$pst->bind_param("ss", $userActual, $args[0]);
+	
+	$pst->execute();
+	$result = $pst->get_result();
+	while($row = $result->fetch_array(MYSQLI_ASSOC)){
+		$info[] = $row;
+	}
+	$pst->close();
+	return $info;
 }
 
 ?>

@@ -34,7 +34,8 @@
 	  require_once __DIR__.'/includes/php/mensajes.php';
 		$mensaje = $_GET['mensaje'];
 		$result = abrirMensajeEnviado($mensaje);
-	  echo '<div id="comentario">'. '<p class="mHeader"><strong>De:</strong> Yo <strong>Titulo: </strong>'.$result['Titulo'].'<strong> Fecha: </strong>'.$result['Fecha'].'</p> ';
+	  echo '<div id="comentario">'. '<p class="mHeader"><strong>De:</strong> Yo <strong>Titulo: </strong>'.$result['Titulo'];
+	  echo '<strong> Fecha: </strong>'.$result['Fecha'].'</p> ';
 	  echo '<p><strong>Contenido: </strong></p><p>'.$result['TextoMensaje'].'</p></div>';
 	  
 	  ?>

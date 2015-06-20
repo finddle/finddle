@@ -67,7 +67,7 @@
   
     function lastAddedLiveFunc()
     {
-        $('div#lastPostsLoader').html('<img src="'+root_app+'/includes/img/loading.gif"/>');
+        $('div#lastPostsLoader').html('<img src="'+root_app+'/includes/img/ajax-loader.gif"/>');
 
         $.get(root_app+"/includes/php/loadevents.php?tipo=0", function(data){
             if (data != "") {
