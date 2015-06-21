@@ -109,6 +109,74 @@ function updateEvento($id, $nombre,$descripcion,$fecha,$precio,$imagen,$plazas,$
 
 }
 
+/* Comprueba que los campos del formulario de crear un nuevo evento se ajustan al formato necesario*/
+function comprobarFormularioEvento($params, $img, $rol){
+	
+	$nombre = $params['Nombre'];
+	$descripcion = $params['Descripcion'];
+	$fecha = $params['Fecha'];
+	$precio = $params['Precio'];
+	
+	$archivoimg = $_FILES['Imagen'];
+	$nombreimg = $img['Imagen']['name'];
+	$imagen = ("includes/data/eventos/".$nombreimg);
+	
+	$plazasDisponibles = $params['PlazasDisponibles'];
+	$tipo = $params['Tipo'];
+	$activo = false;
+	$validParams = true;
+	$result = [];
+	
+	$ok = check_file_uploaded_name($nombre) && check_file_uploaded_length($nombre);
+	if ( $ok ) {
+		$tmp_name = $_FILES['Imagen']['tmp_name'];
+		if ( !move_uploaded_file($tmp_name, __DIR__.("/../data/eventos/".$nombreimg))) //DESTINO = __DIR__.("/../data/eventos/".$nombre)
+			$result[] = 'Error al mover el archivo';
+    }
+
+	if($rol != "promotor" && $rol != "admin"){
+		$validParams = false;
+		$result[] = "Necesitas tener permiso para crear un evento."; 
+	}
+
+	if($rol == "admin") $activo=true;
+
+	if($archivoimg['error'] > 0)
+    	$result[] ="An error ocurred when uploading.";
+	if($archivoimg['size'] > 10000000)
+    	$result[] ="File uploaded exceeds maximum upload size.";
+	
+	
+	if ( $validParams ) {
+		$result[] = "Evento creado correctamente";
+    	addPeticionEvento($nombre, $descripcion, $fecha, $precio, $imagen, $plazasDisponibles, $tipo, $_SESSION['username'],$activo);
+	}
+  return $result;
+}
+
+/**
+ * Check $_FILES[][name]
+ *
+ * @param (string) $filename - Uploaded file name.
+ * @author Yousef Ismaeil Cliprz
+ * @See http://php.net/manual/es/function.move-uploaded-file.php#111412
+ */
+function check_file_uploaded_name ($filename) {
+    return (bool) ((preg_match('/^[0-9A-Z-_\.]+$/i',$filename) === 1) ? true : false );
+}
+
+/**
+ * Check $_FILES[][name] length.
+ *
+ * @param (string) $filename - Uploaded file name.
+ * @author Yousef Ismaeil Cliprz.
+ * @See http://php.net/manual/es/function.move-uploaded-file.php#111412
+ */
+function check_file_uploaded_length ($filename) {
+    return (bool) ((mb_strlen($filename,'UTF-8') < 250) ? true : false);
+}
+
+
 function procesarBusqueda($search){
 	global $mysqli;
 	
@@ -141,5 +209,10 @@ function procesarBusqueda($search){
 	$pst->close();
 	return $info;
 }
+
+
+
+
+
 
 ?>

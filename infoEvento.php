@@ -1,4 +1,6 @@
-<?php require_once(__DIR__.'/includes/php/config.php');?>
+<?php
+require_once(__DIR__.'/includes/php/config.php');
+?>
 <!DOCTYPE HTML>
 <html>
 	<head>
@@ -16,6 +18,7 @@
       <script src="<?= ROOT_DIR?>/includes/js/bootstrap.js"></script>
 	</head>
 	<?php
+		
 		require(__DIR__.'/includes/php/comentarios.php');
 		
 		if(isset($_POST['comentario'])) {
@@ -28,6 +31,7 @@
 	?>
 	<body>
 	<?php
+	
 	require(__DIR__.'/includes/php/header.php');  
 	require(__DIR__.'/includes/php/eventosBD.php');
 	require(__DIR__.'/includes/php/comprasBD.php');
@@ -35,7 +39,8 @@
 	?>
 	  <div class="main">
 		<div class="container">
-		  <div id="contenidoPrincipal" class="container col-xs-8 col-sm-8 col-md-8">
+		    <div id="contenidoPrincipal" class="container col-xs-8 col-sm-8 col-md-8">
+
 			 <?php 
 				$evento = $_GET['evento'];
 				$info = getInfoEvento($evento);
