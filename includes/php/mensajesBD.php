@@ -1,6 +1,7 @@
 <?php
 require_once(__DIR__."/config.php");
 
+/*Devuelve 0 si se ha insertado el mensaje de contacto correctamente, o 1 si no lo ha realizado correctamente*/
 function mensajeContacto($correo, $texto){
 	global $mysqli;
 	$err = 0;
@@ -15,7 +16,7 @@ function mensajeContacto($correo, $texto){
 	return $err;
 }
 
-
+/*Devuelve 0 si se ha insertado el mensaje a un usuario correctamente, o 1 si no lo ha realizado correctamente*/
 function mensajeUsuario($nick1,$nick2,$descripcion,$titulo){
 	global $mysqli;
 	$err = 0;
@@ -32,6 +33,7 @@ function mensajeUsuario($nick1,$nick2,$descripcion,$titulo){
 	return $err;
 }
 
+/*Obtiene un array con los mensajes que ha recibido un usuario pasado por parámetro, ordenado por fecha.*/
 function bandejaEntrada($nick){
 	global $mysqli;
 	$args = array($nick);
@@ -48,6 +50,8 @@ function bandejaEntrada($nick){
 	return $mensajes;
 	
 }
+
+/*Obtiene un array con los mensajes que ha enviado un determinado usuario pasado por parámetro, ordenado por fecha.*/
 function mensajesEnviados($nick){
 	global $mysqli;
 	$args = array($nick);
@@ -64,7 +68,7 @@ function mensajesEnviados($nick){
 	return $mensajes;
 	
 }
-
+/* Devuelve un mensaje que se encuentra en la bandeja entrada, con un determinado id pasado por parámetro*/
 function consultarMensaje($id){
 	global $mysqli;
 	$args = array($id);
@@ -80,7 +84,7 @@ function consultarMensaje($id){
 	$pst->close();
 	return $mensaje;
 }
-
+/* Devuelve un mensaje que se encuentra en la bandeja de mensajes enviados, con un determinado id pasado por parámetro*/
 function consultarMensajeEnviado($id){
 	global $mysqli;
 	$args = array($id);
@@ -98,6 +102,7 @@ function consultarMensajeEnviado($id){
 	
 }
 
+/* Modifica el campo Leido en la tabla mensajes de la base de datos*/
 function modificarLeido($id){
 	global $mysqli;
 	$leido = 1;
