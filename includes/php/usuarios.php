@@ -26,42 +26,73 @@ function comprobarFormulario($params){
     	insertarUsuario($nick, $hashedpass, $correo, $nombre, $apellidos, $edad);
 		login($nick, $contrasena);
 	}
+	
   return $result;
 }
 
 /*Valida los datos introducidos en el formulario de Editar Perfil de un usuario y, si son correctos, 
 llama a la funcion que actualiza el usuario en la base de datos*/
-function formEditUser($params){
-	/*$target = "includes/data/"; 
-	$target = $target . basename( $_FILES['avatar']['name']); 
-	$avatar = isset($_FILES['avatar']['name']) ? $_FILES['avatar']['name'] : null ;*/
+function formEditUser($params, $img){
 	$nick = $_SESSION['username'];
 	$contrasena = $params['contrasena'];
 	$correo = $params['correo'];
 	$nombre = $params['nombre'];
 	$apellidos = $params['apellidos'];
 	$edad = $params['edad'];
-	$avatar = $params['avatar'];
+	
+	$archivoimg = $_FILES['avatar'];
+	$nombreimg = $img['avatar']['name'];
+	$imagen = ("includes/data/users/".$nombreimg);
+	
 	$validParams = true;
 	$result = [];
+	
 	if(!preg_match("/^[a-zA-z0-9_-]{4,18}$/",$contrasena)){
 		$validParams = false;
 		$result[] =  "Necesaria password de 4 a 18 caracteres alfanumericos";
 	}
+	
+	$ok = check_file_uploaded_name($nombre) && check_file_uploaded_length($nombre);
+	if ( $ok ) {
+		$tmp_name = $_FILES['avatar']['tmp_name'];
+		if ( !move_uploaded_file($tmp_name, __DIR__.("/../data/users/".$nombreimg))) //DESTINO = __DIR__.("/../data/users/".$nombre)
+			$result[] = 'Error al mover el archivo';
+    }
+
+	if($archivoimg['error'] > 0)
+    	$result[] ="An error ocurred when uploading.";
+	if($archivoimg['size'] > 10000000)
+    	$result[] ="File uploaded exceeds maximum upload size.";
+	
 	if ( $validParams ) {
 		$hashedpass = password_hash($contrasena.PIMIENTA, PASSWORD_BCRYPT);
-		editarUsuario($nick, $hashedpass, $correo, $nombre, $apellidos, $edad, $avatar);
+		editarUsuario($nick, $hashedpass, $correo, $nombre, $apellidos, $edad, $imagen);
+		$result[] ="Su perfil se ha editado correctamente";
 	}
-	/*
-	//Writes the photo to the server
-	if(move_uploaded_file($_FILES['avatar']['tmp_name'], $target))  {   
-	//Tells you if its all ok
-		echo "El archivo ". basename( $_FILES['uploadedfile']['name']). " ha sido añadido con éxito.";  
-	}  
-	else {   //Gives and error if its not
-		echo "Hubo un problema subiendo el archivo.";  
-	} */
+	
   return $result;
+}
+
+/**
+ * Check $_FILES[][name]
+ *
+ * @param (string) $filename - Uploaded file name.
+ * @author Yousef Ismaeil Cliprz
+ * @See http://php.net/manual/es/function.move-uploaded-file.php#111412
+ */
+function check_file_uploaded_name ($filename) {
+    return (bool) ((preg_match('/^[0-9A-Z-_\.]+$/i',$filename) === 1) ? true : false );
+}
+
+/**
+ * Check $_FILES[][name] length.
+ *
+ * @param (string) $filename - Uploaded file name.
+ * @author Yousef Ismaeil Cliprz.
+ * @See http://php.net/manual/es/function.move-uploaded-file.php#111412
+ */
+function check_file_uploaded_length ($filename) {
+   return (bool) ((mb_strlen($filename,'UTF-8') < 250) ? true : false);
 }
 
 /* Valida los datos del formulario de Login usando expresiones regulares y llama 

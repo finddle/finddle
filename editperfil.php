@@ -20,7 +20,7 @@
 	<?php 
 		require(__DIR__.'/includes/php/usuarios.php');
 		if(isset($_POST['editPerfil'])) {
-			$result = formEditUser($_POST);
+			$result = formEditUser($_POST, $_FILES);
 		}
 	?>
     <body>
@@ -47,9 +47,22 @@
 						
                             <form  method = "POST" <?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?> enctype="multipart/form-data"> 
                                 <h1>Editar perfil</h1> 
+								<?php 
+									if(isset($result)){
+										echo '<ul>';
+										foreach($result as $error){
+										if($error == "Su perfil se ha editado correctamente"){
+											echo '<li class = "resultOk">'.$error.'</li>';
+										} else {
+											echo '<li class = "resultError">'.$error.'</li>';
+										}
+										}
+										echo '</ul>';
+									}
+								?>	
                                 <p> 
                                     <label> Nombre </label>
-                                    <input id="nombre" pattern="[a-zA-Z]+" title = "No introduzca elementos númericos" name="nombre" required="required" type="text" placeholder="name" /> 
+                                    <input id="nombre" pattern="[a-zA-Z ]+" title = "No introduzca elementos númericos" name="nombre" required="required" type="text" placeholder="name" /> 
                                 </p>
 								<p> 
                                     <label> Apellidos </label>

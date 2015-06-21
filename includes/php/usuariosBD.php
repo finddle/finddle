@@ -20,13 +20,13 @@ function insertarUsuario($nick, $contrasena, $correo, $nombre, $apellidos, $edad
 /*Modifica los datos de un usuario registrado en la base de datos*/
 function editarUsuario($nick, $contrasena, $correo, $nombre, $apellidos, $edad, $avatar){
 	global $mysqli;
-	$args = array($contrasena, $correo, $nombre, $apellidos, $edad, $avatar);
+	$args = array($nombre, $apellidos, $edad, $contrasena, $correo, $avatar, $nick);
 	sanitizeArgs($args);	
 	
-	$pst = $mysqli->prepare("UPDATE usuarios SET Contrasena = ? AND Correo = ? AND Nombre = ? AND Apellidos = ? AND Edad = ? AND Avatar = ? 
-							WHERE Nick = $nick");
+	$pst = $mysqli->prepare("UPDATE usuarios SET Nombre = ?, Apellidos = ?, Edad = ?, Contrasena = ?, Correo = ?, Avatar = ? 
+							WHERE Nick = ?");
 	
-	$pst->bind_param("ssssis", $args[0], $args[1], $args[2], $args[3], $args[4], $args[5]);
+	$pst->bind_param("ssssiss", $args[0], $args[1], $args[2], $args[3], $args[4], $args[5], $args[6]);
 	$pst->execute();
 	$result = $pst->get_result();
 	
