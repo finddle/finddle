@@ -40,8 +40,9 @@
 			<!-- Barra lateral izquierda -->
 		  </div>
 		  <div id="contenidoPrincipal" class="container-fixed col-xs-8 col-sm-8 col-md-10">
-			<h1><img src="<?= ROOT_DIR?>/includes/img/toast.png"/> Elige tus entradas  <img src="<?= ROOT_DIR?>/includes/img/toast.png"/></h1>
 			<?php
+			if(isset($_SESSION['username'])){
+				echo '<h1><img src="'.ROOT_DIR.'>/includes/img/toast.png"/> Elige tus entradas  <img src="'.ROOT_DIR.'/includes/img/toast.png"/></h1>';
 				$evento = getInfoEvento($_GET['evento']);
 				$_SESSION['compra']['precioEntrada'] = $evento['Precio'];
 				$_SESSION['compra']['evento'] = $evento['ID'];
@@ -57,19 +58,26 @@
 				}
 				echo '<p>Nombre: '.$evento['Nombre'].'</p>';
 				echo '<p>Fecha: '.$evento['Fecha'].'</p>';
-				echo '<p id="precio" val="'.$evento['Precio'].'">Precio/entrada: '.$evento['Precio']."€".'</p>';
+				echo '<p id="precio" val="'.$evento['Precio'].'">Precio/entrada: '.$evento['Precio']."€".'</p>';	
+				?>
+				<form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+				  <div class="numbers-row">
+					<label for="name">Entradas: </label>
+					<input type="text" name="NumEntradas" id="nEntradas" value="1"/>
+				  </div>
+				  <input type="hidden" name="procesarCompra"/>
+				  <div class="buttons">
+					<input class="myButton" type="submit" value="Confirmar" id="submit"/>
+				  </div>
+				</form>	
+			<?php
+			}else{
+				echo '<h1>Es necesario estar logeado para acceder a esta pagina.<h1>';
+			}
+				
 			?>
 			
-			<form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
-			  <div class="numbers-row">
-				<label for="name">Entradas: </label>
-				<input type="text" name="NumEntradas" id="nEntradas" value="1"/>
-			  </div>
-			  <input type="hidden" name="procesarCompra"/>
-			  <div class="buttons">
-				<input class="myButton" type="submit" value="Confirmar" id="submit"/>
-			  </div>
-			</form>			
+					
 		  </div>
 		  <div class="clearfix visible-xs-block visible-sm-block"></div>
 		  <div class="sidebar-right container-fixed col-xs-4 col-sm-4 ">

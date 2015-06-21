@@ -30,9 +30,9 @@
     <div class="container">
      
       <div id="contenidoPrincipal" class="container-fixed eventosElem">
-        <h1><img src="<?= ROOT_DIR?>/includes/img/cinemal.png"/> Elige tus asientos  <img src="<?= ROOT_DIR?>/includes/img/cinema.png"/></h1>
-        
+         
          <?php 
+         if(isset($_SESSION['username'])){
          	$evento = getInfoEvento($_GET['evento']);
             $_SESSION['compra']['precioEntrada'] = $evento['Precio'];
             $_SESSION['compra']['evento'] = $evento['ID'];
@@ -40,6 +40,7 @@
             $_SESSION['compra']['capacidad'] = $evento['PlazasDisponibles'];
             $_SESSION['compra']['nAsistentes'] =  count($butacas);
             $n = 1;
+            echo '<h1><img src="'.ROOT_DIR.'/includes/img/cinemal.png"/> Elige tus asientos  <img src="'.ROOT_DIR.'/includes/img/cinema.png"/></h1>';
          		echo '<div id ="cuadroButacas">';
             for($i = 1; $i<=10; $i++){
               echo '<p>';
@@ -56,10 +57,9 @@
           echo '</div>';
           echo '<p class="spacer"id="precio" value="'.$evento['Precio'].'">Precio/entrada: '.$evento['Precio'].'€</p>';
           echo '<p class="spacer">Butacas seleccionadas: <ul id="listaSelected"></ul></p>';
-          if(isset($_SESSION['username'])){
-            echo '<a href="#" class="myButton"id="procesaCompra">Confirmar</a>';   
+          echo '<a href="#" class="myButton"id="procesaCompra">Confirmar</a>';   
           }else{
-            echo '<p>Necesita iniciar sesion para comprar entradas</p>';
+            echo '<h1>Es necesario estar logeado para acceder a esta pagina.<h1>';
           }
          ?>
          

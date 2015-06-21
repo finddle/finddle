@@ -18,6 +18,7 @@ function peticionClick(button){
 }
 </script>
 <?php require_once(__DIR__.'/config.php');?>
+<link rel="stylesheet" type="text/css" href="<?= ROOT_DIR?>/includes/css/styledrop.css">
 <!--Inicio Cabecera-->
 <div class="container">
   <header>
@@ -42,7 +43,7 @@ function peticionClick(button){
            
               <li><form class="search" method="get" action="#" >
               <input type="text" id="search" placeholder="Buscar..." />
-               <ul id="searchResults" class="results" >
+               <ul id="searchResults" class="search-ac" >
                </ul>
              </form></li>
            
