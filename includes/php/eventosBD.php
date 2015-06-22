@@ -176,7 +176,11 @@ function check_file_uploaded_length ($filename) {
     return (bool) ((mb_strlen($filename,'UTF-8') < 250) ? true : false);
 }
 
-
+/*Esta funcion se encarga de realizar una busqueda de usuarios o eventos con la cadena 
+introducida en la barra del header. Se hace en dos consultas porque al consultar de 
+diferentes tablas(hacer selects con distintos datos) no se puede hacer con UNION. Si
+ no se esta logeado no se producen usuarios como resultado y si se está no se incluye 
+ tu nombre en los resultados*/
 function procesarBusqueda($search){
 	global $mysqli;
 	
