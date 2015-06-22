@@ -30,6 +30,12 @@
 	
         <div class="span-content"></div>
 		  <div class="container">
+		  <div class="sidebar-left container-fixed col-xs-4 col-sm-4 col-md-3 ">
+        <ul class="nav nav-pills nav-stacked nav-pills-stacked-example">
+          <li role="presentation"><a href="vistapromotor.php">Ver eventos propios</a></li>
+          <li role="presentation"class="active"><a href="formularioEvento.php">Añadir eventos</a></li>
+        </ul>
+      </div>
 		  <section>				
                 <div id="container_demo" >
                     <a class="hiddenanchor" id="toregister"></a>

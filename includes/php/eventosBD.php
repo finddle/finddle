@@ -210,7 +210,27 @@ function procesarBusqueda($search){
 	return $info;
 }
 
+function getEventosPromotor($promotor){
+	global $mysqli;
+	$off = 0;
+	$pag_size = PAG_SIZE;
+	$eventos = null;
+	
+	$args = array($promotor);
+	sanitizeArgs($args);
 
+	$pst = $mysqli->prepare("SELECT * FROM eventos WHERE Promotor = ? ORDER BY Fecha;");
+	$pst->bind_param("s",$args[0]);
+
+	$pst->execute();
+	$result = $pst->get_result();
+	while($row = $result->fetch_array(MYSQLI_ASSOC)){
+		$eventos[] = $row;
+	}
+	
+	$pst->close();
+	return $eventos;
+}
 
 
 
