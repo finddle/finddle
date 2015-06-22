@@ -41,6 +41,9 @@
                     <a class="hiddenanchor" id="toregister"></a>
                     <a class="hiddenanchor" id="tologin"></a>
                     <div id="wrapper">
+					<?php
+						if(isset($_SESSION['username'])){
+					?>
                         <div id="login" class="animate form">
                             <form  method = "POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>"> 
 								<?php 
@@ -81,7 +84,10 @@
 								</p>
                             </form>
                         </div>
-
+					<?php
+							}else
+								echo "<p>No eres un usuario logeado</p>";
+						?>
             </section>
 			</div>
 		</div>

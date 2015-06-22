@@ -17,19 +17,27 @@
 		<script src="<?= ROOT_DIR?>/includes/js/jquery.min.js"></script>
     	<script src="<?= ROOT_DIR?>/includes/js/bootstrap.js"></script>
 	</head>
+	
 	<?php 
 		require(__DIR__.'/includes/php/mensajes.php');
 		if(isset($_POST['menUser'])) {
 			$result = procesarFormUser($_POST);
 		}
 	?>
+	
 	<body>
-	<?php require(__DIR__.'/includes/php/header.php');?>
+		<?php require(__DIR__.'/includes/php/header.php');?>
+		
 		<div class="container">
 		  <section>			
                 <div id="container_demo" >
                     <a class="hiddenanchor" id="toregister"></a>
                     <a class="hiddenanchor" id="tologin"></a>
+					
+					<?php
+						if(isset($_SESSION['username'])){
+					?>
+					
                     <div id="wrapper">
                         <div id="login" class="animate form">
 							<form name "form" method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" \>
@@ -55,6 +63,10 @@
 							</form>	
 						</div>
 					</div>
+					<?php
+							}else
+								echo "<p>No eres un usuario logeado</p>";
+						?>
 				</div>
 			</section>
 		</div>

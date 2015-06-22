@@ -29,19 +29,21 @@
 			<!--INFO USUARIO-->
 			<div id="barra-lateral-izq">
 				<?php 
-					require_once(__DIR__."/includes/php/usuariosBD.php");
-					$info = getInfoUser($_SESSION['username']);
-					
-					if(isset($info["Avatar"]))
-						echo "<div id='fotoPerfil'><a href='editPerfil.php' id='avatar'><img class='imgPerfil' src=",$info["Avatar"]," /></a></div>";
-					else
-						echo "<div id='fotoPerfil'><a href='editPerfil.php' id='avatar'><img class='imgPerfil' src='includes/img/usuario.png'/></a></div>";
-					echo "<div class='span-sub-tittle'></div>";	
-					echo "<h2>", $info["Nick"], "</h2><div class='span-sub-tittle'></div>";
-					echo "<p>", $info["Nombre"], "</p>";
-					echo "<p>", $info["Apellidos"], "</p>";
-					echo "<p>", $info["Edad"], "</p>";
-					echo '<a href="'.ROOT_DIR.'/mensajesBandeja.php" class="btn btn-default">Mensajes</a>';
+					if(isset($_SESSION['username'])){
+						require_once(__DIR__."/includes/php/usuariosBD.php");
+						$info = getInfoUser($_SESSION['username']);
+						
+						if(isset($info["Avatar"]))
+							echo "<div id='fotoPerfil'><a href='editPerfil.php' id='avatar'><img class='imgPerfil' src=",$info["Avatar"]," /></a></div>";
+						else
+							echo "<div id='fotoPerfil'><a href='editPerfil.php' id='avatar'><img class='imgPerfil' src='includes/img/usuario.png'/></a></div>";
+						echo "<div class='span-sub-tittle'></div>";	
+						echo "<h2>", $info["Nick"], "</h2><div class='span-sub-tittle'></div>";
+						echo "<p>", $info["Nombre"], "</p>";
+						echo "<p>", $info["Apellidos"], "</p>";
+						echo "<p>", $info["Edad"], "</p>";
+						echo '<a href="'.ROOT_DIR.'/mensajesBandeja.php" class="btn btn-default">Mensajes</a>';
+					}
 				?>
 			</div>
 		  </div>
@@ -50,15 +52,19 @@
 			<div id="contenido">
 			<div class="transEventos">
 				<?php
-					$eventos = getEventosUser($_SESSION['username']);
-					if(isset($eventos)){
-						foreach($eventos as $evento){
-							echo "<h3>", $evento["Nombre"], "</h3>";
-							echo '<p><a href ="'.ROOT_DIR.'/evento/'.$evento['IDEvento'].'"><img class="imgEventos" src ="'.$evento['Imagen'].'"/></a></p>';
-							echo "<p>Nº Asistentes: ".countAsistentes($evento['IDEvento'],$evento['Tipo'])."</p><div class='span-sub-tittle'></div>";
-						}
-					}else
-						echo "<p> Este usuario no asiste a ning?n evento. </p>";
+					if(isset($_SESSION['username'])){
+						$eventos = getEventosUser($_SESSION['username']);
+						if(isset($eventos)){
+							foreach($eventos as $evento){
+								echo "<h3>", $evento["Nombre"], "</h3>";
+								echo '<p><a href ="'.ROOT_DIR.'/evento/'.$evento['IDEvento'].'"><img class="imgEventos" src ="'.$evento['Imagen'].'"/></a></p>';
+								echo "<p>Nº Asistentes: ".countAsistentes($evento['IDEvento'],$evento['Tipo'])."</p><div class='span-sub-tittle'></div>";
+							}
+						}else
+							echo "<p> Este usuario no asiste a ning?n evento. </p>";
+					}
+					else
+						echo "<p>Debes ser un usuario logeado.</p>";
 				?>
 			</div>
 			</div>
@@ -66,19 +72,22 @@
 		  <!-- AMIGOS -->
 		  <div class="sidebar-right container-fixed col-xs-4 col-sm-4 col-md-3">
 			  <div id="barra-lateral-dcha">
-					<h2> Amigos </h2>
-					<div class='span-sub-tittle'></div>
-					<div class="trans">
 					<?php 
-						require_once(__DIR__."/includes/php/amigosBD.php");
-						$amigos = getAmigos($_SESSION['username']);
-						
-						if(isset($amigos)){
-							foreach($amigos as $amigo){
-								echo '<p><a href ="'.ROOT_DIR.'/usuario/'.$amigo['NickUsuario1'].'">'.$amigo['NickUsuario1']. '</a></p>';
-							}
-						}else
-							echo "<p> Este usuario no tiene amigos :( </p>";
+						if(isset($_SESSION['username'])){
+							echo '<h2> Amigos </h2>';
+							echo '<div class="span-sub-tittle"></div>';
+							echo '<div class="trans">';
+					
+							require_once(__DIR__."/includes/php/amigosBD.php");
+							$amigos = getAmigos($_SESSION['username']);
+							
+							if(isset($amigos)){
+								foreach($amigos as $amigo){
+									echo '<p><a href ="'.ROOT_DIR.'/usuario/'.$amigo['NickUsuario1'].'">'.$amigo['NickUsuario1']. '</a></p>';
+								}
+							}else
+								echo "<p> Este usuario no tiene amigos :( </p>";
+						}
 					?>
 					</div>
 			</div>

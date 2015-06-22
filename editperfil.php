@@ -46,19 +46,21 @@
                         <div id="login" class="animate form">
 						
                             <form  method = "POST" <?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?> enctype="multipart/form-data"> 
-                                <h1>Editar perfil</h1> 
+                                
 								<?php 
-									if(isset($result)){
-										echo '<ul>';
-										foreach($result as $error){
-										if($error == "Su perfil se ha editado correctamente"){
-											echo '<li class = "resultOk">'.$error.'</li>';
-										} else {
-											echo '<li class = "resultError">'.$error.'</li>';
+									if(isset($_SESSION['username'])){
+										echo "<h1>Editar perfil</h1>";
+										if(isset($result)){
+											echo '<ul>';
+											foreach($result as $error){
+											if($error == "Su perfil se ha editado correctamente"){
+												echo '<li class = "resultOk">'.$error.'</li>';
+											} else {
+												echo '<li class = "resultError">'.$error.'</li>';
+											}
+											}
+											echo '</ul>';
 										}
-										}
-										echo '</ul>';
-									}
 								?>	
                                 <p> 
                                     <label> Nombre </label>
@@ -90,6 +92,10 @@
 										<input type="submit" value="Finalizar" /> 
 									</a>
 								</p>
+							<?php	
+								}
+								else echo "<p>No eres un usuario logeado.</p>";
+							?>
                             </form>
                         </div>
 						
