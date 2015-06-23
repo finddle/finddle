@@ -26,7 +26,7 @@
           <li role="presentation"><a href="<?= ROOT_DIR?>/evento/crear">Añadir evento</a></li>
         </ul>
       </div>
-      <div class="container-fixed col-xs-8 col-sm-8 col-md-6">
+      <div class="container-fixed col-xs-8 col-sm-8 col-md-9">
 		  <div id="contenido">
 			  <div class="transEventos">
 				<?php
@@ -48,8 +48,7 @@
 		  </div>
 	  </div>
       <div class="clearfix visible-xs-block visible-sm-block"></div>
-      <div class="sidebar-right container-fixed col-xs-4 col-sm-4 col-md-3">
-      </div>
+      
     </div>
   </div>
   <!--Fin Contenido-->

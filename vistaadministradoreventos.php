@@ -75,7 +75,7 @@
                   else{
                     echo '<td>No</td>';
                   }
-                  echo '<td><button type="button" class="btn btn-default btn-xs s" id="send_'.$evento['ID'].'"><span class="glyphicon glyphicon-save" aria-hidden="true"></span> Guardar</button>';
+                  echo '<td><button type="button" class="btn btn-default btn-xs s" id="send'.$evento['ID'].'"><span class="glyphicon glyphicon-save" aria-hidden="true"></span> Guardar</button>';
                   echo     '<button type="button" class="btn btn-default btn-xs x" id="del_'.$evento['ID'].'"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Eliminar</button>';    
                   echo     '<button type="button" class="btn btn-default btn-xs edt" id="edt_'.$evento['ID'].'"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Editar</button>';
                  if($evento['Activo'] == 1){
@@ -140,8 +140,8 @@ $(".s").click(function() {
   var evento = parseInt($(this).attr("id").substring("del_".length));
   var name = $(this).parent().parent().children().children()[0]['value'];
   var description = $(this).parent().parent().children().children()[1]['value'];
-  var price = parseFloat($(this).parent().parent().children().children()[3]['value']);
-  var pro = $(this).parent().parent().children().children()[5]['value'];
+  var price = parseFloat($(this).parent().parent().children().children()[2]['value']);
+  var pro = $(this).parent().parent().children().children()[3]['value'];
   
   $.post(url+"/includes/php/ejecutarEditarEvento.php",{id:evento, nombre: name, descripcion: description,  precio: price, promotor: pro}, function(data){
  if(data){
