@@ -310,15 +310,15 @@ function desactivarEvento($id){
 }
 
 
-function editarEventoAdmin($id, $nombre, $descripcion, $fecha, $precio, $promotor){
+function editarEventoAdmin($id, $nombre, $descripcion, $precio, $promotor){
 	global $mysqli;
-	$args = array($nombre, $descripcion, $fecha, $precio, $promotor, $id);
+	$args = array($nombre, $descripcion, $precio, $promotor, $id);
 	sanitizeArgs($args);	
 	
-	$pst = $mysqli->prepare("UPDATE eventos SET Nombre = ? , Descripcion = ? , Fecha = ? , Precio = ? , Promotor = ?
+	$pst = $mysqli->prepare("UPDATE eventos SET Nombre = ? , Descripcion = ? , Precio = ? , Promotor = ?
 							WHERE ID = ? ");
 	
-	$pst->bind_param("ssiisi", $args[0], $args[1], $args[2], $args[3], $args[4], $args[5]);
+	$pst->bind_param("ssdsi", $args[0], $args[1], $args[2], $args[3], $args[4]);
 	$pst->execute();
 	$result = $pst->get_result();
 	

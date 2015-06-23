@@ -23,8 +23,8 @@
     <div class="container">
       <div class="sidebar-left container-fixed col-xs-4 col-sm-4 col-md-3 ">
         <ul class="nav nav-pills nav-stacked nav-pills-stacked-example">
-          <li role="presentation" class="active"><a href="<?= ROOT_DIR?>/administrar/eventos">Gestión de eventos</a></li>
           <li role="presentation"><a href="<?= ROOT_DIR?>/administrar/usuarios">Gestión de usuarios</a></li>
+          <li role="presentation" class="active"><a href="<?= ROOT_DIR?>/administrar/eventos">Gestión de eventos</a></li>
         </ul>
       </div>
       <div class="container-fixed col-xs-8 col-sm-8 col-md-9">
@@ -56,7 +56,7 @@
                   echo '<td>'.$evento['ID'].'</td>';
                   echo '<td><input class="middleInput" text="submit" disabled ="true" name="role" id="nombreEvento" value="'.$evento['Nombre'].'"/></td>';
                   echo '<td><input class="largeInput" text="submit" disabled ="true" name="role" id="descripcionEvento" value="'.$evento['Descripcion'].'"/></td>';
-                  echo '<td><input class="middleInput" text="submit" disabled ="true" name="role" id="fechaEvento" value="'.$evento['Fecha'].'"/></td>';
+                  echo '<td>'.$evento['Fecha'].'</td>';
                   echo '<td><input class="extraSmallInput" text="submit" disabled ="true" name="role" id="precioEvento" value="'.$evento['Precio'].'"/></td>';
                   
                   if($evento['Tipo'] == 1){
@@ -139,11 +139,10 @@ $(".s").click(function() {
   var evento = parseInt($(this).attr("id").substring("del_".length));
   var name = $(this).parent().parent().children().children()[0]['value'];
   var description = $(this).parent().parent().children().children()[1]['value'];
-  var date = $(this).parent().parent().children().children()[2]['value'];
-  var price = parseInt($(this).parent().parent().children().children()[3]['value']);
+  var price = parseFloat($(this).parent().parent().children().children()[3]['value']);
   var pro = $(this).parent().parent().children().children()[5]['value'];
   
-  $.post(url+"/includes/php/ejecutarEditarEvento.php",{id:evento, nombre: name, descripcion: description, fecha: date, precio: price, promotor: pro}, function(data){
+  $.post(url+"/includes/php/ejecutarEditarEvento.php",{id:evento, nombre: name, descripcion: description,  precio: price, promotor: pro}, function(data){
 if(data)
  location.reload(true);});
   }); 

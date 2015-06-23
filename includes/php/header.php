@@ -35,9 +35,28 @@ function peticionClick(button){
         </div>
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            <li><a href="<?= ROOT_DIR?>/peliculas">Cine</a></li>
-            <li><a href="<?= ROOT_DIR?>/fiestas">Fiestas</a></li>
-            <a id="root_app" type="hidden" href="<?= ROOT_DIR?>"></a>
+            
+            <?php 
+              if(isset($_SESSION['rol']) &&   $_SESSION['rol'] == "admin"){
+                echo'<li><a href="'.ROOT_DIR.'/peliculas">Cine</a></li>';
+                echo'<li><a href="'.ROOT_DIR.'/fiestas">Fiestas</a></li>';
+                echo'<li><a href="'.ROOT_DIR.'/administrar/usuarios">Administración</a></li>';
+                echo'<a id="root_app" type="hidden" href="'.ROOT_DIR.'"></a>';
+              }
+                else if (isset($_SESSION['rol']) &&   $_SESSION['rol'] == "promotor") {
+                echo'<li><a href="'.ROOT_DIR.'/peliculas">Cine</a></li>';
+                echo'<li><a href="'.ROOT_DIR.'/fiestas">Fiestas</a></li>';
+                echo'<li><a href="'.ROOT_DIR.'/promotor">Administración</a></li>';
+                echo'<a id="root_app" type="hidden" href="'.ROOT_DIR.'"></a>';
+                  # code...
+                }else{
+                echo'<li><a href="'.ROOT_DIR.'/peliculas">Cine</a></li>';
+                echo'<li><a href="'.ROOT_DIR.'/fiestas">Fiestas</a></li>';
+                echo'<a id="root_app" type="hidden" href="'.ROOT_DIR.'"></a>';
+              }
+
+             ?>
+
           </ul>
           <ul class="nav navbar-nav navbar-right">
             <li>
