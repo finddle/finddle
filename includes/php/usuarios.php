@@ -45,7 +45,7 @@ function formEditUser($params, $img){
 	$imagen = ("includes/data/users/".$nombreimg);
 	
 	$validParams = true;
-	$result = [];
+	$result = [];	
 	
 	if(!preg_match("/^[a-zA-z0-9_-]{4,18}$/",$contrasena)){
 		$validParams = false;
@@ -59,10 +59,14 @@ function formEditUser($params, $img){
 			$result[] = 'Error al mover el archivo';
     }
 
-	if($archivoimg['error'] > 0)
+	if($archivoimg['error'] > 0){
+		$validParams = false;
     	$result[] ="An error ocurred when uploading.";
-	if($archivoimg['size'] > 10000000)
+	}
+	if($archivoimg['type'] != 'image/png' && $archivoimg['type'] != 'image/jpeg'){
     	$result[] ="File uploaded exceeds maximum upload size.";
+		$validParams = false;
+	}
 	
 	if ( $validParams ) {
 		$hashedpass = password_hash($contrasena.PIMIENTA, PASSWORD_BCRYPT);
@@ -141,7 +145,7 @@ function login($nombreUsuario, $password) {
       
       $ok=true;
       if($usuario['Tipo']=="admin"){
-      	header("Location: ".ROOT_DIR."/administrar");	
+      	header("Location: ".ROOT_DIR."/vistaadministradorusuarios.php");	
       }else if($usuario['Tipo']=="promotor"){
       	header("Location: ".ROOT_DIR."/promotor");
       }else{
