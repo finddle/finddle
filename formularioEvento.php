@@ -3,7 +3,7 @@
 <html>
     <head>
     <title>Finddle</title>
-    <meta charset="utf-8" />
+    <meta charset="UTF-8">
     <!-- Latest compiled CSS -->
     <link rel="stylesheet" type="text/css" href="<?= ROOT_DIR?>/includes/css/bootstrap.css">
     <!-- Optional theme -->
@@ -32,14 +32,13 @@
 		  <div class="container">
 		  <div class="sidebar-left container-fixed col-xs-4 col-sm-4 col-md-3 ">
         <ul class="nav nav-pills nav-stacked nav-pills-stacked-example">
-          <li role="presentation"><a href="vistapromotor.php">Ver eventos propios</a></li>
-          <li role="presentation"class="active"><a href="formularioEvento.php">Añadir eventos</a></li>
+          <li role="presentation"><a href="<?= ROOT_DIR?>/promotor">Ver eventos propios</a></li>
+          <li role="presentation" class="active"><a href="<?= ROOT_DIR?>/evento/crear">Añadir eventos</a></li>
         </ul>
       </div>
+      <?php if(isset($_SESSION['username']) && (($_SESSION['rol']=="promotor")||($_SESSION['rol']=="admin"))){?>
 		  <section>				
-                <div id="container_demo" >
-                    <a class="hiddenanchor" id="toregister"></a>
-                    <a class="hiddenanchor" id="tologin"></a>
+                <div id="container_demo">
                     <div id="wrapper">
                         <div id="login" class="animate form">
                             <form  method = "POST" enctype='multipart/form-data' action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>"> 
@@ -99,21 +98,12 @@
                     </div>
                 </div>  
             </section>
+            <?php }else echo '<h1>No tienes permiso para acceder a esta pagina</h1>';?>
         </div>
 		
 		<?php 
 			require(__DIR__.'/includes/php/footer.php');
 		?>
-		
-		<script>
-			$("#nick").change(function(){
-			<?php 
-			require_once(__DIR__."/usuariosBD.php");
-			?>
-			var url="buscarNick()nick=" + $("#nick").val();
-			$.get(url,usuarioExiste);
-			});							
-		</script>	
     </body>
 </html>
 <?php require(__DIR__.'/includes/php/cleanup.php');?>

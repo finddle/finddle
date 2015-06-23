@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 05, 2015 at 02:03 PM
+-- Generation Time: Jun 23, 2015 at 01:39 PM
 -- Server version: 5.6.24
 -- PHP Version: 5.6.8
 
@@ -36,9 +36,13 @@ CREATE TABLE IF NOT EXISTS `amigos` (
 --
 
 INSERT INTO `amigos` (`NickUsuario1`, `NickUsuario2`) VALUES
-('AndresAJ', 'gandalf'),
-('gandalf', 'paco'),
-('paco', 'titomc');
+('Fran', 'Adri'),
+('Fran', 'Omar'),
+('muchachoDry', 'Fran'),
+('muchachoDry', 'Omar'),
+('muchachoDry', 'Sergio'),
+('Sergio', 'AndresAJ'),
+('Sergio', 'Fran');
 
 -- --------------------------------------------------------
 
@@ -56,12 +60,24 @@ CREATE TABLE IF NOT EXISTS `asiste` (
 --
 
 INSERT INTO `asiste` (`NickUsuario`, `IDEvento`) VALUES
-('gandalf', 1),
-('paco', 1),
-('paco', 2),
-('paco', 7),
-('AndresAJ', 17),
-('paco', 17);
+('Fran', 1),
+('Sergio', 1),
+('AndresAJ', 2),
+('Fran', 4),
+('muchachoDry', 5),
+('muchachoDry', 6),
+('Omar', 6),
+('Adri', 7),
+('Sergio', 8),
+('Adri', 9),
+('muchachoDry', 9),
+('Adri', 10),
+('Fran', 10),
+('muchachoDry', 10),
+('Sergio', 12),
+('AndresAJ', 13),
+('Adri', 14),
+('Sergio', 17);
 
 -- --------------------------------------------------------
 
@@ -75,20 +91,29 @@ CREATE TABLE IF NOT EXISTS `comentarios` (
   `IDEvento` int(11) NOT NULL,
   `Texto` text NOT NULL,
   `Fecha` datetime NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `comentarios`
 --
 
 INSERT INTO `comentarios` (`ID`, `NickUsuario`, `IDEvento`, `Texto`, `Fecha`) VALUES
-(1, 'AndresAJ', 1, 'sddssdsdd', '2015-06-05 11:19:04'),
-(3, 'paco', 1, 'holi', '2015-06-05 11:21:17'),
-(4, 'paco', 1, '', '2015-06-05 11:36:28'),
-(5, 'paco', 9, 'vviva palestina', '2015-06-05 11:39:19'),
-(6, 'paco', 1, 'dfg', '2015-06-05 11:58:27'),
-(7, 'paco', 17, 'fdg', '2015-06-05 11:58:45'),
-(8, 'paco', 1, 'étodo updateRow que permita actualizar una fila de una tabla cuyo nombre se pasará como parámetro. Larnfunción también recibirá los nombres de las columnas a actualizar, los nuevos valores de dichas columnas, losrnnombres de columnas.étodo updateRow que permita actualizar una fila de una tabla cuyo nombre se pasará como parámetro. Larnfunción también recibirá los nombres de las columnas a actualizar, los nuevos valores de dichas columnas, losrnnombres de columnas.étodo updateRow que permita actualizar una fila de una tabla cuyo nombre se pasará como parámetro. Larnfunción también recibirá los nombres de las columnas a actualizar, los nuevos valores de dichas columnas, losrnnombres de columnas', '2015-06-05 12:03:50');
+(12, 'MuchachoDry', 5, 'Vamos! Que ganas!!', '2015-06-23 11:23:51'),
+(13, 'MuchachoDry', 9, 'DaSilva mi cantante favorito!!!!', '2015-06-23 11:26:27'),
+(14, 'MuchachoDry', 10, 'Por fin el juego continúa...', '2015-06-23 11:35:55'),
+(16, 'Sergio', 17, 'Pinta bien...', '2015-06-23 11:46:47'),
+(17, 'Sergio', 1, 'Por fin puedo ir este año!', '2015-06-23 11:49:17'),
+(18, 'Fran', 10, 'Ya te digo MuchachoDry! por fin!', '2015-06-23 11:51:49'),
+(19, 'Fran', 10, 'PD: pillo sitio!', '2015-06-23 11:52:12'),
+(20, 'Fran', 1, 'yo soy #sounder', '2015-06-23 11:52:57'),
+(21, 'Fran', 4, 'Que ganas de ver a Carl Cox!!!', '2015-06-23 11:54:02'),
+(22, 'Adri', 10, 'En Estados Unidos ha sido un éxito chavales...', '2015-06-23 11:56:38'),
+(23, 'Adri', 7, 'Los Suaves!!!!!!', '2015-06-23 11:57:44'),
+(24, 'Adri', 9, 'Yo creo que es mejor Shabu...', '2015-06-23 11:58:06'),
+(25, 'AndresAJ', 2, 'Voy con todos mis amigos! Esperamos pasar un buen rato!', '2015-06-23 12:06:38'),
+(26, 'MuchachoDry', 9, 'pero que me dices Adri!!!!!!!!!!', '2015-06-23 12:08:32'),
+(28, 'Omar', 6, 'Alguien quiere acompañarme? :)', '2015-06-23 12:34:30'),
+(29, 'Omar', 12, 'Wow sergio, te va la marcha?', '2015-06-23 12:37:35');
 
 -- --------------------------------------------------------
 
@@ -103,32 +128,50 @@ CREATE TABLE IF NOT EXISTS `compras` (
   `NumEntradas` int(11) NOT NULL,
   `Butacas` int(11) DEFAULT NULL,
   `PrecioTotal` double NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=61 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=125 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `compras`
 --
 
 INSERT INTO `compras` (`Codigo`, `NickUsuario`, `IDEvento`, `NumEntradas`, `Butacas`, `PrecioTotal`) VALUES
-(21, 'paco', 17, 3, 83, 5),
-(24, 'paco', 17, 2, 11, 5),
-(25, 'paco', 17, 2, 12, 5),
-(32, 'paco', 17, 1, 145, 5),
-(33, 'paco', 17, 1, 139, 5),
-(34, 'paco', 17, 2, 35, 5),
-(42, 'paco', 17, 1, 39, 5),
-(43, 'paco', 17, 1, 53, 5),
-(44, 'paco', 17, 1, 48, 5),
-(51, 'paco', 17, 6, 142, 5),
-(52, 'paco', 17, 6, 127, 5),
-(53, 'paco', 17, 6, 143, 5),
-(54, 'paco', 17, 6, 128, 5),
-(55, 'paco', 17, 6, 113, 5),
-(56, 'paco', 17, 6, 112, 5),
-(57, 'AndresAJ', 17, 3, 125, 5),
-(58, 'AndresAJ', 17, 3, 95, 5),
-(59, 'AndresAJ', 17, 3, 80, 5),
-(60, 'paco', 1, 4, NULL, 200);
+(88, 'muchachoDry', 5, 2, NULL, 20),
+(89, 'muchachoDry', 9, 1, NULL, 10),
+(90, 'muchachoDry', 6, 1, NULL, 12),
+(91, 'muchachoDry', 10, 2, 1, 5),
+(92, 'muchachoDry', 10, 2, 2, 5),
+(93, 'Omar', 6, 1, NULL, 12),
+(94, 'Sergio', 17, 3, 66, 5),
+(95, 'Sergio', 17, 3, 67, 5),
+(96, 'Sergio', 17, 3, 68, 5),
+(97, 'Sergio', 12, 4, 52, 5),
+(98, 'Sergio', 12, 4, 53, 5),
+(99, 'Sergio', 12, 4, 54, 5),
+(100, 'Sergio', 12, 4, 51, 5),
+(101, 'Sergio', 1, 5, NULL, 250),
+(102, 'Sergio', 8, 1, NULL, 150),
+(103, 'Fran', 10, 3, 67, 5),
+(104, 'Fran', 10, 3, 68, 5),
+(105, 'Fran', 10, 3, 69, 5),
+(106, 'Fran', 1, 1, NULL, 50),
+(107, 'Fran', 4, 2, NULL, 130),
+(108, 'Adri', 10, 2, 51, 5),
+(109, 'Adri', 10, 2, 52, 5),
+(110, 'Adri', 14, 6, 37, 5),
+(111, 'Adri', 14, 6, 38, 5),
+(112, 'Adri', 14, 6, 39, 5),
+(113, 'Adri', 14, 6, 36, 5),
+(114, 'Adri', 14, 6, 40, 5),
+(115, 'Adri', 14, 6, 41, 5),
+(116, 'Adri', 7, 4, NULL, 100),
+(117, 'Adri', 9, 1, NULL, 10),
+(118, 'AndresAJ', 13, 5, 35, 5),
+(119, 'AndresAJ', 13, 5, 50, 5),
+(120, 'AndresAJ', 13, 5, 65, 5),
+(121, 'AndresAJ', 13, 5, 68, 5),
+(122, 'AndresAJ', 13, 5, 53, 5),
+(123, 'AndresAJ', 2, 10, NULL, 300),
+(124, 'Fran', 10, 1, 3, 5);
 
 -- --------------------------------------------------------
 
@@ -147,7 +190,7 @@ CREATE TABLE IF NOT EXISTS `eventos` (
   `Tipo` tinyint(1) NOT NULL,
   `Promotor` varchar(100) NOT NULL,
   `Activo` tinyint(1) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `eventos`
@@ -158,7 +201,7 @@ INSERT INTO `eventos` (`ID`, `Nombre`, `Descripcion`, `Fecha`, `Precio`, `Imagen
 (2, 'Rock in Rio', 'Festival de musica electronica situado en Madrid', '2015-06-24 00:00:00', 30, 'includes/data/eventos/rir.jpg', 3000, 0, 'AndresAJ', 1),
 (4, 'Festival de monegros', 'Festival de musica electronica en medio del desierto, disfruta de los mejores DJs en una alocada fiesta.', '2015-06-10 21:00:00', 65, 'includes/data/eventos/monegros.jpg', 10000, 0, 'AndresAJ', 1),
 (5, 'Grimmey por Palestina', 'Festival de RAP cuyos beneficios seran entregados a una ONG para enviarlos a Palestina. Se puede pagar con alimentos no perecederos.', '2015-06-13 21:00:00', 10, 'includes/data/eventos/grimmpalestina.jpg', 1000, 0, 'AndresAJ', 1),
-(6, 'BOA Fest', 'Festival de los grandes cantantes de HIP-HOP en el auditorio Miguel Rios de Rivas Vaciamadrid.', '2015-06-15 21:00:00', 12, 'includes/data/eventos/boafest.jpg', 750, 0, 'AndresAJ', 1),
+(6, 'BOA Fest', 'Festival de los grandes cantantes de HIP-HOP en el auditorio Miguel Rios de Rivas Vaciamadrid.', '2015-06-15 21:00:00', 12, 'includes/data/eventos/boafest.jpg', 7, 0, 'AndresAJ', 1),
 (7, 'Rivas Rock', 'Festival de Rock en el auditorio Miguel Rios de Rivas Vaciamadrid. Reunion de los clasicos del rock.', '2015-06-19 21:00:00', 25, 'includes/data/eventos/rivasrock.jpg', 750, 0, 'AndresAJ', 1),
 (8, 'Tomorrowland', 'Festival de musica electronica en un bonito lago de la ciudad de Boom, Belgica.', '2015-06-21 21:00:00', 150, 'includes/data/eventos/tomorrowland.jpg', 10000, 0, 'AndresAJ', 1),
 (9, 'Rap por palestina', 'Concierto de musica reaggue y rap para recaudar fondos que ayuden a la causa Palestina.', '2015-07-03 21:00:00', 10, 'includes/data/eventos/palestina.jpg', 750, 0, 'AndresAJ', 1),
@@ -186,7 +229,22 @@ CREATE TABLE IF NOT EXISTS `mensajes` (
   `TextoMensaje` text NOT NULL,
   `Fecha` datetime NOT NULL,
   `Leido` tinyint(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `mensajes`
+--
+
+INSERT INTO `mensajes` (`ID`, `NickEmisor`, `NickReceptor`, `Correo`, `Titulo`, `TextoMensaje`, `Fecha`, `Leido`) VALUES
+(4, 'Omar', 'MuchachoDry', '', 'Boa fest', 'Hola Muchacho,\r\ncon quien vas al BOA fest?\r\nUn saludo.', '2015-06-23 11:37:52', 0),
+(5, 'Sergio', 'MuchachoDry', '', 'hola', 'que tal todo Omar?\r\nA ver cuando nos vemos eh, que ya hace tiempo que no te veo el pelo por la uni y perdi tu numero, pues me robaron el movil ', '2015-06-23 11:41:42', 1),
+(6, 'Sergio', 'MuchachoDry', '', 'El ultimo trago', 'Te vienes a ver la del Ultimo trago? He leido que esta bien', '2015-06-23 11:47:41', 1),
+(7, 'Fran', 'Sergio', '', 'Arenal', 'Nos vemos en el Arenal Sound compi!', '2015-06-23 11:51:23', 1),
+(8, 'Adri', 'Fran', '', 'Vente al Palestina', 'por que no vienes al RAP por palestina de Grimey tio?\r\nYa vamos MuchachoDry y yo! Vente!!', '2015-06-23 12:01:52', 0),
+(9, 'AndresAJ', 'Sergio', '', 'Una pregunta', 'Sergio sabes si este año las fiestas de Segovia caen en fin de semana?', '2015-06-23 12:05:45', 0),
+(10, 'MuchachoDry', 'Sergio', '', 'Omar??', 'como que Omar? creo que te has confundido...', '2015-06-23 12:07:34', 0),
+(11, 'MuchachoDry', 'Fran', '', 'Vacaciones', 'Fran te vienes a Javea en Julio?? tengo ganas de playa', '2015-06-23 12:11:20', 0),
+(12, 'Omar', 'MuchachoDry', '', 'Quedada', 'Habiamos pensado en quedar mañana a las 7 a tomar unos ágapes. Te apuntas? Espero confirmación.', '2015-06-23 12:35:45', 0);
 
 -- --------------------------------------------------------
 
@@ -204,7 +262,12 @@ CREATE TABLE IF NOT EXISTS `peticionesamistad` (
 --
 
 INSERT INTO `peticionesamistad` (`NickUsuario1`, `NickUsuario2`) VALUES
-('paco', 'AndresAJ');
+('Adri', 'Omar'),
+('AndresAJ', 'Fran'),
+('AndresAJ', 'muchachoDry'),
+('AndresAJ', 'Omar'),
+('MuchachoDry', 'Adri'),
+('Omar', 'Sergio');
 
 -- --------------------------------------------------------
 
@@ -228,10 +291,15 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
 --
 
 INSERT INTO `usuarios` (`Nick`, `Contrasena`, `Correo`, `Nombre`, `Apellidos`, `Edad`, `Avatar`, `Tipo`) VALUES
-('AndresAJ', '$2y$10$qFiVsUSYp3YNlC/qz4.F/ectSocojiTGu9cwb7GMn50u4mGdLMBSO', 'andresita@gg.com', 'Andresita', 'Aguirre', 20, 'includes/data/users/f.jpg', 'promotor'),
-('gandalf', '$2y$10$bmFFru3Vha1I7uSzo4NhdODTrM3tdNDHAb71KoD0hX/m9rM23lIoK', 'itsravenbooking@gmail.com', 'Paquito', 'El chocolatero', 23, NULL, 'admin'),
-('paco', '$2y$10$3GmlDzQJWKtrwvr0XVlT8.qL7tf/7Coz3oaP01/qZkmXa2tzppPXm', 'itsravenbooking@gmail.com', 'Paquito', 'eeee', 23, NULL, 'usuario'),
-('titomc', '$2y$10$A/fQzkFnog/RucTrzbya3OmfW1WbUltXw3SBNQ74ePXJM2XUR.chS', 'itsravenbooking@gmail.com', 'Paquito', 'eeee', 23, NULL, 'promotor');
+('admin', '$2y$10$DqRigTe1daOoaJYDRInRruLEDpRgJyU8TwFP5Bg.DASF/cUEj2c0a', 'itsravenbooking@gmail.com', 'Administrador', 'del Sistema', 50, NULL, 'admin'),
+('Adri', '$2y$10$ZQVkqOwc2nbHcDi2o1ARNuzyksLUP9TDfLTiW4R2hnVQYr47hfe/O', 'adri@gmail.com', 'Adrian', 'Garcia Garcia', 32, 'includes/data/users/f10.jpg', 'usuario'),
+('AndresAJ', '$2y$10$z2BKDyQrB7DwFn20TgcxE.y33DCg8.zcF/e7aoTYFR65yqIF/OkIG', 'andragui@gmail.com', 'Andres', 'Aguirre Juarez', 21, NULL, 'promotor'),
+('Enriquito', '$2y$10$HvTIXQSAehev66rcm3hGH.Pa9BCsUxssnYlbvirQj1ATwxWWtTena', 'enri@gmail.com', 'Enrique Javier', 'Laguna Munuera', 19, NULL, 'usuario'),
+('Fran', '$2y$10$QobxYUnhEb43HqRTpqP9oOA7ZAnFDGfHYvG1QKXGgvtGk5aUMmBzm', '0', 'Francisco', 'Garcia Martinez', 22, 'includes/data/users/20130712_192931.jpg', 'usuario'),
+('MuchachoDry', '$2y$10$02LAksA4nTXnpqG9hI2VMe2RypsL0Clk.1aNR7kKUmQ6qakJ7GBEe', '0', 'Adrian', 'Calvo Lanza', 24, 'includes/data/users/D_gomez.png', 'usuario'),
+('Omar', '$2y$10$avWORcdMPN.UTjY31Ve71etStywp5zmMCPGgcQl6Jvv3cfPMSe2Sa', '0', 'Omar', 'Gaytan Silva', 25, 'includes/data/users/Gandalf.jpg', 'usuario'),
+('Sergio', '$2y$10$E68QIrdtJCFeEkx.g/hR5upF.jkdUkrROMR/5izk4i01xPxrnIiq.', '0', 'Sergio', 'Raven', 22, 'includes/data/users/f1.jpg', 'usuario'),
+('UsuarioAnonimo', '', '', '', '', 0, NULL, 'banned');
 
 --
 -- Indexes for dumped tables
@@ -293,22 +361,22 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT for table `comentarios`
 --
 ALTER TABLE `comentarios`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=9;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=31;
 --
 -- AUTO_INCREMENT for table `compras`
 --
 ALTER TABLE `compras`
-  MODIFY `Codigo` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=61;
+  MODIFY `Codigo` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=125;
 --
 -- AUTO_INCREMENT for table `eventos`
 --
 ALTER TABLE `eventos`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=18;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=23;
 --
 -- AUTO_INCREMENT for table `mensajes`
 --
 ALTER TABLE `mensajes`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=13;
 --
 -- Constraints for dumped tables
 --

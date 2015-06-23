@@ -3,7 +3,7 @@
 <html>
     <head>
         <title>Finddle</title>
-        <meta charset="utf-8" />
+        <meta charset="UTF-8">
 		<!-- Latest compiled CSS -->
 		  <link rel="stylesheet" type="text/css" href="<?= ROOT_DIR?>/includes/css/bootstrap.css">
 		  <!-- Optional theme -->
@@ -32,9 +32,9 @@
 		 <div class="container">
 		  <div class="sidebar-left container-fixed col-xs-4 col-sm-4 col-md-3 ">
 			<ul class="nav nav-pills nav-stacked nav-pills-stacked-example">
-			  <li role="presentation"><a href="nuevoMensaje.php">Nuevo Mensaje</a></li>
-			  <li role="presentation"><a href="mensajesBandeja.php">Bandeja de entrada</a></li>
-			  <li role="presentation"><a href="mensajesEnviados.php">Mensajes enviados</a></li>
+			  <li role="presentation"><a href="<?= ROOT_DIR?>/mensajes/nuevo">Nuevo Mensaje</a></li>
+	          <li role="presentation"><a href="<?= ROOT_DIR?>/mensajes/recibidos">Bandeja de entrada</a></li>
+	          <li role="presentation"><a href="<?= ROOT_DIR?>/mensajes/enviados">Mensajes enviados</a></li>
 			</ul>
 		  </div>
 		  <div id="contenidoPrincipal" class ="container-fixed col-xs-8 col-sm-8 col-md-6">
@@ -47,9 +47,9 @@
 			if(isset($_SESSION['offsetm'])){
 				unset($_SESSION['offsetm']);
 			}
-		  echo '<div id="comentario">'. '<p class="mHeader"><strong>De:</strong> '.$result['NickEmisor'];
-		  echo ' <strong>Titulo: </strong>'.$result['Titulo'].'<strong> Fecha: </strong>'.$result['Fecha'].'</p> ';
-		  echo '<p><strong>Contenido: </strong></p><p>'.$result['TextoMensaje'].'</p></div>';	  
+			echo '<div id="comentario">'. '<p class="mHeader"><strong>De:</strong> '.$result['NickEmisor'];
+			echo ' <strong>Titulo: </strong>'.$result['Titulo'].'<strong> Fecha: </strong>'.$result['Fecha'].'</p> ';
+			echo '<p><strong>Contenido: </strong></p><p>'.$result['TextoMensaje'].'</p></div>';	  
 		  ?>
 		  <form class="mForm" method = "POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>"> 
 			  <input type="text" name="titulo" placeholder='Titulo' required>

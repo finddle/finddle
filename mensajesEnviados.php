@@ -2,15 +2,14 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		  <title>Finddle</title>
-        <meta charset="utf-8" />
-		 <!-- Latest compiled CSS -->
-		<link rel="stylesheet" type="text/css" href="includes/css/bootstrap.css">
+		<title>Finddle</title>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" type="text/css" href="<?= ROOT_DIR?>/includes/css/bootstrap.css">
 		<!-- Optional theme -->
-		<link rel="stylesheet" type="text/css" href="includes/css/bootstrap-theme.min.css">
+		<link rel="stylesheet" type="text/css" href="<?= ROOT_DIR?>/includes/css/bootstrap-theme.min.css">
 		<!-- Personal CSS -->
-		<link rel="stylesheet" type="text/css" href="includes/css/mycss.css">
-		<link rel="stylesheet" type="text/css" href="includes/css/tablas.css">
+		<link rel="stylesheet" type="text/css" href="<?= ROOT_DIR?>/includes/css/mycss.css">
+		<link rel="stylesheet" type="text/css" href="<?= ROOT_DIR?>/includes/css/tablas.css">
 		 <!--Favicon-->
 		<link rel="shortcut icon" href="<?= ROOT_DIR?>/includes/img/favicon.png" />
 		<script src="<?= ROOT_DIR?>/includes/js/jquery.min.js"></script>
@@ -28,9 +27,9 @@
 				if(isset($_SESSION['username'])){
 			?>
 		
-				  <li role="presentation"><a href="nuevoMensaje.php">Nuevo Mensaje</a></li>
-				  <li role="presentation"><a href="mensajesBandeja.php">Bandeja de entrada</a></li>
-				  <li role="presentation" class="active"><a href="mensajesEnviados.php">Mensajes enviados</a></li>
+				  <li role="presentation"><a href="<?= ROOT_DIR?>/mensajes/nuevo">Nuevo Mensaje</a></li>
+		          <li role="presentation"><a href="<?= ROOT_DIR?>/mensajes/recibidos">Bandeja de entrada</a></li>
+		          <li role="presentation"><a href="<?= ROOT_DIR?>/mensajes/enviados">Mensajes enviados</a></li>
 				</ul>
 			  </div>
 			  <div id="contenidoPrincipal" class="container-fixed col-xs-8 col-sm-8 col-md-8">
@@ -53,14 +52,14 @@
 					  <td>'.$res['NickReceptor'].'</td>
 					  <td>'.$res['Fecha'].'</td>
 					  <td>
-						<a href= abrirMensajeEnviado.php?mensaje='.$res["ID"].' class="btn btn-default">Ver mensaje</a>
+						<a href="'.ROOT_DIR.'/mensaje/enviado/'.$res["ID"].'" class="btn btn-default">Ver mensaje</a>
 					  </td>
 					</tr>';
 					}
 				}
 				echo'</tbody>';
 			}else
-				echo "<p>No eres un usuario logeado.</p>";
+				echo "<h4>No eres un usuario logeado.</h4>";
 		?>
 		</table>
 		</div>

@@ -1,7 +1,6 @@
 <?php
 	require_once(__DIR__."/config.php");
 	
-	
 	/*Inserta en la tabla de peticionesamistad una nueva fila con los valores de $user1 y $user2*/
 	function enviarPeticion($user1, $user2){
 		global $mysqli;

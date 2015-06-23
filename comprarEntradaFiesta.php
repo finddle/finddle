@@ -3,7 +3,7 @@
 <html>
 <head>
   <title>Finddle</title>
-  <meta charset="utf-8" />
+  <meta charset="UTF-8">
   <!-- Latest compiled CSS -->
   <link rel="stylesheet" type="text/css" href="<?= ROOT_DIR?>/includes/css/bootstrap.css">
   <!-- Optional theme -->
@@ -42,7 +42,7 @@
 		  <div id="contenidoPrincipal" class="container-fixed col-xs-8 col-sm-8 col-md-10">
 			<?php
 			if(isset($_SESSION['username'])){
-				echo '<h1><img src="'.ROOT_DIR.'>/includes/img/toast.png"/> Elige tus entradas  <img src="'.ROOT_DIR.'/includes/img/toast.png"/></h1>';
+				echo '<h1><img src="'.ROOT_DIR.'>/includes/img/toastl.png"/> Elige tus entradas  <img src="'.ROOT_DIR.'/includes/img/toast.png"/></h1>';
 				$evento = getInfoEvento($_GET['evento']);
 				$_SESSION['compra']['precioEntrada'] = $evento['Precio'];
 				$_SESSION['compra']['evento'] = $evento['ID'];

@@ -2,10 +2,8 @@
 <!DOCTYPE HTML>
 <html>
 	<head>
-		 <meta charset="utf-8">
-		 <meta name="viewport" content="width=device-width, initial-scale=1">
+		 <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1">
 		 <title>Finddle</title>
-		<meta charset="utf-8" />
     <!-- Latest compiled CSS -->
     <link rel="stylesheet" type="text/css" href="<?= ROOT_DIR?>/includes/css/bootstrap.css">
     <!-- Optional theme -->

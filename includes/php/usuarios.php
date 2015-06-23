@@ -45,7 +45,7 @@ function formEditUser($params, $img){
 	$imagen = ("includes/data/users/".$nombreimg);
 	
 	$validParams = true;
-	$result = [];
+	$result = [];	
 	
 	if(!preg_match("/^[a-zA-z0-9_-]{4,18}$/",$contrasena)){
 		$validParams = false;
@@ -59,10 +59,14 @@ function formEditUser($params, $img){
 			$result[] = 'Error al mover el archivo';
     }
 
-	if($archivoimg['error'] > 0)
+	if($archivoimg['error'] > 0){
+		$validParams = false;
     	$result[] ="An error ocurred when uploading.";
-	if($archivoimg['size'] > 10000000)
+	}
+	if($archivoimg['type'] != 'image/png' && $archivoimg['type'] != 'image/jpeg'){
     	$result[] ="File uploaded exceeds maximum upload size.";
+		$validParams = false;
+	}
 	
 	if ( $validParams ) {
 		$hashedpass = password_hash($contrasena.PIMIENTA, PASSWORD_BCRYPT);
@@ -131,7 +135,7 @@ function login($nombreUsuario, $password) {
   if ( $usuario ) {
     $ok = password_verify($password.PIMIENTA, $usuario['Contrasena']) && $usuario['Tipo'] != "banned";
     if ($ok) {
-      $_SESSION['username'] = $nombreUsuario;
+      $_SESSION['username'] = $usuario['Nick'];
       $_SESSION['rol'] = $usuario['Tipo'];
       $foto = $usuario['Imagen'];
       if($foto == NULL){
@@ -140,7 +144,14 @@ function login($nombreUsuario, $password) {
       $_SESSION['picture'] = $foto;
       
       $ok=true;
-      header("Location: ".__DOC__."../../perfilUsuario.php");
+      if($usuario['Tipo']=="admin"){
+      	header("Location: ".ROOT_DIR."/administrar");	
+      }else if($usuario['Tipo']=="promotor"){
+      	header("Location: ".ROOT_DIR."/promotor");
+      }else{
+      	header("Location: ".ROOT_DIR."/usuarios/perfil");
+      }
+      
     } else {
       $ok = [];
       $ok[] = "Usuario o password no validos";

@@ -3,7 +3,7 @@
 <html>
 <head>
   <title>Finddle</title>
-  <meta charset="utf-8" />
+  <meta charset="UTF-8">
   <!-- Latest compiled CSS -->
   <link rel="stylesheet" type="text/css" href="<?= ROOT_DIR?>/includes/css/bootstrap.css">
   <!-- Optional theme -->
@@ -105,7 +105,7 @@
 		  },
 		  function(data) {
 			if(data == true){
-			  window.location = root_app+"/perfilUsuario.php";
+			  window.location = root_app+"/usuarios/perfil";
 
 			}else{
 			  alert("Ha habido un error con el procesamiento de su compra, intentalo de nuevo o contacta con un administrador.");

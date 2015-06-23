@@ -16,11 +16,13 @@ RewriteRule ^peliculas$ ./cartelera.php
 RewriteRule ^fiestas$ ./proximosEventos.php 
 RewriteRule ^cine/comprar/(\d+)*$ ./comprarEntradaCine.php?evento=$1
 RewriteRule ^fiesta/comprar/(\d+)*$ ./comprarEntradaFiesta.php?evento=$1
+RewriteRule ^evento/crear$ ./formularioEvento.php
 RewriteRule ^evento/(\d+)*$ ./infoEvento.php?evento=$1
 RewriteRule ^usuarios/perfil/editar$ ./editperfil.php
 RewriteRule ^usuarios/perfil$ ./perfilUsuario.php
 RewriteRule ^usuario/([a-zA-Z0-9_-]{3,16})$ ./perfilAmigo.php?amigo=$1
-RewriteRule ^mensajes/recibidos*$ ./mensajesBandeja.php
-RewriteRule ^mensajes/enviados*$ ./mensajesEnviados.php
+RewriteRule ^mensajes/recibidos$ ./mensajesBandeja.php
+RewriteRule ^mensajes/enviados$ ./mensajesEnviados.php
+RewriteRule ^mensajes/nuevo$ ./nuevoMensaje.php
 RewriteRule ^mensaje/recibido/(\d+)*$ ./abrirMensajeRecibido.php?mensaje=$1
 RewriteRule ^mensaje/enviado/(\d+)*$ ./abrirMensajeEnviado.php?mensaje=$1

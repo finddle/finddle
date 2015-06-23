@@ -1,9 +1,9 @@
-<?php require_once(__DIR__.'/includes/php/config.php');?>
+﻿<?php require_once(__DIR__.'/includes/php/config.php');?>
 <!DOCTYPE html>
 <html>
 	<head>
 	  <title>Finddle</title>
-	  <meta charset="utf-8" />
+	  <meta charset="UTF-8">
 		<!-- Latest compiled CSS -->
 		<link rel="stylesheet" type="text/css" href="<?= ROOT_DIR?>/includes/css/bootstrap.css">
 		<!-- Optional theme -->
@@ -34,15 +34,15 @@
 						$info = getInfoUser($_SESSION['username']);
 						
 						if(isset($info["Avatar"]))
-							echo "<div id='fotoPerfil'><a href='editPerfil.php' id='avatar'><img class='imgPerfil' src=",$info["Avatar"]," /></a></div>";
+							echo "<div id='fotoPerfil'><a href='".ROOT_DIR."/usuarios/perfil/editar' id='avatar'><img class='imgPerfil' src='".ROOT_DIR.'/'.$info["Avatar"]."'/></a></div>";
 						else
-							echo "<div id='fotoPerfil'><a href='editPerfil.php' id='avatar'><img class='imgPerfil' src='includes/img/usuario.png'/></a></div>";
+							echo "<div id='fotoPerfil'><a href='".ROOT_DIR."/usuarios/perfil/editar' id='avatar'><img class='imgPerfil' src='".ROOT_DIR."/includes/img/usuario.png'/></a></div>";
 						echo "<div class='span-sub-tittle'></div>";	
-						echo "<h2>", $info["Nick"], "</h2><div class='span-sub-tittle'></div>";
-						echo "<p>", $info["Nombre"], "</p>";
-						echo "<p>", $info["Apellidos"], "</p>";
-						echo "<p>", $info["Edad"], "</p>";
-						echo '<a href="'.ROOT_DIR.'/mensajesBandeja.php" class="btn btn-default">Mensajes</a>';
+						echo "<h2>". $info["Nick"]. "</h2><div class='span-sub-tittle'></div>";
+						echo "<p>". $info["Nombre"]. "</p>";
+						echo "<p>". $info["Apellidos"]. "</p>";
+						echo "<p>". $info["Edad"]. "</p>";
+						echo '<a href="'.ROOT_DIR.'/mensajes/recibidos" class="btn btn-default">Mensajes</a>';
 					}
 				?>
 			</div>
@@ -57,11 +57,11 @@
 						if(isset($eventos)){
 							foreach($eventos as $evento){
 								echo "<h3>", $evento["Nombre"], "</h3>";
-								echo '<p><a href ="'.ROOT_DIR.'/evento/'.$evento['IDEvento'].'"><img class="imgEventos" src ="'.$evento['Imagen'].'"/></a></p>';
+								echo '<p><a href ="'.ROOT_DIR.'/evento/'.$evento['IDEvento'].'"><img class="imgEventos" src ="'.ROOT_DIR.'/'.$evento['Imagen'].'"/></a></p>';
 								echo "<p>Nº Asistentes: ".countAsistentes($evento['IDEvento'],$evento['Tipo'])."</p><div class='span-sub-tittle'></div>";
 							}
 						}else
-							echo "<p> Este usuario no asiste a ning?n evento. </p>";
+							echo "<p> Este usuario no asiste a ningún evento. </p>";
 					}
 					else
 						echo "<p>Debes ser un usuario logeado.</p>";
@@ -86,7 +86,7 @@
 									echo '<p><a href ="'.ROOT_DIR.'/usuario/'.$amigo['NickUsuario1'].'">'.$amigo['NickUsuario1']. '</a></p>';
 								}
 							}else
-								echo "<p> Este usuario no tiene amigos :( </p>";
+								echo "<p> Haz nuevos amigos! </p>";
 						}
 					?>
 					</div>

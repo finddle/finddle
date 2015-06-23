@@ -19,7 +19,7 @@ function procesaCompra($compra,$usuario,$butacas,$nEntradas){
 			else{
 				insertaCompraFiesta($usuario,$compra['evento'],$nEntradas,$compra['precioTotal']);
 				unset($_SESSION['compra']);
-				header("Location: /finddle/perfilUsuario.php");
+				header("Location: ".ROOT_DIR."/usuarios/perfil");
 			}
 		}else{
 			unset($_SESSION['compra']);

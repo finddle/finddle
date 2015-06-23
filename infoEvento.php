@@ -5,7 +5,7 @@ require_once(__DIR__.'/includes/php/config.php');
 <html>
 	<head>
 	  <title>Finddle</title>
-	  <meta charset="utf-8" />
+	  <meta charset="UTF-8">
 	  <!-- Latest compiled CSS -->
 	  <link rel="stylesheet" type="text/css" href="<?= ROOT_DIR?>/includes/css/bootstrap.css">
 	  <!-- Optional theme -->
@@ -51,7 +51,7 @@ require_once(__DIR__.'/includes/php/config.php');
 				echo '<p>Descripcion: '.$info['Descripcion'].'</p>';
 				echo '<p>Plazas: '.$info['PlazasDisponibles'].'</p>';
 				echo '<p>Asistentes: '.$nAsistentes.'</p>';
-				echo '<p><img src ="'.ROOT_DIR.'/'.$info['Imagen'].'"/></p></div>';
+				echo '<div class="thumbnail"><img data-holder-rendered="true" src ="'.ROOT_DIR.'/'.$info['Imagen'].'"/></div></div>';
 				if(isset($_SESSION['username'])){
 					if($nAsistentes < $info['PlazasDisponibles']){
 						if($info['Tipo']==0){
@@ -62,8 +62,11 @@ require_once(__DIR__.'/includes/php/config.php');
 						$coment = getComentarios($evento);
 						if(isset($coment)){
 							foreach ($coment as $comentario) {
-								echo '<div id="comentario">';
-								echo '<p><a href ="'.ROOT_DIR.'/usuario/'.$comentario['NickUsuario'].'">'.$comentario['NickUsuario']. '</a></p>';
+								echo '<div id="comentario" >';
+								if($_SESSION['username'] == $comentario['NickUsuario']){
+									echo '<p><a href ="'.ROOT_DIR.'/usuarios/perfil">'.$comentario['NickUsuario']. '</a></p>';
+								}else
+									echo '<p><a href ="'.ROOT_DIR.'/usuario/'.$comentario['NickUsuario'].'">'.$comentario['NickUsuario']. '</a></p>';
 								echo '<p>',$comentario["Texto"], "</p>";
 
 								if ($comentario["NickUsuario"] == $_SESSION['username']) 
@@ -72,7 +75,7 @@ require_once(__DIR__.'/includes/php/config.php');
 							}
 						}
 						else
-							echo '<p> ¡Sé el primero en dejar un comentario! </p>';
+							echo '<p> Â¡SÃ© el primero en dejar un comentario! </p>';
 					}else{
 						echo '<p>Lo sentimos, las entradas se han agotado.</p>';
 					}
@@ -126,7 +129,7 @@ require_once(__DIR__.'/includes/php/config.php');
 						}
 					}
 					else
-						echo '<p> ¡Sé el primero en asistir al evento! </p>';
+						echo '<p> Â¡SÃ© el primero en asistir al evento! </p>';
 				}
 				?>
 		  </div>
