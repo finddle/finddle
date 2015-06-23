@@ -141,11 +141,14 @@ function comprobarFormularioEvento($params, $img, $rol){
 
 	if($rol == "admin") $activo=true;
 
-	if($archivoimg['error'] > 0)
+	if($archivoimg['error'] > 0){
+		$validParams = false;
     	$result[] ="An error ocurred when uploading.";
-	if($archivoimg['size'] > 10000000)
+	}
+	if($archivoimg['type'] != 'image/png' && $archivoimg['type'] != 'image/jpeg'){
     	$result[] ="File uploaded exceeds maximum upload size.";
-	
+		$validParams = false;
+	}
 	
 	if ( $validParams ) {
 		$result[] = "Evento creado correctamente";

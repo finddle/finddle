@@ -1,7 +1,7 @@
 <?php
 require_once(__DIR__."/config.php");
 
-/**/
+/*Devuelve un array de comentarios con su autor, dado el evento.*/
 function getComentarios($evento){
 	global $mysqli;
 
@@ -22,7 +22,7 @@ function getComentarios($evento){
 	return $comentarios;
 }
 
-/**/
+/*Inserta un comentario en la base de datos.*/
 function commentEvent($user, $event, $comment){
 	global $mysqli;
 	$args = array($user,$event,$comment);
@@ -39,7 +39,7 @@ function commentEvent($user, $event, $comment){
 
 }
 
-/**/
+/*Elmina un comentario de la base de datos*/
 function eliminarComentario($comment){
 
 	global $mysqli;

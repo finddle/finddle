@@ -25,8 +25,7 @@ function editarUsuario($nick, $contrasena, $correo, $nombre, $apellidos, $edad, 
 	
 	$pst = $mysqli->prepare("UPDATE usuarios SET Nombre = ?, Apellidos = ?, Edad = ?, Contrasena = ?, Correo = ?, Avatar = ? 
 							WHERE Nick = ?");
-	
-	$pst->bind_param("ssssiss", $args[0], $args[1], $args[2], $args[3], $args[4], $args[5], $args[6]);
+	$pst->bind_param("ssissss", $args[0], $args[1], $args[2], $args[3], $args[4], $args[5], $args[6]);
 	$pst->execute();
 	$result = $pst->get_result();
 	

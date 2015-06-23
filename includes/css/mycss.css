@@ -156,19 +156,19 @@ div.eventosElem{
 }
 
 #fotoAsistente{
-  border-width: 1px;
+  border-width: 2px;
   border-radius: 8px;
-  border-color: green;
+  border-color: #00FFFF;
   border-style: solid;
-  height: 100px;
-  width: 100px;
-  margin-top: 10px;
+  max-height: 100px;
+  max-width: 80px;
   text-align: center;
+  margin-top: 10px;
 }
 
 .imgAsistentes{
-  max-height: 99px;
-  max-width: 99px;
+  max-height: 94px;
+  max-width: 74px;
 }
 
 div#alCenter {
