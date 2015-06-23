@@ -69,7 +69,7 @@
 				}
 				echo'</tbody>';
 			}
-			else echo"<p>No eres un usuario logeado.</p>";
+			else echo"<h4>No eres un usuario logeado.</h4>";
 				?>
 				</table>
 			  </div>

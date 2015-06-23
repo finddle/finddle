@@ -87,7 +87,7 @@
                         </div>
 					<?php
 							}else
-								echo "<p>No eres un usuario logeado</p>";
+								echo "<h3>No eres un usuario logeado</h3>";
 						?>
             </section>
 			</div>
