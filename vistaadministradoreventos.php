@@ -25,6 +25,7 @@
         <ul class="nav nav-pills nav-stacked nav-pills-stacked-example">
           <li role="presentation"><a href="<?= ROOT_DIR?>/administrar/usuarios">Gestión de usuarios</a></li>
           <li role="presentation" class="active"><a href="<?= ROOT_DIR?>/administrar/eventos">Gestión de eventos</a></li>
+           <li role="presentation"><a href="<?= ROOT_DIR?>/evento/crear">Añadir evento</a></li>
         </ul>
       </div>
       <div class="container-fixed col-xs-8 col-sm-8 col-md-9">
@@ -143,8 +144,10 @@ $(".s").click(function() {
   var pro = $(this).parent().parent().children().children()[5]['value'];
   
   $.post(url+"/includes/php/ejecutarEditarEvento.php",{id:evento, nombre: name, descripcion: description,  precio: price, promotor: pro}, function(data){
-if(data)
- location.reload(true);});
+ if(data){
+    console.log("Editando evento: ", evento);
+    location.reload(true);
+  }else alert ("Error al editar evento: ", evento); });
   }); 
 
 $(".edt").click(function() {

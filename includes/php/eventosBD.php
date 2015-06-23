@@ -326,4 +326,5 @@ function editarEventoAdmin($id, $nombre, $descripcion, $precio, $promotor){
 }
 
 
+
 ?>

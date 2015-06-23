@@ -25,6 +25,7 @@
         <ul class="nav nav-pills nav-stacked nav-pills-stacked-example">
           <li role="presentation" class="active"><a href="<?= ROOT_DIR?>/administrar/usuarios">Gestión de usuarios</a></li>
           <li role="presentation"><a href="<?= ROOT_DIR?>/administrar/eventos">Gestión de eventos</a></li>
+          <li role="presentation"><a href="<?= ROOT_DIR?>/evento/crear">Añadir evento</a></li>
         </ul>
       </div>
 
