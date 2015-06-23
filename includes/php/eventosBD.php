@@ -70,6 +70,36 @@ function getEventos($tipo){
 	return $eventos;
 }
 
+function getEventosAdmin(){
+	global $mysqli;
+	$off = 0;
+	$pag_size = PAG_SIZE;
+	$eventos = null;
+
+	if (session_status() == PHP_SESSION_NONE) {
+   		session_start();
+	}
+	
+	if(!isset($_SESSION['offset'])){
+		$_SESSION['offset'] = 0;
+	}else{
+		$off = $_SESSION['offset'];
+		$off = $off + 3;
+		$_SESSION['offset'] = $off; 
+	}	
+	
+	$pst = $mysqli->prepare("SELECT * FROM eventos ");
+
+	$pst->execute();
+	$result = $pst->get_result();
+	while($row = $result->fetch_array(MYSQLI_ASSOC)){
+		$eventos[] = $row;
+	}
+	
+	$pst->close();
+	return $eventos;
+}
+
 /*Obtiene la información de un evento determinado por el parámetro*/
 function getInfoEvento($idEvento){
 	global $mysqli;
@@ -239,6 +269,61 @@ function getEventosPromotor($promotor){
 	return $eventos;
 }
 
+function eliminarEvento($id){
+	global $mysqli;
+
+	$args = array($id);
+	sanitizeArgs($args);
+
+	$pst = $mysqli->prepare("DELETE FROM eventos WHERE ID = ?");
+	$pst->bind_param("i",$args[0]);
+	$pst->execute();
+
+	$pst->close();
+}
+
+function activarEvento($id){
+	global $mysqli;
+
+	$args = array($id);
+	sanitizeArgs($args);
+
+	$pst = $mysqli->prepare("UPDATE eventos SET Activo = 1 WHERE ID = ?");
+	$pst->bind_param("i",$args[0]);
+	$pst->execute();
+
+	$pst->close();
+}
+
+
+function desactivarEvento($id){
+	global $mysqli;
+
+	$args = array($id);
+	sanitizeArgs($args);
+
+	$pst = $mysqli->prepare("UPDATE eventos SET activo = 0 WHERE ID = ?");
+	$pst->bind_param("i",$args[0]);
+	$pst->execute();
+
+	$pst->close();
+}
+
+
+function editarEventoAdmin($id, $nombre, $descripcion, $precio, $promotor){
+	global $mysqli;
+	$args = array($nombre, $descripcion, $precio, $promotor, $id);
+	sanitizeArgs($args);	
+	
+	$pst = $mysqli->prepare("UPDATE eventos SET Nombre = ? , Descripcion = ? , Precio = ? , Promotor = ?
+							WHERE ID = ? ");
+	
+	$pst->bind_param("ssdsi", $args[0], $args[1], $args[2], $args[3], $args[4]);
+	$pst->execute();
+	$result = $pst->get_result();
+	
+	$pst->close();
+}
 
 
 

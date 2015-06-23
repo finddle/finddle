@@ -32,10 +32,27 @@
 		  <div class="container">
 		  <div class="sidebar-left container-fixed col-xs-4 col-sm-4 col-md-3 ">
         <ul class="nav nav-pills nav-stacked nav-pills-stacked-example">
-          <li role="presentation"><a href="<?= ROOT_DIR?>/promotor">Ver eventos propios</a></li>
-          <li role="presentation" class="active"><a href="<?= ROOT_DIR?>/evento/crear">Añadir eventos</a></li>
+            <?php 
+
+            if(isset($_SESSION['rol']) &&   $_SESSION['rol'] == "admin"){
+
+                echo '<li role="presentation"><a href="'.ROOT_DIR.'/administrar/usuarios">Gestión de usuarios</a></li>';
+                echo '<li role="presentation"><a href="'.ROOT_DIR.'/administrar/eventos">Gestión de eventos</a></li>';
+                echo '<li role="presentation" class = "active"><a href="'.ROOT_DIR.'/eventos/crear">Añadir evento</a></li>';
+
+            }
+
+            else if (isset($_SESSION['rol']) &&   $_SESSION['rol'] == "promotor") {
+                echo '<li role="presentation"><a href="'.ROOT_DIR.'/promotor">Ver eventos propios</a></li>';
+                echo '<li role="presentation" class = "active"><a href="'.ROOT_DIR.'/eventos/crear">Añadir evento</a></li>';
+            }
+
+
+            ?>
+
         </ul>
       </div>
+      <div class="container-fixed col-xs-8 col-sm-8 col-md-9">
       <?php if(isset($_SESSION['username']) && (($_SESSION['rol']=="promotor")||($_SESSION['rol']=="admin"))){?>
 		  <section>				
                 <div id="container_demo">
@@ -100,7 +117,7 @@
             </section>
             <?php }else echo '<h1>No tienes permiso para acceder a esta pagina</h1>';?>
         </div>
-		
+		</div>
 		<?php 
 			require(__DIR__.'/includes/php/footer.php');
 		?>

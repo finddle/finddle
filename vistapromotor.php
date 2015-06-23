@@ -23,7 +23,7 @@
       <div class="sidebar-left container-fixed col-xs-4 col-sm-4 col-md-3 ">
         <ul class="nav nav-pills nav-stacked nav-pills-stacked-example">
           <li role="presentation"class="active"><a href="<?= ROOT_DIR?>/promotor">Ver eventos propios</a></li>
-          <li role="presentation"><a href="<?= ROOT_DIR?>/evento/crear">Añadir eventos</a></li>
+          <li role="presentation"><a href="<?= ROOT_DIR?>/evento/crear">Añadir evento</a></li>
         </ul>
       </div>
       <div class="container-fixed col-xs-8 col-sm-8 col-md-6">

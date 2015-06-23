@@ -300,4 +300,19 @@ p.mHeader{
 }
 #logofindd img{
   padding-top: 4px;
+
+.extraSmallInput{
+  width: 25px;
+}
+
+.smallInput{
+  width: 80px;
+}
+
+.middleInput{
+  width: 140px;
+}
+
+.largeInput{
+  width:220px;
 }

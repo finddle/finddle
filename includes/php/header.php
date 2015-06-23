@@ -40,10 +40,11 @@ function peticionClick(button){
             <?php
             if(isset($_SESSION['username'])&&$_SESSION['rol']=="admin"){
                echo '<li><a href="<?= ROOT_DIR?>/administrar/usuarios">Administrar</a></li>';
-             }else if(isset($_SESSION['username'])&&$_SESSION['rol']=="admin")
+             }else if(isset($_SESSION['username'])&&$_SESSION['rol']=="promotor")
                echo '<li><a href="<?= ROOT_DIR?>/promotor">Promotor</a></li>';
             ?>
             <a id="root_app" type="hidden" href="<?= ROOT_DIR?>"></a>
+
           </ul>
           <ul class="nav navbar-nav navbar-right">
             <li>

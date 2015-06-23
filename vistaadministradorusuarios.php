@@ -23,8 +23,9 @@
     <div class="container">
       <div class="sidebar-left container-fixed col-xs-4 col-sm-4 col-md-3 ">
         <ul class="nav nav-pills nav-stacked nav-pills-stacked-example">
-          <li role="presentation"><a href="<?= ROOT_DIR?>/administrar/eventos">Gestión de eventos</a></li>
           <li role="presentation" class="active"><a href="<?= ROOT_DIR?>/administrar/usuarios">Gestión de usuarios</a></li>
+          <li role="presentation"><a href="<?= ROOT_DIR?>/administrar/eventos">Gestión de eventos</a></li>
+          <li role="presentation"><a href="<?= ROOT_DIR?>/evento/crear">Añadir evento</a></li>
         </ul>
       </div>
 
