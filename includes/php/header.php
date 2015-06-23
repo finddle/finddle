@@ -126,7 +126,7 @@ $(function(){
             html += '<div class="notificaciones"><p>  Mensaje de : ' + arrayN[i]['NickEmisor']+'</p>'
          + '<a href="'+root_app+'/mensaje/recibido/'+arrayN[i]["ID"]+'" class="btn btn-default">Responder</a></div>';
           }else{
-            html += '<div class="notificaciones"><p> Peticion de amistad: ' + arrayN[i]['NickUsuario1']+'</p>'+
+            html += '<div class="notificaciones"><p> Peticion de amistad: ' +'<a href="'+root_app+'/usuario/'+arrayN[i]['NickUsuario1']+'">'+arrayN[i]['NickUsuario1']+'</a></p>'+
             '<button type="button" accion="aceptar" onclick="peticionClick($(this));" class="peticiones btn btn-default" user1="'+arrayN[i]['NickUsuario1']+'" user2="'+arrayN[i]['NickUsuario2']+'">Aceptar</button>'+
             '<button type="button" accion="rechazar" onclick="peticionClick($(this));" class="peticiones btn btn-default" user1="'+arrayN[i]['NickUsuario1']+'" user2="'+arrayN[i]['NickUsuario2']+'">Rechazar</button></div>';
           }

@@ -8,5 +8,5 @@ require_once(__DIR__.'/config.php');
 	if(isset($_SESSION['username'])) {
 		session_destroy();
 	}
-	header("Location: /finddle/index.php");
+	header("Location: ".ROOT_DIR);
 ?>

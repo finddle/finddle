@@ -7,26 +7,37 @@ function mensajeContacto($correo, $texto){
 	$err = 0;
 	$fecha=strftime("%Y-%m-%d-%H-%M:%S", time());
 	$tipo = 'admin';
-	$titulo = 'Contacto';
+	$titulo = 'Mensaje de Contacto';
 	$vacio = NULL;
 	$leido = 0;
-	$user = 'UsuarioAnonimo';
-	$query="INSERT INTO mensajes VALUES ('$vacio', '$user', '$tipo', '$correo', '$titulo', '$texto','$fecha', '$leido');";
-	$resultado=$mysqli->query($query) or $err = 1;
+	if(isset($_SESSION['username'])){
+		$user = $_SESSION['username'];
+	}else
+		$user = 'UsuarioAnonimo';
+	$pst = $mysqli->prepare("INSERT INTO mensajes VALUES ('$vacio', '$user', '$tipo', ?, '$titulo', ?,'$fecha', '$leido');");
+	$pst->bind_param("ss",$args[0],$args[1]);
+	$pst->execute();
+	$pst->close();
 	return $err;
 }
 
 /*Devuelve 0 si se ha insertado el mensaje a un usuario correctamente, o 1 si no lo ha realizado correctamente*/
 function mensajeUsuario($nick1,$nick2,$descripcion,$titulo){
+	require_once(__DIR__."/usuariosBD.php");
 	global $mysqli;
 	$err = 0;
 	$fecha=strftime("%Y-%m-%d-%H-%M:%S", time());
 	$vacio = NULL;
 	$leido = 0;
-	require_once(__DIR__."/usuariosBD.php");
+
+	$args = array($nick1,$nick2,$descripcion,$titulo);
+	sanitizeArgs($args);
+	
 	if(buscarNick($nick1)){
-	$query="INSERT INTO mensajes VALUES ('$vacio', '$nick1', '$nick2', '$vacio', '$titulo', '$descripcion','$fecha', '$leido')";
-	$resultado=$mysqli->query($query) or die ($mysqli->error. " en la línea ".(__LINE__-1)) or $err = 1;
+		$pst = $mysqli->prepare("INSERT INTO mensajes VALUES ('$vacio', ?, ?, '$vacio', ?, ?,'$fecha', '$leido');");
+		$pst->bind_param("ssss",$args[0],$args[1],$args[3],$args[2]);
+		$pst->execute();
+		$pst->close();
 	}
 	else $err = 1;
 	
