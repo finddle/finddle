@@ -12,7 +12,7 @@
 		  <!--Favicon-->
 		<link rel="stylesheet" type="text/css" href="<?= ROOT_DIR?>/includes/css/tablas.css">
 		<!--Favicon-->
-		<link rel="shortcut icon" href="<?= ROOT_DIR?>/includes/img/favicon.png" />
+		<link rel="shortcut icon" href="<?= ROOT_DIR?>/includes/img/icon.png" />
 		<script src="<?= ROOT_DIR?>/includes/js/jquery.min.js"></script>
     	<script src="<?= ROOT_DIR?>/includes/js/bootstrap.js"></script>
 	</head>

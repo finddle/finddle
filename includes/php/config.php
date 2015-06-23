@@ -2,8 +2,8 @@
 /*Este script sirve para inicializar constantes usadas por la aplicación y la conexión de la base de datos. */
 define('BD_HOST', 'localhost');
 define('BD_NAME', 'finddle');
-define('BD_USER', 'root');
-define('BD_PASS', '');
+define('BD_USER', 'finddleuser');
+define('BD_PASS', '1928batman2819');
 define('PAG_SIZE',3);
 define('PIMIENTA', '0AsDfMoViE0');
 define('ROOT_DIR',"http://".$_SERVER['SERVER_NAME'].'/finddle');

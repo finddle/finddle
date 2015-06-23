@@ -12,7 +12,7 @@
   <link rel="stylesheet" type="text/css" href="<?= ROOT_DIR?>/includes/css/mycss.css">
   <link rel="stylesheet" type="text/css" href="<?= ROOT_DIR?>/includes/css/formularios.css">
   <!--Favicon-->
-  <link rel="shortcut icon" href="<?= ROOT_DIR?>/includes/img/favicon.png" />
+  <link rel="shortcut icon" href="<?= ROOT_DIR?>/includes/img/icon.png" />
   <script src="<?= ROOT_DIR?>/includes/js/jquery.min.js"></script>
   <script src="<?= ROOT_DIR?>/includes/js/bootstrap.js"></script>
 </head>
@@ -57,7 +57,7 @@ require(__DIR__.'/includes/php/usuarios.php');
                                 </p>
                                 <p> 
                                     <label for="password" class="youpasswd" data-icon="p"> Tu contraseña </label>
-                                    <input id="password" name="password" required="required" type="password" placeholder="eg. X8df!90EO" /> 
+                                    <input id="password" name="password" required="required" type="password" placeholder="eg. X8df90EO" /> 
                                 </p>
                                 <p class="keeplogin"> 
                                     <input type="checkbox" name="loginkeeping" id="loginkeeping" value="loginkeeping" /> 

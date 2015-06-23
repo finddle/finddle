@@ -293,6 +293,14 @@ p.mHeader{
   width: 160px;
 }
 
+#logofindd{
+  margin-top: 0px;
+  padding: 0px;
+  margin-right: 10px;
+}
+#logofindd img{
+  padding-top: 4px;
+
 .extraSmallInput{
   width: 25px;
 }
