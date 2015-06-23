@@ -62,8 +62,11 @@ require_once(__DIR__.'/includes/php/config.php');
 						$coment = getComentarios($evento);
 						if(isset($coment)){
 							foreach ($coment as $comentario) {
-								echo '<div id="comentario">';
-								echo '<p><a href ="'.ROOT_DIR.'/usuario/'.$comentario['NickUsuario'].'">'.$comentario['NickUsuario']. '</a></p>';
+								echo '<div id="comentario" >';
+								if($_SESSION['username'] == $comentario['NickUsuario']){
+									echo '<p><a href ="'.ROOT_DIR.'/usuarios/perfil">'.$comentario['NickUsuario']. '</a></p>';
+								}else
+									echo '<p><a href ="'.ROOT_DIR.'/usuario/'.$comentario['NickUsuario'].'">'.$comentario['NickUsuario']. '</a></p>';
 								echo '<p>',$comentario["Texto"], "</p>";
 
 								if ($comentario["NickUsuario"] == $_SESSION['username']) 
