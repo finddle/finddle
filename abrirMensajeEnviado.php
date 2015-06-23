@@ -23,9 +23,9 @@
      <div class="container">
 	  <div class="sidebar-left container-fixed col-xs-4 col-sm-4 col-md-3 ">
         <ul class="nav nav-pills nav-stacked nav-pills-stacked-example">
-          <li role="presentation"><a href="nuevoMensaje.php">Nuevo Mensaje</a></li>
-          <li role="presentation"><a href="mensajesBandeja.php">Bandeja de entrada</a></li>
-          <li role="presentation"><a href="mensajesEnviados.php">Mensajes enviados</a></li>
+          <li role="presentation"><a href="mensajes/nuevo">Nuevo Mensaje</a></li>
+          <li role="presentation"><a href="mensajes/recibidos">Bandeja de entrada</a></li>
+          <li role="presentation"><a href="mensajes/enviados">Mensajes enviados</a></li>
         </ul>
       </div>
 	  <div id="contenidoPrincipal" class ="container-fixed col-xs-8 col-sm-8 col-md-6">

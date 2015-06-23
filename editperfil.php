@@ -3,7 +3,7 @@
 <html>
     <head>
 	  <title>Finddle</title>
-	  <meta charset="utf-8" />
+	  <meta charset="UTF-8">
 	  <!-- Latest compiled CSS -->
 	  <link rel="stylesheet" type="text/css" href="<?= ROOT_DIR?>/includes/css/bootstrap.css">
 	  <!-- Optional theme -->

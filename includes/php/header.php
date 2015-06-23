@@ -35,17 +35,18 @@ function peticionClick(button){
         </div>
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            <li><a href="<?= ROOT_DIR?>/cartelera.php">Cine</a></li>
-            <li><a href="<?= ROOT_DIR?>/proximosEventos.php">Fiestas</a></li>
+            <li><a href="<?= ROOT_DIR?>/peliculas">Cine</a></li>
+            <li><a href="<?= ROOT_DIR?>/fiestas">Fiestas</a></li>
             <a id="root_app" type="hidden" href="<?= ROOT_DIR?>"></a>
           </ul>
           <ul class="nav navbar-nav navbar-right">
-           
-              <li><form class="search" method="get" action="#" >
-              <input type="text" id="search" placeholder="Buscar..." />
-               <ul id="searchResults" class="search-ac" >
-               </ul>
-             </form></li>
+            <li>
+              <form class="search" method="get" action="#" >
+                <input class="sear" type="text" id="search" placeholder="Buscar..." />
+                <ul id="searchResults" class="search-ac" >
+                </ul>
+              </form>
+            </li>
            
             <?php 
             if (session_status() == PHP_SESSION_NONE) {
@@ -53,10 +54,10 @@ function peticionClick(button){
             }
             if(isset($_SESSION['username'])){
               echo '<a id="notificationLink" href="#" data-container="body" data-toggle="popover" data-placement="bottom"><img src="'.ROOT_DIR.'/includes/img/wbell.png"/></a>';
-              echo '<a href="'.ROOT_DIR.'/perfilUsuario.php"><img  id="userPhoto" src="'.ROOT_DIR.'/'.$_SESSION['picture'].'"/></a><p class="hide" id="isLogged" user="'.$_SESSION['username'].'">Logeado</p>';
+              echo '<a href="'.ROOT_DIR.'/usuarios/perfil"><img  id="userPhoto" src="'.ROOT_DIR.'/'.$_SESSION['picture'].'"/></a><p class="hide" id="isLogged" user="'.$_SESSION['username'].'">Logeado</p>';
               echo '<li><a href="'.ROOT_DIR.'/includes/php/logout.php">Logout</a></li>';
             }else{
-              echo '<li><a href="'.ROOT_DIR.'/login.php">Ingresar</a></li>';
+              echo '<li><a href="'.ROOT_DIR.'/login">Ingresar</a></li>';
             }
             ?>
             <div class="hide" id="popoverContent"><p> No hay notificaciones. </p></div>
@@ -123,7 +124,7 @@ $(function(){
         for(var i=0; i<nAvisos; i++){
           if(typeof arrayN[i]["ID"] != 'undefined'){//isset en javascript
             html += '<div class="notificaciones"><p>  Mensaje de : ' + arrayN[i]['NickEmisor']+'</p>'
-         + '<a href="'+root_app+'/abrirMensajeRecibido.php?mensaje='+arrayN[i]["ID"]+'" class="btn btn-default">Responder</a></div>';
+         + '<a href="'+root_app+'/mensaje/recibido/'+arrayN[i]["ID"]+'" class="btn btn-default">Responder</a></div>';
           }else{
             html += '<div class="notificaciones"><p> Peticion de amistad: ' + arrayN[i]['NickUsuario1']+'</p>'+
             '<button type="button" accion="aceptar" onclick="peticionClick($(this));" class="peticiones btn btn-default" user1="'+arrayN[i]['NickUsuario1']+'" user2="'+arrayN[i]['NickUsuario2']+'">Aceptar</button>'+

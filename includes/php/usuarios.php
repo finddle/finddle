@@ -131,7 +131,7 @@ function login($nombreUsuario, $password) {
   if ( $usuario ) {
     $ok = password_verify($password.PIMIENTA, $usuario['Contrasena']) && $usuario['Tipo'] != "banned";
     if ($ok) {
-      $_SESSION['username'] = $nombreUsuario;
+      $_SESSION['username'] = $usuario['Nick'];
       $_SESSION['rol'] = $usuario['Tipo'];
       $foto = $usuario['Imagen'];
       if($foto == NULL){
@@ -140,7 +140,14 @@ function login($nombreUsuario, $password) {
       $_SESSION['picture'] = $foto;
       
       $ok=true;
-      header("Location: ".__DOC__."../../perfilUsuario.php");
+      if($usuario['Tipo']=="admin"){
+      	header("Location: ".ROOT_DIR."/administrar");	
+      }else if($usuario['Tipo']=="promotor"){
+      	header("Location: ".ROOT_DIR."/promotor");
+      }else{
+      	header("Location: ".ROOT_DIR."/usuarios/perfil");
+      }
+      
     } else {
       $ok = [];
       $ok[] = "Usuario o password no validos";

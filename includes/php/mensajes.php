@@ -75,7 +75,7 @@ function responderFormMensaje($params){
 	$titulo = $params['titulo'];
 	$receptor = $params['emisor'];
 	mensajeUsuario($_SESSION['username'],$receptor,$mensaje,$titulo);
-	header("Location: /finddle/mensajesEnviados.php");
+	header("Location: ".ROOT_DIR."/mensajes/enviados");
 }
 
 ?>
