@@ -52,8 +52,8 @@ require(__DIR__.'/includes/php/usuarios.php');
                                     }
                                 ?>
                                 <p> 
-                                    <label for="username" class="uname" data-icon="u" > Tu nick o correo </label>
-                                    <input id="username" name="username" required="required" type="text" placeholder="myusername or mymail@mail.com"/>
+                                    <label for="username" class="uname" data-icon="u" > Tu nick</label>
+                                    <input id="username" name="username" required="required" type="text" placeholder="myusername"/>
                                 </p>
                                 <p> 
                                     <label for="password" class="youpasswd" data-icon="p"> Tu contraseña </label>
