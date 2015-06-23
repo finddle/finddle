@@ -292,3 +292,19 @@ p.mHeader{
 .apellidosInput{
   width: 160px;
 }
+
+.extraSmallInput{
+  width: 25px;
+}
+
+.smallInput{
+  width: 80px;
+}
+
+.middleInput{
+  width: 140px;
+}
+
+.largeInput{
+  width:220px;
+}

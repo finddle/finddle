@@ -145,7 +145,7 @@ function login($nombreUsuario, $password) {
       
       $ok=true;
       if($usuario['Tipo']=="admin"){
-      	header("Location: ".ROOT_DIR."/vistaadministradorusuarios.php");	
+      	header("Location: ".ROOT_DIR."/administrar/usuarios");	
       }else if($usuario['Tipo']=="promotor"){
       	header("Location: ".ROOT_DIR."/promotor");
       }else{
