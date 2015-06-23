@@ -70,9 +70,75 @@ function buscarNick($nick){
 	return $numregistros;
 }
 
+
+function editarUsuarioAdmin($nick, $nombre, $apellidos, $edad, $correo){
+	global $mysqli;
+	$args = array($nombre, $apellidos, $edad, $correo, $nick);
+	sanitizeArgs($args);	
+	
+	$pst = $mysqli->prepare("UPDATE usuarios SET Nombre = ? , Apellidos = ? , Edad = ? , Correo = ? 
+							WHERE Nick = ? ");
+	
+	$pst->bind_param("ssiss", $args[0], $args[1], $args[2], $args[3], $args[4]);
+	$pst->execute();
+	$result = $pst->get_result();
+	
+	$pst->close();
+}
+
 /*Elimina un usuario de la tabla usuarios*/ 
 function borrarUsuario($nick){
+	global $mysqli;
+
+	$args = array($nick);
+	sanitizeArgs($args);
+
+	$pst = $mysqli->prepare("DELETE FROM usuarios WHERE Nick = ?");
+	$pst->bind_param("s",$args[0]);
+	$pst->execute();
+
+	$pst->close();
+}
+
+function banearUsuario($nick){
+	global $mysqli;
+
+	$args = array($nick);
+	sanitizeArgs($args);
+
+	$pst = $mysqli->prepare("UPDATE usuarios SET Tipo = 'banned' WHERE Nick = ?");
+	$pst->bind_param("s", $args[0]);
+	$pst->execute();
+
+	$pst->close();
+}
+
+function quitarBanUsuario($nick, $rol){
+	global $mysqli;
+
+	$args = array($nick, $rol);
+	sanitizeArgs($args);
+
+	$pst= $mysqli->prepare("UPDATE usuarios SET Tipo = ? WHERE Nick = ?");
+	$pst->bind_param("ss", $args[1], $args[0]);
+	$pst->execute();
+
+	$pst->close();
+}
+
+function getUsuarios(){
+	global $mysqli;
+	$usuarios = null;
 	
+	$pst = $mysqli->prepare("SELECT * FROM usuarios ;");
+	$pst->execute();
+	$result = $pst->get_result();
+	while($row = $result->fetch_array(MYSQLI_ASSOC)){
+		$usuarios[] = $row;
+	}
+	
+	$pst->close();
+	return $usuarios;
 }
 
 ?>

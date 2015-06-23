@@ -277,3 +277,18 @@ p.mHeader{
 #loadgif{
   text-align: center;
 }
+
+.edadInput{
+  width: 25px;
+}
+.datosInput{
+  width: 200px;
+}
+
+.nombreInput{
+  width: 100px;
+}
+
+.apellidosInput{
+  width: 160px;
+}
