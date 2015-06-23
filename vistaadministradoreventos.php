@@ -22,8 +22,8 @@
     <div class="container">
       <div class="sidebar-left container-fixed col-xs-4 col-sm-4 col-md-3 ">
         <ul class="nav nav-pills nav-stacked nav-pills-stacked-example">
-          <li role="presentation"  class="active"><a href="vistaadministradoreventos.php">Gestión de eventos</a></li>
-          <li role="presentation"><a href="vistaadministradorusuarios.php">Gestión de usuarios</a></li>
+          <li role="presentation" class="active"><a href="<?= ROOT_DIR?>/administrar/eventos">Gestión de eventos</a></li>
+          <li role="presentation"><a href="<?= ROOT_DIR?>/administrar/usuarios">Gestión de usuarios</a></li>
         </ul>
       </div>
       <div class="container-fixed col-xs-8 col-sm-8 col-md-6">
