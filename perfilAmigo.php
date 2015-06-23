@@ -11,7 +11,7 @@
 		<!-- Personal CSS -->
 		<link rel="stylesheet" type="text/css" href="<?= ROOT_DIR?>/includes/css/mycss.css">
 		<!--Favicon-->
-		<link rel="shortcut icon" href="<?= ROOT_DIR?>/includes/img/favicon.png" />
+		<link rel="shortcut icon" href="<?= ROOT_DIR?>/includes/img/icon.png" />
 		<link rel="stylesheet" type="text/css" href="<?= ROOT_DIR?>/includes/css/perfilUsuario.css">
 		<script src="<?= ROOT_DIR?>/includes/js/jquery.min.js"></script>
 		<script src="<?= ROOT_DIR?>/includes/js/bootstrap.js"></script>

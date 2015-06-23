@@ -31,12 +31,18 @@ function peticionClick(button){
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
           </button>
-          <a href="<?= ROOT_DIR?>/" class="navbar-brand">FINDDLE</a>
+          <a href="<?= ROOT_DIR?>/" id="logofindd"class="navbar-brand"><img src="<?= ROOT_DIR?>/includes/img/finddle-50w.png"/></a>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
             <li><a href="<?= ROOT_DIR?>/peliculas">Cine</a></li>
             <li><a href="<?= ROOT_DIR?>/fiestas">Fiestas</a></li>
+            <?php
+            if(isset($_SESSION['username'])&&$_SESSION['rol']=="admin"){
+               echo '<li><a href="<?= ROOT_DIR?>/administrar/usuarios">Administrar</a></li>';
+             }else if(isset($_SESSION['username'])&&$_SESSION['rol']=="admin")
+               echo '<li><a href="<?= ROOT_DIR?>/promotor">Promotor</a></li>';
+            ?>
             <a id="root_app" type="hidden" href="<?= ROOT_DIR?>"></a>
           </ul>
           <ul class="nav navbar-nav navbar-right">
