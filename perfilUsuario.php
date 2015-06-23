@@ -1,4 +1,4 @@
-<?php require_once(__DIR__.'/includes/php/config.php');?>
+﻿<?php require_once(__DIR__.'/includes/php/config.php');?>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -61,7 +61,7 @@
 								echo "<p>Nº Asistentes: ".countAsistentes($evento['IDEvento'],$evento['Tipo'])."</p><div class='span-sub-tittle'></div>";
 							}
 						}else
-							echo "<p> Este usuario no asiste a ning?n evento. </p>";
+							echo "<p> Este usuario no asiste a ningún evento. </p>";
 					}
 					else
 						echo "<p>Debes ser un usuario logeado.</p>";
@@ -86,7 +86,7 @@
 									echo '<p><a href ="'.ROOT_DIR.'/usuario/'.$amigo['NickUsuario1'].'">'.$amigo['NickUsuario1']. '</a></p>';
 								}
 							}else
-								echo "<p> Este usuario no tiene amigos :( </p>";
+								echo "<p> Haz nuevos amigos! </p>";
 						}
 					?>
 					</div>
