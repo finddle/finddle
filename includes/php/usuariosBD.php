@@ -12,7 +12,6 @@ function insertarUsuario($nick, $contrasena, $correo, $nombre, $apellidos, $edad
 	//creamos la cadena de argumentos indicando con s los string e i para integer, de cada argumento del array
 	$pst->bind_param("sssssis",$args[0], $args[1], $args[2], $args[3], $args[4], $args[5], $args[6]);
 	$pst->execute();
-	$result = $pst->get_result();
 	
 	$pst->close();
 }
@@ -27,7 +26,6 @@ function editarUsuario($nick, $contrasena, $correo, $nombre, $apellidos, $edad, 
 							WHERE Nick = ?");
 	$pst->bind_param("ssissss", $args[0], $args[1], $args[2], $args[3], $args[4], $args[5], $args[6]);
 	$pst->execute();
-	$result = $pst->get_result();
 	
 	$pst->close();
 }
@@ -81,7 +79,6 @@ function editarUsuarioAdmin($nick, $nombre, $apellidos, $edad, $correo){
 	
 	$pst->bind_param("ssiss", $args[0], $args[1], $args[2], $args[3], $args[4]);
 	$pst->execute();
-	$result = $pst->get_result();
 	
 	$pst->close();
 }

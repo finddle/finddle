@@ -12,7 +12,6 @@
 		
 		$pst->bind_param("ss",$args[0], $args[1]);
 		$pst->execute();
-		$result = $pst->get_result();
 		
 		$pst->close();
 	}
@@ -28,7 +27,6 @@
 		
 		$pst->bind_param("ss",$args[0], $args[1]);
 		$pst->execute();
-		$result = $pst->get_result();
 		
 		$pst->close();
 	}
@@ -45,7 +43,6 @@
 		
 		$pst->bind_param("ss",$args[0], $args[1]);
 		$pst->execute();
-		$result = $pst->get_result();
 		
 		$pst->close();
 		

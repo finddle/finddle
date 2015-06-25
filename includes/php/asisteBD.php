@@ -10,7 +10,6 @@ function asisteEvento($user,$evento){
 	$pst = $mysqli->prepare("INSERT INTO asiste VALUES (?,?);");
 	$pst->bind_param("si",$args[0], $args[1]);
 	$pst->execute();
-	$result = $pst->get_result();
 	
 	$pst->close();
 }

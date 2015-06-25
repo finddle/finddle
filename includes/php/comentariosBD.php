@@ -32,11 +32,8 @@ function commentEvent($user, $event, $comment){
 	$pst = $mysqli->prepare("INSERT into comentarios VALUES ('', ?, ?, ?, ?);");
 	$pst->bind_param("siss",$args[0],$args[1],$args[2],$fecha);
 	$pst->execute();
-	print_r($args);
-	print_r($fecha);
-	$pst->close();
-	
 
+	$pst->close();
 }
 
 /*Elmina un comentario de la base de datos*/

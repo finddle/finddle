@@ -308,7 +308,6 @@ function editarEventoAdmin($id, $nombre, $descripcion, $precio, $promotor){
 	
 	$pst->bind_param("ssdsi", $args[0], $args[1], $args[2], $args[3], $args[4]);
 	$pst->execute();
-	$result = $pst->get_result();
 	
 	$pst->close();
 }
