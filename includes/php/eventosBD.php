@@ -74,19 +74,7 @@ function getEventosAdmin(){
 	global $mysqli;
 	$off = 0;
 	$pag_size = PAG_SIZE;
-	$eventos = null;
-
-	if (session_status() == PHP_SESSION_NONE) {
-   		session_start();
-	}
-	
-	if(!isset($_SESSION['offset'])){
-		$_SESSION['offset'] = 0;
-	}else{
-		$off = $_SESSION['offset'];
-		$off = $off + 3;
-		$_SESSION['offset'] = $off; 
-	}	
+	$eventos = null;	
 	
 	$pst = $mysqli->prepare("SELECT * FROM eventos ");
 
