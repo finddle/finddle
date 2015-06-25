@@ -4,6 +4,8 @@ require_once(__DIR__."/config.php");
 /*Devuelve 0 si se ha insertado el mensaje de contacto correctamente, o 1 si no lo ha realizado correctamente*/
 function mensajeContacto($correo, $texto){
 	global $mysqli;
+	$args = array($correo,$texto);
+	sanitizeArgs($args);
 	$err = 0;
 	$fecha=strftime("%Y-%m-%d-%H-%M:%S", time());
 	$tipo = 'admin';
